@@ -20,8 +20,15 @@
             -->
     </nav>
     <div class="row">
-        <div id="products" class="col-md-8 col-sm-8"> <span>products</span></div>
-        <div id="cart" class="col-sm-4 col-sm-4"> <span>cart</span></div>
+        <div id="products" class="col-md-8 col-sm-8">
+             <span>products</span>
+             <ul>
+                 <li *ngFor="let product of products"><product-item [product]=product></product-item></li>
+             </ul>
+        </div>
+        <div id="cart" class="col-sm-4 col-sm-4">
+             <span>cart</span>
+        </div>
     <div>
 
 </div>

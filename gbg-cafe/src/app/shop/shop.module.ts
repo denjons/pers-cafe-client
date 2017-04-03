@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CartModule } from '../core/cart/cart-module';
+import { ProductModule } from '../core/product/product.module';
 
 import { ShopRoutingModule, routableComponents } from './shop-routing.module';
 
@@ -13,7 +15,8 @@ import { ShopRoutingModule, routableComponents } from './shop-routing.module';
   imports: [
     CommonModule,
     FormsModule,
-    ShopRoutingModule
+    ShopRoutingModule,
+    ProductModule
   ],
   exports:[ routableComponents],
   providers: [/*RequestService*/]
