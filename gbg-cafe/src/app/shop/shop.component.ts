@@ -19,7 +19,12 @@ export class ShopComponent implements OnInit{
     }
 
     ngOnInit(){
+        this.cart = new Array();
         this.products = this.productService.getProductsForShop();
+
+        this.cart[0] = this.products[0];
+        this.cart[1] = this.products[2];
+        this.cart[3] = this.products[3];
     }
 
 

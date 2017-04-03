@@ -16,7 +16,8 @@ import { ShopRoutingModule, routableComponents } from './shop-routing.module';
     CommonModule,
     FormsModule,
     ShopRoutingModule,
-    ProductModule
+    ProductModule,
+    CartModule
   ],
   exports:[ routableComponents],
   providers: [/*RequestService*/]

@@ -11,5 +11,21 @@ body{
 }
 
 .gc-login{
-    
+
+}
+
+.gc-product-grid{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.gc-product-grid li{
+    padding: 0;
+    margin: 0;
+}
+
+.gc-product-grid h3{
+    padding:0;
+    margin:0;
 }

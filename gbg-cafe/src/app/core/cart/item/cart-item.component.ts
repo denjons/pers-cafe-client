@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { Product } from '../../product/product.model';
 
 
 @Component({
@@ -8,5 +8,5 @@ import { Component, OnInit, Input } from '@angular/core';
     styleUrls: ['./cart-item.component.css']
 })
 export class CartItemComponent{
-    
+    @Input() product: Product;
 }

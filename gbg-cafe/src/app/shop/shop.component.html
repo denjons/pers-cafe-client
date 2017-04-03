@@ -22,12 +22,15 @@
     <div class="row">
         <div id="products" class="col-md-8 col-sm-8">
              <span>products</span>
-             <ul>
+             <ul class="gc-product-grid">
                  <li *ngFor="let product of products"><product-item [product]=product></product-item></li>
              </ul>
         </div>
         <div id="cart" class="col-sm-4 col-sm-4">
              <span>cart</span>
+             <ul class="gc-product-grid">
+                 <li *ngFor="let product of cart"><cart-item [product]=product></cart-item></li>
+             </ul>
         </div>
     <div>
 

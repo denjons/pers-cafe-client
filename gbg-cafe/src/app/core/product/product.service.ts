@@ -21,6 +21,8 @@ export class ProductService{
             prod.quantity = i+1;
             prod.price = (i+2)/3;
 
+            prod.price = Number.parseFloat(prod.price.toFixed(2));
+
             poducts[i] = prod;
         }
 
