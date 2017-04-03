@@ -104,6 +104,7 @@ body {
         float: left;
         margin: 10px 0 0 240px; }
 
+<<<<<<< HEAD
 #products {
   width: 65%;
   padding: 0;
@@ -151,3 +152,22 @@ body {
   padding: 0; }
 
 /*# sourceMappingURL=styles.css.map */
+.gc-login{
+
+}
+
+.gc-product-grid{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.gc-product-grid li{
+    padding: 0;
+    margin: 0;
+}
+
+.gc-product-grid h3{
+    padding:0;
+    margin:0;
+}
