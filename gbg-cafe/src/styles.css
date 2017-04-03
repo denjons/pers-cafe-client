@@ -1,15 +1,153 @@
+@charset "UTF-8";
 /* You can add global styles to this file, and also import other style files */
+/*
+Göteborgs Stads Typsnit Gotham
+*/
+@font-face {
+  font-family: "Book";
+  src: url("fonts/Gotham-Book.otf") format("opentype"); }
+@font-face {
+  font-family: "Light";
+  src: url("fonts/Gotham-Light.otf") format("opentype"); }
+@font-face {
+  font-family: "Medium";
+  src: url("fonts/Gotham-Medium.otf") format("opentype"); }
+@font-face {
+  font-family: "Bold";
+  src: url("fonts/Gotham-Bold.otf") format("opentype"); }
+body {
+  height: inherit;
+  background-color: #1b78cc; }
 
+.container {
+  height: inherit;
+  margin: 0;
+  padding: 0; }
 
-body{
-    height:inherit;
+/*
+*
+*
+* Admin Overrides
+*
+*/
+.login {
+  width: 100%;
+  transform: translateY(25%); }
+  .login .store-front {
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+    font-size: 78px;
+    font-family: 'Book';
+    margin-bottom: 90px; }
+  .login .form-group input, .login .form-group button {
+    border-radius: 0;
+    widows: 530px;
+    height: 80px;
+    margin-bottom: 40px;
+    text-align: center;
+    line-height: -30px;
+    font-size: 30px;
+    font-family: 'Book'; }
+  .login .form-group button {
+    background: #d9861a;
+    color: white; }
 
-}
+/*
+*
+*
+* Store Overrides
+*
+*/
+.store {
+  background: white;
+  width: 100%; }
 
-.container{
-    height:inherit;
-}
+.navbar {
+  background: #1b78cc;
+  font-family: 'Light';
+  border-radius: 0;
+  border: 0;
+  margin: 0; }
+  .navbar .tm-loggo {
+    display: none; }
+  .navbar .navbar-collapse {
+    width: auto;
+    text-align: center;
+    float: left;
+    margin: 5px 0 0 25px; }
+    .navbar .navbar-collapse .nav-cat {
+      width: 100%;
+      margin: 18px 0px 0px 40px;
+      text-align: center; }
+      .navbar .navbar-collapse .nav-cat a {
+        color: white;
+        font-size: 16px;
+        line-height: 0; }
+      .navbar .navbar-collapse .nav-cat li {
+        margin-right: 15px;
+        width: 55px;
+        height: 55px;
+        position: relative; }
+        .navbar .navbar-collapse .nav-cat li img {
+          width: 32px;
+          height: 32px;
+          display: block;
+          margin: auto; }
+        .navbar .navbar-collapse .nav-cat li:last-child {
+          margin-right: 0; }
+      .navbar .navbar-collapse .nav-cat #text-for-kassa {
+        font-size: 35px;
+        color: white;
+        font-family: "Light";
+        float: left;
+        margin: 10px 0 0 240px; }
 
-.gc-login{
-    
-}
+#products {
+  width: 65%;
+  padding: 0;
+  margin: 0;
+  height: auto;
+  background: white; }
+  #products .search {
+    width: 548px;
+    margin: 0 90px;
+    margin-top: 25px;
+    font-family: "Book";
+    font-size: 24px;
+    padding: 0; }
+    #products .search input, #products .search button {
+      height: 50px; }
+    #products .search input {
+      background: #e6e6e6;
+      width: 460px; }
+    #products .search button {
+      background: #d9861a;
+      width: 77px; }
+  #products .products-list {
+    width: 100%;
+    margin: 0 50px 5px 50px;
+    padding: 0; }
+    #products .products-list ul {
+      list-style: none;
+      padding: 0;
+      width: 100%; }
+      #products .products-list ul li {
+        background: black;
+        float: left;
+        width: 178px;
+        height: 178px;
+        margin: 23px 15px; }
+        #products .products-list ul li:nth-child(3n + 3) {
+          margin-right: 0; }
+
+#cart {
+  float: right;
+  width: 347px;
+  height: 768px;
+  background: #1b78cc;
+  margin: 0;
+  padding: 0; }
+
+/*# sourceMappingURL=styles.css.map */

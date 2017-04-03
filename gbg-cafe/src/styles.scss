@@ -1,0 +1,217 @@
+/* You can add global styles to this file, and also import other style files */
+
+/*
+Göteborgs Stads Typsnit Gotham
+*/
+@font-face{
+    font-family: "Book";
+    src: url('fonts/Gotham-Book.otf') format('opentype');
+  }
+@font-face{
+    font-family: "Light";
+    src: url('fonts/Gotham-Light.otf') format('opentype');
+  }
+@font-face{
+    font-family: "Medium";
+    src: url('fonts/Gotham-Medium.otf') format('opentype');
+  }
+@font-face{
+    font-family: "Bold";
+    src: url('fonts/Gotham-Bold.otf') format('opentype');
+  }
+
+
+$primary-color:		#1b78cc;
+$yellow: 			#f2d040;
+$red: 				#c03533;
+$orange:            #d9861a;
+
+body{
+    height:inherit;
+    background-color: $primary-color;
+}
+
+.container{
+    height:inherit;
+    margin: 0;
+    padding: 0;
+}
+
+.gc-login{
+    
+}
+
+
+/*
+*
+*
+* Admin Overrides
+*
+*/
+.login{
+    width: 100%;
+    transform: translateY(25%);
+
+    .store-front{
+        width: 100%;
+        text-align: center;
+        text-transform: uppercase;
+        color: white;
+        font-size: 78px;
+        font-family: 'Book';
+        margin-bottom: 90px;
+    }
+
+    .form-group{
+        input, button{
+            border-radius: 0;
+            widows: 530px;
+            height: 80px;
+            margin-bottom: 40px;
+            text-align: center;
+            line-height: -30px;
+            font-size: 30px;
+            font-family: 'Book';
+        }
+
+        button{
+            background: $orange;
+            color: white;
+        }
+    }
+}
+
+/*
+*
+*
+* Store Overrides
+*
+*/
+
+.store{
+    background: white;
+    width: 100%;
+}
+
+//Navigation
+.navbar{
+    background: $primary-color;
+    font-family: 'Light';
+    border-radius: 0;
+    border: 0;
+    margin: 0;
+
+    .tm-loggo{
+        display: none;
+    }
+
+    .navbar-collapse{
+        width: auto;
+        text-align: center;
+        float: left;
+        margin: 5px 0 0 25px;
+
+        .nav-cat{
+            width: 100%;
+            margin: 18px 0px 0px 40px;
+            text-align: center;
+
+            a{
+                color: white;
+                font-size: 16px;
+                line-height: 0;
+            }
+
+            li{
+                margin-right: 15px;
+                width: 55px;
+                height: 55px;
+                position: relative;
+
+                img{
+                    width: 32px;
+                    height: 32px;
+                    display: block;
+                    margin: auto;
+                }
+
+                &:last-child{
+                    margin-right: 0;
+                }
+            }
+
+            #text-for-kassa{
+                font-size: 35px;
+                color: white;
+                font-family: "Light";
+                float: left;
+                margin: 10px 0 0 240px;
+            }
+        }
+    }
+}
+
+//Products
+#products{
+    width: 65%;
+    padding: 0;
+    margin: 0;
+    height: auto;
+    background: white;
+
+    .search{
+        width: 548px;
+        margin: 0 90px;
+        margin-top: 25px;
+        font-family: "Book";
+        font-size: 24px;
+        padding: 0;
+
+        input, button{
+            height: 50px;
+        }
+
+        input{
+            background: #e6e6e6;
+            width: 460px;
+        }
+
+        button{
+            background: $orange;
+            width: 77px;
+        }
+    }
+
+    .products-list{
+        width: 100%;
+        margin: 0 50px 5px 50px;
+        padding: 0;
+
+        ul{
+            list-style: none;
+            padding: 0;
+            width: 100%;
+
+            li{
+                background: black;
+                float: left;
+                width: 178px;
+                height: 178px;
+                margin: 23px 15px;
+
+                &:nth-child(3n + 3){
+                    margin-right: 0;
+                }
+            }
+        }   
+    }
+}
+
+#cart{
+    float: right;
+    width: 347px;
+    height: 768px;
+    background: $primary-color;
+    margin: 0;
+    padding: 0;
+}
