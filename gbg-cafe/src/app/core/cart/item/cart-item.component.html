@@ -1,18 +1,26 @@
 
 <div class="panel-body">
-    <div class="pull-left">
+    <div class="pull-left items">
         <div>
             <ul>
-                <li><span>{{product.name}}</span></li>
-                <li><span>{{product.description}}</span></li>
+                <li class="cart-product-name"><span>{{product.name}}<br>{{product.size}} </span></li>
+                <li class="cart-product-flav"><span>{{product.flavour}}</span></li>
             </ul>
         </div>
         <div>
-            <span>Control Panel</span>
+            <div class="controls">
+                <div class="control-panel">
+                    <div class="ctrl-button subtract">-</div>
+                    <span class="amount-in-cart">4</span>
+                    <div class="ctrl-button add">+</div>
+                    <img class="garbage" src="src/icons/soptunna.png" />
+                </div>
+                <span class="item-price">á {{price}},{{price2}} kr</span>
+            </div>
+            <div class="clearfix"></div>
         </div>
     </div>
-    <div class="pull-right">
-        <span>{{product.price}}</span>
-
+    <div class="pull-right prices">
+        <span>{{price}}</span><span class="pennies">,{{price2}}</span>
     </div>
 </div>

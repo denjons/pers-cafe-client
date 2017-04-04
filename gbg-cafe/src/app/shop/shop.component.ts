@@ -21,8 +21,11 @@ export class ShopComponent implements OnInit{
         this.products = this.productService.getProductsForShop();
 
         this.cart[0] = this.products[0];
-        this.cart[1] = this.products[2];
+        this.cart[1] = this.products[1];
+        this.cart[2] = this.products[2];
         this.cart[3] = this.products[3];
+        this.cart[4] = this.products[4];
+        this.cart[5] = this.products[5];
     }
 
     
