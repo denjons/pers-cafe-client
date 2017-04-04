@@ -30,52 +30,54 @@
                     <img src="/src/icons/smaller/allt.png" />
                     <a  href="">Allt</a>
                 </li>
-
-                <p id="text-for-kassa">KASSA</p>
             </ul>
+            
+            <p id="text-for-kassa">KASSA</p>
         </div>
         <!--<div class="new-msg-box"><a [routerLink]="['/msg']" href="">new msg</a></div>
             -->
     </nav>
     <div class="row">
-<<<<<<< HEAD
-        <div id="products" class="col-md-8 col-sm-8"> 
-            <div class="search-col">
-                <form name="searchForm" class="form-inline search">
-                    <input type="search" class="form-control" placeholder="Sök din vara">
-                    <button type="submit" class="btn btn-default">Sök</button>
+        <div id="products" class="col-md-8 col-sm-8 products-list">
+            <div class="search-col">
+                <form name="searchForm" class="form-inline search">
+                    <input type="search" class="form-control" placeholder="Sök din vara">
+                    <button type="submit" class="btn btn-default">Sök</button>
                 </form>
             </div>
 
-            <div class="products-list">
-                <ul>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
+            <div class="grid-system">
+                <ul class="gc-product-grid">
+                    <li *ngFor="let product of products"><product-item [product]=product></product-item></li>
                 </ul>
+                <div class="clearfix"></div>
+
             </div>
         </div>
-        <div id="cart" class="col-sm-4 col-sm-4"> <span>KASSA</span></div>
-=======
-        <div id="products" class="col-md-8 col-sm-8">
-             <span>products</span>
-             <ul class="gc-product-grid">
-                 <li *ngFor="let product of products"><product-item [product]=product></product-item></li>
-             </ul>
-        </div>
         <div id="cart" class="col-sm-4 col-sm-4">
-             <span>cart</span>
              <ul class="gc-product-grid">
-                 <li *ngFor="let product of cart"><cart-item [product]=product></cart-item></li>
+                 <li class="cart-item" *ngFor="let product of cart"><cart-item [product]=product></cart-item></li>
              </ul>
+
+             <div class="col-lg-8 pull-right cart-total">
+                 <p class="items in-cart">Antal varor: <span class="amount">20</span></p>
+                 <p class="items total">Total: <span class="amount">666</span></p>
+             </div>
+
+             <div class="clearfix"></div>
+             <div class="col-lg-8 swish">
+                 <div id="swish-number">Swisha summan til: <span id="number">0704 - 33 33 33</span></div>
+                 <div id="buttons">
+                     <form name="swish-submit" class="form-inline swish-form">
+                         <button type="submit" class="btn btn-default submit">Jag har Swishat</button>
+                         <button type="cancel" class="btn btn-default regret">Ångra</button>
+                         <div class="clearfix"></div>
+                     </form>
+                 </div>
+             </div>
+
+             <img class="gbg-logo" src="/src/imgs/gbg-stad-ikon.png">
         </div>
->>>>>>> 9cb4ea7aad0901669ed0a7002cc07c4cf4996856
     <div>
 
 </div>

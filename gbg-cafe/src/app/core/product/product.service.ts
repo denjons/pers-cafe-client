@@ -13,13 +13,13 @@ export class ProductService{
     getProductsForShop(){
         var poducts = new Array();
 
-        for(var i=0; i < 10; i ++){
+        for(var i=0; i < 15; i ++){
 
             var prod = new Product();
-            prod.name = "product "+i;
-            prod.description = "this is product "+i;
+            prod.name = "Produktnamn";
+            prod.description = "Produkttyp "+ (i >= 10 ? ( i - 10) : i);
             prod.quantity = i+1;
-            prod.price = (i+2)/3;
+            prod.price = ((i+20)/3) * (i % 10 === 0 ? 4 : 10);
 
             prod.price = Number.parseFloat(prod.price.toFixed(2));
 
