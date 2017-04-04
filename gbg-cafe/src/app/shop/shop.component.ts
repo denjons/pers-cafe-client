@@ -12,8 +12,6 @@ export class ShopComponent implements OnInit{
     cart: Product[];
     products: Product[];
 
-    title = "test ostra gbg";
-
     constructor(private productService: ProductService){
         
     }
@@ -26,6 +24,8 @@ export class ShopComponent implements OnInit{
         this.cart[1] = this.products[2];
         this.cart[3] = this.products[3];
     }
+
+    
 
 
 }

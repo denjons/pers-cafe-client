@@ -10,7 +10,17 @@ export class ProductService{
         console.log("constructed");
     }
 
+
+
     getProductsForShop(){
+
+        var shop_id = localStorage.getItem("shop_id");
+        var token = localStorage.getItem("id_token");
+
+        console.log("from localstorage");
+        console.log("shop "+shop_id);
+        console.log("token: "+token);
+
         var poducts = new Array();
 
         for(var i=0; i < 10; i ++){
