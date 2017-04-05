@@ -21,7 +21,10 @@ export class LoginComponent implements OnInit{
 
     login(event, name, password){
        // event.preventDefault();
+
+        console.log("logging in: show spinner or something");
         let body = JSON.stringify({ name, password });
+
         this.http.post(Urls.login, body, { headers: GCHeader.headers })
         .subscribe(
             response => {
@@ -29,24 +32,20 @@ export class LoginComponent implements OnInit{
                 console.log("authorization: "+response.headers.get('Authorization'));
                 console.log(response.headers);
 
-                var user = response.json();
-                console.log(user);
+                var token = response.headers.get("Authorization");
 
-                localStorage.setItem("id_token", response.headers.get("Authorization"));
-                localStorage.setItem("shop_id", user.shops[0].id);
-
-                console.log("user type : " + user.user_type);
-                if(user.user_type=="CUSTOMER"){
-                    
-                    this.router.navigate(['shop']);
-                }else if(user.user_type=="ADMIN"){
+                if(token != null){
+                    localStorage.setItem("id_token", token);
                     this.router.navigate(['shop']);
                 }else{
-                    console.log("crap!");
+                    console.log("token was null: show error message");
                 }
+
+                
                 
             },
             error => {
+             console.log("error while logging in: show error message");   
             alert(error.text());
             console.log(error.text());
         }

@@ -5,8 +5,8 @@ import { Headers } from '@angular/http';
 export class GCHeader{
 
      static headers = new Headers();
-     static ATYHORIZATION = "authorization";
-     static temp_jwt = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI0IiwiaWF0IjoxNDg5MjIzNzkyLCJzdWIiOiIvdXNlci9jcmVhdGV1c2VyIiwiaXNzIjoiVE1fV0lMREZMWV83In0.wW9YYV3WexzD7vFcaDBZLZlqt5KrcuyEfvgHi0KB4jA";
+     static AUTHORIZATION = "authorization";
+
 }
 
 GCHeader.headers.append('Accept', 'application/json');
