@@ -24,6 +24,10 @@ body {
   width: 100vw;
   overflow: hidden;
   background-color: #1b78cc; }
+  body #text-for-kassa {
+    font-size: 35px;
+    color: white;
+    font-family: "Light"; }
 
 .container {
   height: inherit;
@@ -103,9 +107,6 @@ body {
           margin-right: 0; }
     .navbar .navbar-collapse #text-for-kassa {
       float: right;
-      font-size: 35px;
-      color: white;
-      font-family: "Light";
       margin: 10px 8% 0 0; }
 
 .row {
@@ -192,7 +193,7 @@ body {
               text-align: right;
               font-family: "Medium"; }
               #products.products-list .grid-system .panel .panel-body .product-information li.product-price {
-                font-size: 33px; }
+                font-size: 30px; }
                 #products.products-list .grid-system .panel .panel-body .product-information li.product-price .pennies {
                   font-size: 20px;
                   vertical-align: top;
@@ -208,6 +209,13 @@ body {
   background: #1b78cc;
   margin: 0;
   padding: 0; }
+  #cart #text-for-kassa {
+    display: none;
+    margin-left: 50%;
+    transform: translateX(-60px);
+    /* Mobile display. Set Later
+    display: inline-block;
+    */ }
   #cart .cart-total {
     width: 100%;
     padding: 0 30px 0 35px;

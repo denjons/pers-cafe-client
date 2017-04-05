@@ -39,6 +39,12 @@ body{
     overflow: hidden;
 
     background-color: $primary-color;
+
+    #text-for-kassa{
+        font-size: 35px;
+        color: white;
+        font-family: "Light";
+    }
 }
 
 .container{
@@ -147,9 +153,6 @@ body{
 
         #text-for-kassa{
             float: right;
-            font-size: 35px;
-            color: white;
-            font-family: "Light";
             margin: 10px 8% 0 0;
         }
     }
@@ -272,7 +275,7 @@ body{
                             font-family: "Medium";
 
                             &.product-price{
-                                font-size: 33px;
+                                font-size: 30px;
 
                                 .pennies{
                                     font-size: 20px;
@@ -301,6 +304,15 @@ body{
     background: $primary-color;
     margin: 0;
     padding: 0;
+    
+    #text-for-kassa{
+        display: none;
+        margin-left: 50%;
+        transform: translateX(-60px);
+        /* Mobile display. Set Later
+        display: inline-block;
+        */
+    }
 
      .cart-total{
         width: 100%;
