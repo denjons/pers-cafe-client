@@ -8,8 +8,19 @@
         <div class="tm-loggo navbar-header">
             <h1>{{title}}</h1>
         </div>
+         <img id="soda" src="/src/icons/smaller/soda.png" />
+         <img id="snacks" src="/src/icons/smaller/snack.png" />
+         <img id="food" src="/src/icons/smaller/burger.png" />
+         <img id="other" src="/src/icons/smaller/misc.png" />
+         <img id="all" src="/src/icons/smaller/allt.png" (load)="getImages()"/>
+
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav tm-navbar-nav nav-cat">
+                <li *ngFor="let category of categories" class="nav" (load)="loadCategoryImage(category)">
+                    <img src="{{category.imgElm}}" />
+                    <a  href="">{{category.name}}</a>
+                </li>
+                <!--
                 <li class="nav">
                     <img src="/src/icons/smaller/soda.png" />
                     <a  href="">Läsk</a>
@@ -30,6 +41,7 @@
                     <img src="/src/icons/smaller/allt.png" />
                     <a  href="">Allt</a>
                 </li>
+                -->
             </ul>
             
             <p id="text-for-kassa">KASSA</p>
@@ -38,6 +50,7 @@
             -->
     </nav>
     <div class="row">
+
         <div id="products" class="col-md-8 col-sm-8 products-list">
             <div class="search-col">
                 <form name="searchForm" class="form-inline search">
@@ -79,6 +92,7 @@
 
              <img class="gbg-logo" src="/src/imgs/gbg-stad-ikon.png">
         </div>
-    <div>
+
+    </div>
 
 </div>

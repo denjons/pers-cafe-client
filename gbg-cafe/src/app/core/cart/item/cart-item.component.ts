@@ -14,7 +14,8 @@ export class CartItemComponent implements OnInit{
     price2: string;
 
       ngOnInit(){
-        
+        console.log("cart item");
+        console.log(this.product);
         var priceArr = this.product.price.toFixed(2).toString().split(".");
         this.price = priceArr[0];
         if(priceArr.length > 1){
