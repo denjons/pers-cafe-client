@@ -22,13 +22,15 @@ Göteborgs Stads Typsnit Gotham
 
 
 $primary-color:		#1b78cc;
-$yellow: 			#f2d040;
-$red: 				#c03533;
-$orange:            #d9861a;
+$yellow: 			#f2b600;
+$red: 				#b93342;
+$orange:            #f18700;
 $gray:              #cecfd0;
 $darkgray:          #9a9c9d;
 $black:             #1F1E1D;
 $light-blue:        #729fbd;
+$green:             #51aa50;
+$ocean:             #88ccd0;
 
 .clearfix{ clear: both; }
 
@@ -126,23 +128,27 @@ body{
         .nav-cat{
             width: auto;
             margin-left: 160px;
+            margin-bottom: 20px;
+            text-align: center;
 
             a{
                 color: white;
                 font-size: 16px;
-                line-height: 0;
-                padding: 15px 0 0 0;
                 margin: 0;
             }
 
             li{
                 margin-right: 40px;
-                width: 55px;
+                width: auto;
                 height: 55px;
 
                 img{
                     width: 32px;
                     height: 32px;
+                }
+
+                .cat-name{
+                    width: auto;
                 }
 
                 &:last-child{
@@ -252,18 +258,31 @@ body{
                     padding: 0;
                 }
 
-                    .product-images{
-                        width: 50%;
-                        height: 100%;
-
-                        li{
-                            font-family: "Light";
-                            font-style: italic;
-                            font-size: 14px;
-
+                .product-description{
+                    width: 100%;
+                    li{
+                        float: none;
                             &.product-name{
                                 text-decoration: underline;
+                                font-size: 16px;
+                                font-family: "Bold";
+                                font-style: italic;
                             }
+
+                            &.product-desc{
+                                font-size: 14px;
+                                font-family: "Light";
+                                font-style: normal;
+                            }
+                    }
+                }
+
+                    .product-images{
+                        width: 50%;
+                        height: auto;
+
+                        li{
+                            
                         }
 
                         .thumbnail{
@@ -290,10 +309,6 @@ body{
                                     line-height: 2;
                                 }
                             }
-
-                            &.product-desc, &.product-quant{
-                                font-size: 13px;
-                            }
                         }
                     }
                 }
@@ -303,6 +318,7 @@ body{
 }
 
 .admin{
+    z-index: 9999;
     &.inactive{
         display: none;
     }
@@ -356,6 +372,7 @@ body{
                 font-family: "Light";
                 font-size: 24px;
                 text-align: center;
+                margin-right: 15px;
             }
         }
     }
@@ -439,17 +456,24 @@ body{
             padding: 0;
             margin: 0;
 
+
+            &.cart-item{
+                border-bottom: 1px solid $darkgray;
+            }
             &.cart-item:nth-child(even){
-                background: #cecfd0;
+                background: $gray;
             }
 
             .panel-body{
                 padding: 10px;
 
                 .items{
+                    width: 150px;
+
                     .cart-product-name{
                         font-family: "Bold";
                         font-size: 16px;
+                        text-transform: uppercase;
                     }
 
                     .cart-product-flav{
@@ -458,35 +482,49 @@ body{
                         font-size: 14px;
                     }
                     
+                    .item-price{
+                        color: $orange;
+                        font-family: "Light";
+                        font-size: 12px;
+                        float: left;
+                    }
                     .controls{
-                        width: 155px;
+                        width: auto;
                         margin-top: 15px;
-
-                        .item-price{
-                            color: $orange;
-                            font-family: "Light";
-                        }
                     
                         .control-panel{
                             width: auto;
                             height: 25px;
+                            line-height: 35px;
                             
                             div, span{
                                 float: left;
                             }
 
+                            .amount-in-cart{
+                                float: left;
+                                margin: 0 5px 0 5px;
+                                font-size: 16px;
+                            }
+
                             .ctrl-button{
-                                width: 20px;
-                                height: 20px;
-                                background-color: $light-blue;
+                                width: 35px;
+                                height: 35px;
                                 text-align: center;
+                                font-family: "Bold";
+                                font-size: 20px;
+                                line-height: 1.8em;
+                                color: white;
 
                                 &.subtract{
-                                    margin: 0 10px 0 0;
+                                    margin: 0;
+                                    background: $red;
+                                    margin-right: 5px;
                                 }
 
                                 &.add{
-                                    margin: 0 15px 0 10px;
+                                    margin: 0;
+                                    background: $green;
                                 }
                             }
 
@@ -494,7 +532,7 @@ body{
                                 width: 30px;
                                 height: auto;
                                 float: right;
-                                margin-top: -10px;
+                                margin-top: 0px;
                             }
                         }
                     }

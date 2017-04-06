@@ -17,8 +17,10 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav tm-navbar-nav nav-cat">
                 <li *ngFor="let category of categories" class="nav" (load)="loadCategoryImage(category)">
-                    <img src="{{category.imgElm}}" />
-                    <a (click)="navigate(category.id)" href="" >{{category.name}}</a>
+                    <a (click)="navigate(category.id)" href="" >
+                        <img src="{{category.imgElm}}" />
+                        <p class="cat-name">{{category.name}}</p>
+                    </a>
                 </li>
                 <li class="admin inactive add-category">
                     <a href="/">

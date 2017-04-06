@@ -3,7 +3,7 @@
     <div class="pull-left items">
         <div>
             <ul>
-                <li class="cart-product-name"><span>{{product.name}}<br>{{product.size}} </span></li>
+                <li class="cart-product-name"><span>{{product.name}}, <br>{{product.size}}</span></li>
                 <li class="cart-product-flav"><span>{{product.flavour}}</span></li>
             </ul>
         </div>
@@ -11,16 +11,16 @@
             <div class="controls">
                 <div class="control-panel">
                     <div class="ctrl-button subtract" (click)="decrease()">-</div>
-                    <span class="amount-in-cart">{{cartItem.quantity}}</span>
                     <div class="ctrl-button add" (click)="increase()">+</div>
+                    <span class="amount-in-cart">x{{cartItem.quantity}}</span>
                     <img class="garbage" src="src/icons/soptunna.png" (click)="remove()" />
                 </div>
-                <span class="item-price">á {{price}},{{price2}} kr</span>
             </div>
             <div class="clearfix"></div>
+            <span class="item-price">á {{price}},{{price2}} kr</span>
         </div>
     </div>
     <div class="pull-right prices">
-        <span>{{price}}</span><span class="pennies">,{{price2}}</span>
+        <span>{{ price * cartItem.quantity }}</span><span class="pennies">,{{ price2  }}</span>
     </div>
 </div>
