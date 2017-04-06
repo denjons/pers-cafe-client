@@ -35,18 +35,14 @@ export class CartItemComponent implements OnInit{
     }
 
     remove(){
-        this.cartItem.reset();
         this.onRemove.emit(this.cartItem);
     }
 
     increase(){
-        if(this.cartItem.increase()){
-            this.onIncrease.emit(this.cartItem.product);
-        }
+        this.onIncrease.emit(this.cartItem.product);
     }
 
     decrease(){
-        this.cartItem.decrease();
         this.onDecrease.emit(this.cartItem.product);
     }
 }

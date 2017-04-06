@@ -36,29 +36,28 @@ export class ShopComponent implements OnInit{
     }
 
     updateCart(product : Product){
-        // update total price
-        
-        this.increaseItem(product);
-
         // update existing cart item
         for(let item of this.cart){
             if(item.product.id == product.id){
-               item.addproduct(product);
+               this.increaseItem(product);
                return;
             }
         }
-        
         // new cart item
         var cartItem = new CartItem()
         cartItem.addproduct(product);
         this.cart.push(cartItem);
+        this.updateCartInfo(product.price, 1);
     }
 
     // handle increaseing products in cart
     increaseItem(product: Product){
 
-        this.totalPrice = this.totalPrice + product.price;
-        this.totalProducts = this.totalProducts + 1;
+        this.cart.map(item => {if(item.product.id == product.id){
+            item.increase();
+        }});
+
+        this.updateCartInfo(product.price, 1);
 
         console.log("todo: update product-item if quantity <= 0");
 
@@ -67,9 +66,12 @@ export class ShopComponent implements OnInit{
 
     // handle cecreasing products in cart
     decreaseItem(product: Product){
-        this.totalPrice = this.totalPrice - product.price;
-        this.totalProducts = this.totalProducts - 1;
 
+        this.cart.map(item => {if(item.product.id == product.id){
+            item.decrease();
+        }});
+
+        this.updateCartInfo(-product.price, -1);
         console.log("cart item was decreased, active is "+product.active);
 
         this.cart = this.cart.filter(prod => prod.quantity > 0);
@@ -78,11 +80,51 @@ export class ShopComponent implements OnInit{
     removeItem(cartItem: CartItem){
         console.log("-------- removing cart item ------");
         console.log(cartItem);
-        this.totalPrice = this.totalPrice - cartItem.quantity * cartItem.product.price;
-        this.totalProducts = this.totalProducts - cartItem.quantity;
+
+        console.log(cartItem.quantity);
+        console.log(cartItem.product.price);
+        this.updateCartInfo(- cartItem.quantity * cartItem.product.price, - cartItem.quantity);
 
         console.log("removed product "+cartItem.product.name);
+        cartItem.reset();
         this.cart = this.cart.filter(item => item.product.id != cartItem.product.id);
+    }
+
+    private updateCartInfo(price :number, quantity: number){
+        this.totalPrice = this.totalPrice + price;
+        this.totalProducts = this.totalProducts + quantity;
+    }
+
+
+    purchase(){
+        console.log("todo: shoe spinner");
+        this.productService.purchase(this.cart, this.shop).subscribe(
+            response => {
+                if(response.status == 204){
+                    this.purchaseSucess(response.json());
+                }else if(response.status == 401){
+                    console.log("todo: show error message: ");
+                    console.log(response.json());
+                }else{
+                    console.log("todo: show error message: ");
+                    console.log(response.json());
+                }
+            },
+            error => this.errorMessage = <any>error
+        );
+    }
+
+    private purchaseSucess(result: any){
+        console.log("todo: show reciept?: ");
+        console.log(result);
+        this.clearCart();
+    }
+
+    public clearCart(){
+        console.log("clearing cart");
+        var temp = new Array();
+        this.cart.forEach(temp.push);
+        temp.forEach(this.removeItem);
     }
 
 
@@ -126,10 +168,6 @@ export class ShopComponent implements OnInit{
         this.products = this.shop.categories[0].products;
         this.categories = this.shop.categories;
         this.cart = new Array();
-
-        this.updateCart(this.products[0]);
-        this.updateCart(this.products[1]);
-        this.updateCart(this.products[2]);
     }
 
     private initShops(){

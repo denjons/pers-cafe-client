@@ -28,7 +28,12 @@ export class ProductItemComponent implements OnInit{
     }
 
     addToCart(){
-        this.onAddToCart.emit(this.product);
+        if(this.product.quantity > 0){
+            this.onAddToCart.emit(this.product);
+        }else{
+            console.log("Todo: product quantity is 0, notify user" + this.product.quantity);
+        }
+        
     }
 
 

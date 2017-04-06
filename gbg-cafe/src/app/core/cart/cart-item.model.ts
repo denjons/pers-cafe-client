@@ -25,15 +25,16 @@ export class CartItem{
 
     public reset(){
         this.product.quantity = this.product.quantity + this.quantity;
+        this.quantity = 0;
     }
 
     public addproduct(product: Product){
         if(this.product == null){
             this.product = product;
         }
-        this.product.quantity = this.product.quantity - 1;
-        this.quantity = this.quantity + 1;
-
+        this.product.quantity --;
+        this.quantity ++;
+        console.log(" ------------ quantity: "+this.quantity  );
     }
 
 }

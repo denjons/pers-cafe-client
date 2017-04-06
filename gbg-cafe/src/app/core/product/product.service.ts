@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { Product } from './product.model';
 import { User } from '../shop/user.model';
 import { Shop } from '../shop/shop.model';
+import { CartItem } from '../cart/cart-item.model';
+import { Purchase } from '../shop/purchase.model';
 import { GCHeader } from '../Headers';
 import { Urls } from '../urls';
 
@@ -39,32 +41,22 @@ export class ProductService{
         return Observable.throw(msg);
     }
 
-    getProductsForShop(){
+    public purchase(cartItems: CartItem[], shop: Shop){
 
-        var shop_id = localStorage.getItem("shop_id");
-        var token = localStorage.getItem("id_token");
+        var purchase = new Purchase();
+        purchase.cartItems = cartItems;
+        purchase.shop_id = shop.id;
 
-        console.log("from localstorage");
-        console.log("shop "+shop_id);
-        console.log("token: "+token);
+        GCHeader.headers.set(GCHeader.AUTHORIZATION, localStorage.getItem("id_token"));
+        let body = JSON.stringify(purchase);
 
-        var poducts = new Array();
+        return this.http.post(Urls.login, body, { headers: GCHeader.headers })
+         .map((response: Response) => response)
+         .do(content => {console.log(content)})
+         .catch(this.handleError);
 
-        for(var i=0; i < 15; i ++){
-
-            var prod = new Product();
-            prod.name = "Produktnamn";
-            prod.description = "Produkttyp "+ (i >= 10 ? ( i - 10) : i);
-            prod.quantity = i+1;
-            prod.price = ((i+20)/3) * (i % 10 === 0 ? 4 : 10);
-
-            prod.price = Number.parseFloat(prod.price.toFixed(2));
-
-            poducts[i] = prod;
-        }
-
-        return poducts;
     }
+
 
 
 }
