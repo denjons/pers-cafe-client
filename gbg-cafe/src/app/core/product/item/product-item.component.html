@@ -1,17 +1,22 @@
 <div class="panel col-md-4">
-    <div class="panel-body">
+    <div class="panel-body" (click)="addToCart()">
     <div class="pull-left product-images">
         <ul>
             <li><img src="/src/imgs/coke.png" class="thumbnail" /></li>
-            <li class="product-name"><span>{{product.name}}</span></li>
         </ul>
     </div>
     <div class="pull-right product-information">
         <ul>
             <li class="product-price"><span>{{price}}</span><span class="pennies">,{{price2}}:-</span></li>
+        </ul>
+    </div>
+    <div class="product-description pull pull-left">
+        <ul>
+            <li class="product-name"><span>{{product.name}}</span></li>
             <li class="product-desc"><span>{{product.description}}</span></li>
         </ul>
     </div>
+    <div class="clearfix"></div>    
     <div class="admin inactive edit pull-right">
         <a href="/">
             <img src="src/icons/edit-icon.png" />

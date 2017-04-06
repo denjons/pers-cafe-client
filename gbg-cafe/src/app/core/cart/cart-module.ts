@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CartItem } from './cart-item.model';
 
 import { CartItemComponent } from './item/cart-item.component';
 

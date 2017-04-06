@@ -17,8 +17,10 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav tm-navbar-nav nav-cat">
                 <li *ngFor="let category of categories" class="nav" (load)="loadCategoryImage(category)">
-                    <img src="{{category.imgElm}}" />
-                    <a  href="">{{category.name}}</a>
+                    <a (click)="navigate(category.id)" href="" >
+                        <img src="{{category.imgElm}}" />
+                        <p class="cat-name">{{category.name}}</p>
+                    </a>
                 </li>
                 <li class="admin inactive add-category">
                     <a href="/">
@@ -67,7 +69,9 @@
 
             <div class="grid-system">
                 <ul class="gc-product-grid">
-                    <li *ngFor="let product of products"><product-item [product]=product></product-item></li>
+                    <li *ngFor="let product of products">
+                        <product-item [product]=product (onAddToCart)="addToCart($event)"></product-item>
+                    </li>
                 </ul>
                 <div class="clearfix"></div>
 
@@ -76,12 +80,15 @@
         <div id="cart" class="col-sm-4 col-sm-4">
             <span id="text-for-kassa">KASSA</span>
              <ul class="gc-product-grid">
-                 <li class="cart-item" *ngFor="let product of cart"><cart-item [product]=product></cart-item></li>
+                 <li class="cart-item" *ngFor="let cartIitem of cart">
+                     <cart-item [cartItem]=cartIitem (onIncrease)="increaseItem($event)" (onDecrease)="decreaseItem($event)"
+                     (onRemove)="removeItem($event)"></cart-item>
+                </li>
              </ul>
 
              <div class="col-lg-8 pull-right cart-total">
-                 <p class="items in-cart">Antal varor: <span class="amount">20</span></p>
-                 <p class="items total">Total: <span class="amount">666</span></p>
+                 <p class="items in-cart">Antal varor: <span class="amount">{{totalProducts}}</span></p>
+                 <p class="items total">Total: <span class="amount">{{totalPrice}}</span></p>
              </div>
 
              <div class="clearfix"></div>

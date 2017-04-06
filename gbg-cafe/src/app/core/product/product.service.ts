@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable'; 
 import { Product } from './product.model';
+import { User } from '../shop/user.model';
 import { Shop } from '../shop/shop.model';
 import { GCHeader } from '../Headers';
 import { Urls } from '../urls';
@@ -13,7 +14,7 @@ export class ProductService{
         console.log("constructed");
     }
 
-    shop: Shop[];
+    private user: User;
 
     getShops(){
         var token = localStorage.getItem("token_id");
@@ -22,10 +23,14 @@ export class ProductService{
 
         return this.http
          .get(Urls.getShop,{ headers: GCHeader.headers })
-         .map((response: Response) => <Shop[]>response.json().shops)
-         .do(shop => {this.shop = shop; console.log(shop)})
+         .map((response: Response) => <User>response.json())
+         .do(user => {this.user = user; console.log(user)})
          .catch(this.handleError);
 
+    }
+
+    public shopCache(){
+        return this.user;
     }
 
    private handleError(error: Response) {

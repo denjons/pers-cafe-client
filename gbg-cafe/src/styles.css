@@ -61,7 +61,7 @@ body {
     font-size: 30px;
     font-family: 'Book'; }
   .login .form-group button {
-    background: #d9861a;
+    background: #f18700;
     color: white; }
 
 /*
@@ -89,20 +89,22 @@ body {
     border: 0; }
     .navbar .navbar-collapse .nav-cat {
       width: auto;
-      margin-left: 160px; }
+      margin-left: 160px;
+      margin-bottom: 20px;
+      text-align: center; }
       .navbar .navbar-collapse .nav-cat a {
         color: white;
         font-size: 16px;
-        line-height: 0;
-        padding: 15px 0 0 0;
         margin: 0; }
       .navbar .navbar-collapse .nav-cat li {
         margin-right: 40px;
-        width: 55px;
+        width: auto;
         height: 55px; }
         .navbar .navbar-collapse .nav-cat li img {
           width: 32px;
           height: 32px; }
+        .navbar .navbar-collapse .nav-cat li .cat-name {
+          width: auto; }
         .navbar .navbar-collapse .nav-cat li:last-child {
           margin-right: 0; }
     .navbar .navbar-collapse #text-for-kassa {
@@ -139,7 +141,7 @@ body {
       width: 460px;
       text-transform: uppercase; }
     #products .search-col .search button {
-      background: #d9861a;
+      background: #f18700;
       width: 77px; }
   #products.products-list {
     padding: 0;
@@ -177,15 +179,22 @@ body {
           #products.products-list .grid-system .panel .panel-body ul {
             margin: 0;
             padding: 0; }
+          #products.products-list .grid-system .panel .panel-body .product-description {
+            width: 100%; }
+            #products.products-list .grid-system .panel .panel-body .product-description li {
+              float: none; }
+              #products.products-list .grid-system .panel .panel-body .product-description li.product-name {
+                text-decoration: underline;
+                font-size: 16px;
+                font-family: "Bold";
+                font-style: italic; }
+              #products.products-list .grid-system .panel .panel-body .product-description li.product-desc {
+                font-size: 14px;
+                font-family: "Light";
+                font-style: normal; }
           #products.products-list .grid-system .panel .panel-body .product-images {
             width: 50%;
-            height: 100%; }
-            #products.products-list .grid-system .panel .panel-body .product-images li {
-              font-family: "Light";
-              font-style: italic;
-              font-size: 14px; }
-              #products.products-list .grid-system .panel .panel-body .product-images li.product-name {
-                text-decoration: underline; }
+            height: auto; }
             #products.products-list .grid-system .panel .panel-body .product-images .thumbnail {
               height: 82px;
               width: 82px; }
@@ -203,47 +212,47 @@ body {
                   vertical-align: top;
                   opacity: .8;
                   line-height: 2; }
-              #products.products-list .grid-system .panel .panel-body .product-information li.product-desc, #products.products-list .grid-system .panel .panel-body .product-information li.product-quant {
-                font-size: 13px; }
 
-.admin.inactive {
-  display: none; }
-.admin.active.add-category {
-  width: auto !important;
-  height: auto !important;
-  color: white; }
-  .admin.active.add-category a {
-    background: none;
-    font-size: inherit;
-    line-height: 0;
-    padding: 0 0 0 0;
-    margin: 0; }
-  .admin.active.add-category h1 {
-    margin: 0;
-    padding: 0;
-    font-family: "Bold"; }
-.admin.active.edit {
-  width: auto;
-  text-align: center;
-  top: 75%;
-  left: 65%;
-  position: absolute; }
-  .admin.active.edit p {
-    margin-top: 0;
-    font-family: "Light";
-    font-size: 13px; }
-.admin.active.swish-overlay {
-  width: 100%;
-  height: 250px;
-  position: absolute;
-  z-index: 999;
-  background: #1b78cc;
-  color: white; }
-  .admin.active.swish-overlay h1 {
-    font-family: "Light";
-    font-size: 24px;
+.admin {
+  z-index: 9999; }
+  .admin.inactive {
+    display: none; }
+  .admin.active.add-category {
+    width: auto !important;
+    height: auto !important;
+    color: white; }
+    .admin.active.add-category a {
+      background: none;
+      font-size: inherit;
+      line-height: 0;
+      padding: 0 0 0 0;
+      margin: 0; }
+    .admin.active.add-category h1 {
+      margin: 0;
+      padding: 0;
+      font-family: "Bold"; }
+  .admin.active.edit {
+    width: auto;
     text-align: center;
-    margin-right: 15px; }
+    top: 75%;
+    left: 65%;
+    position: absolute; }
+    .admin.active.edit p {
+      margin-top: 0;
+      font-family: "Light";
+      font-size: 13px; }
+  .admin.active.swish-overlay {
+    width: 100%;
+    height: 250px;
+    position: absolute;
+    z-index: 999;
+    background: #1b78cc;
+    color: white; }
+    .admin.active.swish-overlay h1 {
+      font-family: "Light";
+      font-size: 24px;
+      text-align: center;
+      margin-right: 15px; }
 
 #cart {
   float: right;
@@ -293,55 +302,60 @@ body {
       list-style: none;
       padding: 0;
       margin: 0; }
+      #cart .gc-product-grid li.cart-item {
+        border-bottom: 1px solid #9a9c9d; }
       #cart .gc-product-grid li.cart-item:nth-child(even) {
         background: #cecfd0; }
       #cart .gc-product-grid li .panel-body {
         padding: 10px; }
-        #cart .gc-product-grid li .panel-body .items .cart-product-name {
-          font-family: "Bold";
-          font-size: 16px; }
-        #cart .gc-product-grid li .panel-body .items .cart-product-flav {
-          font-family: "Light";
-          font-style: italic;
-          font-size: 14px; }
-        #cart .gc-product-grid li .panel-body .items .item-price {
-          color: #d9861a;
-          font-family: "Light";
-          font-size: 12px;
-          float: left; }
-        #cart .gc-product-grid li .panel-body .items .controls {
-          width: 170px;
-          margin-top: 15px; }
-          #cart .gc-product-grid li .panel-body .items .controls .control-panel {
+        #cart .gc-product-grid li .panel-body .items {
+          width: 150px; }
+          #cart .gc-product-grid li .panel-body .items .cart-product-name {
+            font-family: "Bold";
+            font-size: 16px;
+            text-transform: uppercase; }
+          #cart .gc-product-grid li .panel-body .items .cart-product-flav {
+            font-family: "Light";
+            font-style: italic;
+            font-size: 14px; }
+          #cart .gc-product-grid li .panel-body .items .item-price {
+            color: #f18700;
+            font-family: "Light";
+            font-size: 12px;
+            float: left; }
+          #cart .gc-product-grid li .panel-body .items .controls {
             width: auto;
-            height: 25px;
-            line-height: 35px; }
-            #cart .gc-product-grid li .panel-body .items .controls .control-panel div, #cart .gc-product-grid li .panel-body .items .controls .control-panel span {
-              float: left; }
-            #cart .gc-product-grid li .panel-body .items .controls .control-panel .amount-in-cart {
-              float: left;
-              margin: 0 5px 0 10px;
-              font-size: 20px; }
-            #cart .gc-product-grid li .panel-body .items .controls .control-panel .ctrl-button {
-              width: 35px;
-              height: 35px;
-              text-align: center;
-              font-family: "Bold";
-              font-size: 20px;
-              line-height: 1.8em;
-              color: white; }
-              #cart .gc-product-grid li .panel-body .items .controls .control-panel .ctrl-button.subtract {
-                margin: 0;
-                background: #c03533;
-                margin-right: 10px; }
-              #cart .gc-product-grid li .panel-body .items .controls .control-panel .ctrl-button.add {
-                margin: 0;
-                background: #51aa50; }
-            #cart .gc-product-grid li .panel-body .items .controls .control-panel .garbage {
-              width: 30px;
-              height: auto;
-              float: right;
-              margin-top: -10px; }
+            margin-top: 15px; }
+            #cart .gc-product-grid li .panel-body .items .controls .control-panel {
+              width: auto;
+              height: 25px;
+              line-height: 35px; }
+              #cart .gc-product-grid li .panel-body .items .controls .control-panel div, #cart .gc-product-grid li .panel-body .items .controls .control-panel span {
+                float: left; }
+              #cart .gc-product-grid li .panel-body .items .controls .control-panel .amount-in-cart {
+                float: left;
+                margin: 0 5px 0 5px;
+                font-size: 16px; }
+              #cart .gc-product-grid li .panel-body .items .controls .control-panel .ctrl-button {
+                width: 35px;
+                height: 35px;
+                text-align: center;
+                font-family: "Bold";
+                font-size: 20px;
+                line-height: 1.8em;
+                color: white; }
+                #cart .gc-product-grid li .panel-body .items .controls .control-panel .ctrl-button.subtract {
+                  margin: 0;
+                  background: #b93342;
+                  margin-right: 5px; }
+                #cart .gc-product-grid li .panel-body .items .controls .control-panel .ctrl-button.add {
+                  margin: 0;
+                  background: #51aa50; }
+              #cart .gc-product-grid li .panel-body .items .controls .control-panel .garbage {
+                width: 30px;
+                height: auto;
+                float: right;
+                margin-top: 0px; }
         #cart .gc-product-grid li .panel-body .prices {
           font-family: "Bold";
           font-size: 30px; }
@@ -383,7 +397,7 @@ body {
           margin-right: 10px;
           background: #51aa50; }
         #cart .swish #buttons .btn-default.regret {
-          background: #c03533;
+          background: #b93342;
           width: 90px;
           float: right; }
   #cart .gbg-logo {
