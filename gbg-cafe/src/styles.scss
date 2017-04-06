@@ -29,6 +29,7 @@ $gray:              #cecfd0;
 $darkgray:          #9a9c9d;
 $black:             #1F1E1D;
 $light-blue:        #729fbd;
+$green:             #51aa50;
 
 .clearfix{ clear: both; }
 
@@ -356,6 +357,7 @@ body{
                 font-family: "Light";
                 font-size: 24px;
                 text-align: center;
+                margin-right: 15px;
             }
         }
     }
@@ -458,35 +460,49 @@ body{
                         font-size: 14px;
                     }
                     
+                    .item-price{
+                        color: $orange;
+                        font-family: "Light";
+                        font-size: 12px;
+                        float: left;
+                    }
                     .controls{
-                        width: 155px;
+                        width: 170px;
                         margin-top: 15px;
-
-                        .item-price{
-                            color: $orange;
-                            font-family: "Light";
-                        }
                     
                         .control-panel{
                             width: auto;
                             height: 25px;
+                            line-height: 35px;
                             
                             div, span{
                                 float: left;
                             }
 
+                            .amount-in-cart{
+                                float: left;
+                                margin: 0 5px 0 10px;
+                                font-size: 20px;
+                            }
+
                             .ctrl-button{
-                                width: 20px;
-                                height: 20px;
-                                background-color: $light-blue;
+                                width: 35px;
+                                height: 35px;
                                 text-align: center;
+                                font-family: "Bold";
+                                font-size: 20px;
+                                line-height: 1.8em;
+                                color: white;
 
                                 &.subtract{
-                                    margin: 0 10px 0 0;
+                                    margin: 0;
+                                    background: $red;
+                                    margin-right: 10px;
                                 }
 
                                 &.add{
-                                    margin: 0 15px 0 10px;
+                                    margin: 0;
+                                    background: $green;
                                 }
                             }
 

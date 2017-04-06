@@ -242,7 +242,8 @@ body {
   .admin.active.swish-overlay h1 {
     font-family: "Light";
     font-size: 24px;
-    text-align: center; }
+    text-align: center;
+    margin-right: 15px; }
 
 #cart {
   float: right;
@@ -303,26 +304,39 @@ body {
           font-family: "Light";
           font-style: italic;
           font-size: 14px; }
+        #cart .gc-product-grid li .panel-body .items .item-price {
+          color: #d9861a;
+          font-family: "Light";
+          font-size: 12px;
+          float: left; }
         #cart .gc-product-grid li .panel-body .items .controls {
-          width: 155px;
+          width: 170px;
           margin-top: 15px; }
-          #cart .gc-product-grid li .panel-body .items .controls .item-price {
-            color: #d9861a;
-            font-family: "Light"; }
           #cart .gc-product-grid li .panel-body .items .controls .control-panel {
             width: auto;
-            height: 25px; }
+            height: 25px;
+            line-height: 35px; }
             #cart .gc-product-grid li .panel-body .items .controls .control-panel div, #cart .gc-product-grid li .panel-body .items .controls .control-panel span {
               float: left; }
+            #cart .gc-product-grid li .panel-body .items .controls .control-panel .amount-in-cart {
+              float: left;
+              margin: 0 5px 0 10px;
+              font-size: 20px; }
             #cart .gc-product-grid li .panel-body .items .controls .control-panel .ctrl-button {
-              width: 20px;
-              height: 20px;
-              background-color: #729fbd;
-              text-align: center; }
+              width: 35px;
+              height: 35px;
+              text-align: center;
+              font-family: "Bold";
+              font-size: 20px;
+              line-height: 1.8em;
+              color: white; }
               #cart .gc-product-grid li .panel-body .items .controls .control-panel .ctrl-button.subtract {
-                margin: 0 10px 0 0; }
+                margin: 0;
+                background: #c03533;
+                margin-right: 10px; }
               #cart .gc-product-grid li .panel-body .items .controls .control-panel .ctrl-button.add {
-                margin: 0 15px 0 10px; }
+                margin: 0;
+                background: #51aa50; }
             #cart .gc-product-grid li .panel-body .items .controls .control-panel .garbage {
               width: 30px;
               height: auto;
