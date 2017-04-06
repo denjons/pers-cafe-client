@@ -24,6 +24,10 @@ body {
   width: 100vw;
   overflow: hidden;
   background-color: #1b78cc; }
+  body #text-for-kassa {
+    font-size: 35px;
+    color: white;
+    font-family: "Light"; }
 
 .container {
   height: inherit;
@@ -102,11 +106,12 @@ body {
         .navbar .navbar-collapse .nav-cat li:last-child {
           margin-right: 0; }
     .navbar .navbar-collapse #text-for-kassa {
-      float: right;
-      font-size: 35px;
-      color: white;
-      font-family: "Light";
-      margin: 10px 8% 0 0; }
+      display: none; }
+    @media (min-width: 980px) {
+      .navbar .navbar-collapse #text-for-kassa {
+        display: inline-block;
+        float: right;
+        margin: 10px 8% 0 0; } }
 
 .row {
   height: 710px;
@@ -192,7 +197,7 @@ body {
               text-align: right;
               font-family: "Medium"; }
               #products.products-list .grid-system .panel .panel-body .product-information li.product-price {
-                font-size: 33px; }
+                font-size: 30px; }
                 #products.products-list .grid-system .panel .panel-body .product-information li.product-price .pennies {
                   font-size: 20px;
                   vertical-align: top;
@@ -201,6 +206,44 @@ body {
               #products.products-list .grid-system .panel .panel-body .product-information li.product-desc, #products.products-list .grid-system .panel .panel-body .product-information li.product-quant {
                 font-size: 13px; }
 
+.admin.inactive {
+  display: none; }
+.admin.active.add-category {
+  width: auto !important;
+  height: auto !important;
+  color: white; }
+  .admin.active.add-category a {
+    background: none;
+    font-size: inherit;
+    line-height: 0;
+    padding: 0 0 0 0;
+    margin: 0; }
+  .admin.active.add-category h1 {
+    margin: 0;
+    padding: 0;
+    font-family: "Bold"; }
+.admin.active.edit {
+  width: auto;
+  text-align: center;
+  top: 75%;
+  left: 65%;
+  position: absolute; }
+  .admin.active.edit p {
+    margin-top: 0;
+    font-family: "Light";
+    font-size: 13px; }
+.admin.active.swish-overlay {
+  width: 100%;
+  height: 250px;
+  position: absolute;
+  z-index: 999;
+  background: #1b78cc;
+  color: white; }
+  .admin.active.swish-overlay h1 {
+    font-family: "Light";
+    font-size: 24px;
+    text-align: center; }
+
 #cart {
   float: right;
   width: 315px;
@@ -208,6 +251,13 @@ body {
   background: #1b78cc;
   margin: 0;
   padding: 0; }
+  #cart #text-for-kassa {
+    display: none;
+    margin-left: 50%;
+    transform: translateX(-60px);
+    /* Mobile display. Set Later
+    display: inline-block;
+    */ }
   #cart .cart-total {
     width: 100%;
     padding: 0 30px 0 35px;
