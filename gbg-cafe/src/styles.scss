@@ -152,8 +152,14 @@ body{
         }
 
         #text-for-kassa{
-            float: right;
-            margin: 10px 8% 0 0;
+            display: none;
+        }
+        @media (min-width: 980px){
+            #text-for-kassa{
+                display: inline-block;
+                float: right;
+                margin: 10px 8% 0 0;
+            }
         }
     }
 }
@@ -293,6 +299,65 @@ body{
                 }
             } 
         }  
+    }
+}
+
+.admin{
+    &.inactive{
+        display: none;
+    }
+
+    &.active{
+        &.add-category{
+            width: auto !important;
+            height: auto !important;
+            color: white;
+            
+            a{
+                background: none;
+                font-size: inherit;
+                line-height: 0;
+                padding: 0 0 0 0;
+                margin: 0;
+            }
+            h1{
+                margin: 0;
+                padding: 0;
+                font-family: "Bold";
+            }
+        }
+        &.edit{
+            width: auto;
+            text-align: center;
+            top: 75%;
+            left: 65%;
+            position: absolute;
+
+            img{
+                
+            }
+            p{
+                margin-top: 0;
+
+                font-family: "Light";
+                font-size: 13px;
+            }
+        }
+
+        &.swish-overlay{
+            width: 100%;
+            height: 250px;
+            position: absolute;
+            z-index: 999;
+            background: $primary-color;
+            color: white;
+
+            h1{
+                font-family: "Light";
+                font-size: 24px;
+                text-align: center;
+            }
+        }
     }
 }
 
