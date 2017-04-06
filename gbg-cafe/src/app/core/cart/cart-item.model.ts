@@ -10,14 +10,21 @@ export class CartItem{
     }
 
     public increase(){
-        if(this.product.active){
-            this.addproduct(this.product);
+        if(this.product.quantity <= 0){
+            return false;
         }
+        this.addproduct(this.product);
+        return true;
     }
 
     public decrease(){
         this.product.quantity = this.product.quantity  - 1;
         this.quantity = this.quantity - 1;
+
+    }
+
+    public reset(){
+        this.product.quantity = this.product.quantity + this.quantity;
     }
 
     public addproduct(product: Product){

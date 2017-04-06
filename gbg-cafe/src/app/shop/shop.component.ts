@@ -1,5 +1,5 @@
 import { Component,  OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Product } from '../core/product/product.model';
 import { Shop } from '../core/shop/shop.model'; 
 import { User } from '../core/shop/user.model'; 
@@ -19,27 +19,20 @@ export class ShopComponent implements OnInit{
     shop: Shop;
     imgCache : any;
     user: User;
-
     cart: CartItem[];
-
     totalPrice : number;
     totalProducts : number;
 
     constructor(
         private productService: ProductService, 
-        private router: Router,
-        private route: ActivatedRoute){
+        private router: Router){
             this.totalPrice = 0;
             this.totalProducts = 0;
 
     }
 
     addToCart(product:Product){
-        for(let prod of this.products){
-            if(prod.id == product.id){
-                this.updateCart(prod);
-            }
-        }
+        this.updateCart(product);
     }
 
     updateCart(product : Product){
@@ -67,9 +60,7 @@ export class ShopComponent implements OnInit{
         this.totalPrice = this.totalPrice + product.price;
         this.totalProducts = this.totalProducts + 1;
 
-        if(product.quantity < 0){
-            product.active = false;
-        }
+        console.log("todo: update product-item if quantity <= 0");
 
         console.log("cart item was increased, active is "+product.active);
     }
@@ -79,15 +70,19 @@ export class ShopComponent implements OnInit{
         this.totalPrice = this.totalPrice - product.price;
         this.totalProducts = this.totalProducts - 1;
 
-        if(!product.active){
-            product.active = true;
-        }
-
         console.log("cart item was decreased, active is "+product.active);
 
         this.cart = this.cart.filter(prod => prod.quantity > 0);
-        
+    }
 
+    removeItem(cartItem: CartItem){
+        console.log("-------- removing cart item ------");
+        console.log(cartItem);
+        this.totalPrice = this.totalPrice - cartItem.quantity * cartItem.product.price;
+        this.totalProducts = this.totalProducts - cartItem.quantity;
+
+        console.log("removed product "+cartItem.product.name);
+        this.cart = this.cart.filter(item => item.product.id != cartItem.product.id);
     }
 
 

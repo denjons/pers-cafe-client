@@ -14,6 +14,7 @@ export class CartItemComponent implements OnInit{
 
     @Output() onIncrease = new EventEmitter;
     @Output() onDecrease = new EventEmitter;
+    @Output() onRemove = new EventEmitter;
 
     price: string;
     price2: string;
@@ -33,9 +34,15 @@ export class CartItemComponent implements OnInit{
         
     }
 
+    remove(){
+        this.cartItem.reset();
+        this.onRemove.emit(this.cartItem);
+    }
+
     increase(){
-        this.cartItem.increase();
-        this.onIncrease.emit(this.cartItem.product);
+        if(this.cartItem.increase()){
+            this.onIncrease.emit(this.cartItem.product);
+        }
     }
 
     decrease(){

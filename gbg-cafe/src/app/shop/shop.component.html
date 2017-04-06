@@ -67,7 +67,9 @@
 
             <div class="grid-system">
                 <ul class="gc-product-grid">
-                    <li *ngFor="let product of products"><product-item [product]=product></product-item></li>
+                    <li *ngFor="let product of products">
+                        <product-item [product]=product (onAddToCart)="addToCart($event)"></product-item>
+                    </li>
                 </ul>
                 <div class="clearfix"></div>
 
@@ -77,7 +79,8 @@
             <span id="text-for-kassa">KASSA</span>
              <ul class="gc-product-grid">
                  <li class="cart-item" *ngFor="let cartIitem of cart">
-                     <cart-item [cartItem]=cartIitem (onIncrease)="increaseItem($event)" (onDecrease)="decreaseItem($event)"></cart-item>
+                     <cart-item [cartItem]=cartIitem (onIncrease)="increaseItem($event)" (onDecrease)="decreaseItem($event)"
+                     (onRemove)="removeItem($event)"></cart-item>
                 </li>
              </ul>
 
