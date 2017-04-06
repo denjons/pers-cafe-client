@@ -16,6 +16,14 @@ const routes: Routes = [
         path: '',
         component: ShopComponent,
       }
+      ,{
+        path: ':id',
+        component: ShopComponent
+        //canDeactivate: [CanDeactivateGuard],
+        //resolve: {
+        // vehicle: VehicleResolver
+        // }
+      }
     ]
   },
 ];
