@@ -1,6 +1,6 @@
-<div class="panel col-md-4">
+<div class="panel col-md-4" >
     <div class="panel-body" (click)="addToCart()">
-        <div class="out-of-stock">
+        <div class="out-of-stock" [ngClass]="{'true': product?.quantity <= 0}">
             <h1>SLUT</h1>
         </div>
     <div class="pull-left product-images">
@@ -20,7 +20,7 @@
         </ul>
     </div>
     <div class="clearfix"></div>    
-    <div class="admin inactive edit pull-right">
+    <div class="admin edit pull-right" [ngClass]="{'active': user?.user_type === 'ADMIN', 'inactive': user?.user_type != 'ADMIN'}">
         <a href="/">
             <img src="src/icons/edit-icon.png" />
             <p>Redigera</p>  

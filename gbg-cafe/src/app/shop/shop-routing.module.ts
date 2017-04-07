@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ShopComponent } from './shop.component';
 import { ShopRoutingComponent } from './shop-routing.component';
+import { ShopRouteActivatorService } from './shop-route-activator.service';
 
 
 
@@ -15,14 +16,7 @@ const routes: Routes = [
       {
         path: '',
         component: ShopComponent,
-      }
-      ,{
-        path: ':id',
-        component: ShopComponent
-        //canDeactivate: [CanDeactivateGuard],
-        //resolve: {
-        // vehicle: VehicleResolver
-        // }
+        canActivate: [ShopRouteActivatorService]
       }
     ]
   },
