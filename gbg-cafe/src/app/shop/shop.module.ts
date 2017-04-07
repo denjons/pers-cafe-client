@@ -6,6 +6,10 @@ import { ProductModule } from '../core/product/product.module';
 
 import { ShopRoutingModule, routableComponents } from './shop-routing.module';
 
+import { ShopRouteActivatorService } from './shop-route-activator.service';
+
+import { FilterTextModule } from '../shared/filter/filter-text.module';
+
 
 
 @NgModule({
@@ -17,9 +21,10 @@ import { ShopRoutingModule, routableComponents } from './shop-routing.module';
     FormsModule,
     ShopRoutingModule,
     ProductModule,
-    CartModule
+    CartModule,
+    FilterTextModule
   ],
   exports:[ routableComponents],
-  providers: [/*RequestService*/]
+  providers: [ShopRouteActivatorService]
 })
 export class ShopModule { }

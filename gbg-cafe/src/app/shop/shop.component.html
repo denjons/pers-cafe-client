@@ -1,5 +1,5 @@
 <div class="container store">
-    <div class="receipt inactive">
+    <div class="receipt" *ngIf="receipt">
         <h1>Tack för ditt köp!</h1>
         <div class="printout">
             <h2>Kvitto</h2>
@@ -124,34 +124,12 @@
                         <p class="cat-name">{{category.name}}</p>
                     </a>
                 </li>
-                <li class="admin inactive add-category">
+                <li class="admin add-category" [ngClass]="{'active': user?.user_type === 'ADMIN', 'inactive': user?.user_type != 'ADMIN'}">
                     <a href="/">
                         <h1>+</h1>
                         <p>Lägg till kategori</p>
                     </a>
                 </li>
-                <!--
-                <li class="nav">
-                    <img src="/src/icons/smaller/soda.png" />
-                    <a  href="">Läsk</a>
-                </li>
-                <li class="nav">
-                    <img src="/src/icons/smaller/snack.png" />
-                    <a  href="">Snacks</a>
-                </li>
-                <li class="nav">
-                    <img src="/src/icons/smaller/burger.png" />
-                    <a  href="">Mat</a>
-                </li>
-                <li class="nav">
-                    <img src="/src/icons/smaller/misc.png" />
-                    <a  href="">Övrigt</a>
-                </li>
-                <li class="nav">
-                    <img src="/src/icons/smaller/allt.png" />
-                    <a  href="">Allt</a>
-                </li>
-                -->
             </ul>
             
             <p id="text-for-kassa">KASSA</p>
@@ -162,16 +140,10 @@
     <div class="row">
 
         <div id="products" class="col-md-8 col-sm-8 products-list">
-            <div class="search-col">
-                <form name="searchForm" class="form-inline search">
-                    <input type="search" class="form-control" placeholder="Sök din vara">
-                    <button type="submit" class="btn btn-default">Sök</button>
-                </form>
-            </div>
-
+            <filter-text (onFilterChanged)="filterChaged($event)"></filter-text>
             <div class="grid-system">
                 <ul class="gc-product-grid">
-                    <li *ngFor="let product of products">
+                    <li *ngFor="let product of visibleProducts">
                         <product-item [product]=product (onAddToCart)="addToCart($event)"></product-item>
                     </li>
                 </ul>
@@ -195,7 +167,7 @@
 
              <div class="clearfix"></div>
              <div class="col-lg-8 swish">
-                 <div class="admin swish-overlay inactive">
+                 <div class="admin swish-overlay" [ngClass]="{'active': user?.user_type === 'ADMIN', 'inactive': user?.user_type != 'ADMIN'}">
                      <h1>ADMINLÄGE</h1>
                  </div>
                  <div id="swish-number">Swisha summan til: <span id="number">0704 - 33 33 33</span></div>

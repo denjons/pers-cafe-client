@@ -1,4 +1,4 @@
-import { Component,  OnInit } from '@angular/core';
+import { Component,  OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from '../core/product/product.model';
 import { Shop } from '../core/shop/shop.model'; 
@@ -6,6 +6,8 @@ import { User } from '../core/shop/user.model';
 import { Category } from '../core/shop/category.model'; 
 import { ProductService } from '../core/product/product.service';
 import { CartItem } from '../core/cart/cart-item.model';
+import { FilterTextComponent } from '../shared/filter/filter-text.component';
+import {  FilterTextService} from '../shared/filter/filter-text.service';
 
 @Component({
     selector:"shop",
@@ -15,20 +17,41 @@ import { CartItem } from '../core/cart/cart-item.model';
 export class ShopComponent implements OnInit{
 
     products: Product[];
+    visibleProducts: Product[];
     categories: Category[];
     shop: Shop;
+    selectedCategory : Category;
     imgCache : any;
     user: User;
     cart: CartItem[];
     totalPrice : number;
     totalProducts : number;
 
+    reciept : boolean;
+
+    @ViewChild(FilterTextComponent) filterComponent: FilterTextComponent;
+
     constructor(
         private productService: ProductService, 
-        private router: Router){
+        private router: Router,
+        private filterTextService: FilterTextService){
             this.totalPrice = 0;
             this.totalProducts = 0;
 
+    }
+
+    ngOnInit(){
+        console.log("initializing");
+        this.initShops();
+    }
+
+    filterChaged(filter: string){
+        if(filter.length > 0){
+            this.visibleProducts = 
+                this.filterVisibleProducts(this.products.filter(prod => this.filterTextService.filter(prod.name, filter)));
+        }else{
+            this.visibleProducts = this.filterVisibleProducts(this.selectedCategory.products);
+        }
     }
 
     addToCart(product:Product){
@@ -53,18 +76,11 @@ export class ShopComponent implements OnInit{
     // handle increaseing products in cart
     increaseItem(product: Product){
 
-
-
         this.cart.map(item => {if(item.product.id == product.id && product.quantity > 0){
             item.increase();
             this.updateCartInfo(product.price, 1);
         }});
-
-        
-
         console.log("todo: update product-item if quantity <= 0");
-
-        console.log("cart item was increased, active is "+product.active);
     }
 
     // handle cecreasing products in cart
@@ -74,9 +90,6 @@ export class ShopComponent implements OnInit{
             item.decrease();
             this.updateCartInfo(-product.price, -1);
         }});
-
-        
-        console.log("cart item was decreased, active is "+product.active);
 
         this.cart = this.cart.filter(prod => prod.quantity > 0);
     }
@@ -123,8 +136,10 @@ export class ShopComponent implements OnInit{
     private purchaseSucess(result: any){
         console.log("todo: show reciept?: ");
         console.log(result);
+        this.showReciept();
         this.clearCart();
     }
+
 
     public clearCart(){
         console.log("clearing cart");
@@ -137,45 +152,60 @@ export class ShopComponent implements OnInit{
     }
 
 
+    showReciept(){
+        console.log("showing reciept");
+        this.reciept = true;
+    }
+
+    hideReciept(){
+        console.log("hiding reciept");
+        this.reciept = false;
+    }
+
     navigate(id:any){
-        for(var i = 0; i < this.shop.categories.length; i++){
-            if(this.shop.categories[i].id == id){
-                this.products = this.shop.categories[i].products;
+        for(let category of this.categories){
+            if(category.id == id){
+                this.selectedCategory = category;
+                this.getProductsForCategory(category);
             }
         }
         return false;
+    }
+
+    getProductsForCategory(category: Category){
+
+        var prodTemp = new Array();
+        if(category.name === "all"){
+            console.log("adding all");
+            prodTemp = this.products;
+        }else{
+            prodTemp = category.products;
+        }
+        
+        this.visibleProducts = this.filterVisibleProducts(prodTemp); 
+        
+}
+
+    filterVisibleProducts(products: Product[]){
+        return products.filter(prod => prod.active == true || this.user.user_type == 'ADMIN');
     }
 
     private errorMessage(error: any){
         console.log(error);
     }
 
-    ngOnInit(){
-        console.log("initializing");
-
-        this.initShops();
-
-        /*
-        if(user != null && id != null){
-            console.log("routing");
-            this.populateFields(user);
-            for(var i = 0; i < this.shop.categories.length; i++){
-                if(this.shop.categories[i].id == id){
-                    this.products = this.shop.categories[i].products;
-                }
-            }
-        }else{
-            
-        }
-        */
-        
-    }
-
     private populateFields(user:User){
         this.user = user;
         this.shop = this.user.shops[0];
-        this.products = this.shop.categories[0].products;
+        this.products = new Array();
+        for(let category of this.shop.categories){
+            for(let prod of category.products){
+                this.products.push(prod);
+            }
+        }
+        this.visibleProducts = this.filterVisibleProducts(this.shop.categories[0].products);
         this.categories = this.shop.categories;
+        this.selectedCategory = this.categories[0];
         this.cart = new Array();
     }
 
