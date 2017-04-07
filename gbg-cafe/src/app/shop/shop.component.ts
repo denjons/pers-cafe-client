@@ -100,6 +100,8 @@ export class ShopComponent implements OnInit{
     }
 
 
+
+
     purchase(){
         console.log("todo: show spinner");
         this.productService.purchase(this.cart, this.shop).subscribe(
@@ -128,11 +130,10 @@ export class ShopComponent implements OnInit{
         console.log("clearing cart");
         var temp = new Array();
         for(let item of this.cart){
-            temp.push(item);
+            this.cart.pop();
+            this.updateCartInfo(- item.quantity * item.product.price, - item.quantity);
         }
-        for(let item of temp){
-            this.removeItem(item);
-        }
+
     }
 
 

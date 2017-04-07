@@ -33,7 +33,6 @@ export class CartItem{
         if(this.product == null){
             this.product = product;
             this.productId = product.id;
-            console.log(" ------------ added product id: "+this.productId  );
         }
         this.increaseQuantity();
     }
