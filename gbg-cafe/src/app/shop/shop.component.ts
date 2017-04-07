@@ -143,11 +143,10 @@ export class ShopComponent implements OnInit{
 
     public clearCart(){
         console.log("clearing cart");
-        var temp = new Array();
         for(let item of this.cart){
-            this.cart.pop();
             this.updateCartInfo(- item.quantity * item.product.price, - item.quantity);
         }
+        this.cart = new Array();
 
     }
 
