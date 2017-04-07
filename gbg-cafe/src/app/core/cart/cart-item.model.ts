@@ -4,6 +4,7 @@ export class CartItem{
 
     product: Product;
     quantity: number;
+    productId: number;
 
     constructor(){
         this.quantity = 0; 
@@ -31,10 +32,11 @@ export class CartItem{
     public addproduct(product: Product){
         if(this.product == null){
             this.product = product;
+            this.productId = product.id;
+            console.log(" ------------ added product id: "+this.productId  );
         }
         this.product.quantity --;
         this.quantity ++;
-        console.log(" ------------ quantity: "+this.quantity  );
     }
 
 }

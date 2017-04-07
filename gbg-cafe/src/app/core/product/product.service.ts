@@ -50,9 +50,9 @@ export class ProductService{
         GCHeader.headers.set(GCHeader.AUTHORIZATION, localStorage.getItem("id_token"));
         let body = JSON.stringify(purchase);
 
-        return this.http.post(Urls.login, body, { headers: GCHeader.headers })
+        return this.http.post(Urls.purchase, body, { headers: GCHeader.headers })
          .map((response: Response) => response)
-         .do(content => {console.log(content)})
+         .do(response => {console.log(response)})
          .catch(this.handleError);
 
     }

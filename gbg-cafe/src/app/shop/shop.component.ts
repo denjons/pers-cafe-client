@@ -97,7 +97,7 @@ export class ShopComponent implements OnInit{
 
 
     purchase(){
-        console.log("todo: shoe spinner");
+        console.log("todo: show spinner");
         this.productService.purchase(this.cart, this.shop).subscribe(
             response => {
                 if(response.status == 204){
@@ -123,8 +123,12 @@ export class ShopComponent implements OnInit{
     public clearCart(){
         console.log("clearing cart");
         var temp = new Array();
-        this.cart.forEach(temp.push);
-        temp.forEach(this.removeItem);
+        for(let item of this.cart){
+            temp.push(item);
+        }
+        for(let item of temp){
+            this.removeItem(item);
+        }
     }
 
 
