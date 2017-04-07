@@ -79,18 +79,109 @@ body {
   z-index: 999999999;
   background: white;
   width: 574px;
-  height: 650px;
+  height: auto;
   left: 50%;
   top: 50%;
-  transform: translate(-287px, -325px); }
+  transform: translate(-287px, -325px);
+  box-shadow: 0px 0px 32px 3px rgba(0, 0, 0, 0.38); }
+  .receipt.inactive {
+    display: none; }
+  .receipt:after {
+    content: "";
+    width: 100%;
+    height: 18px;
+    top: 99%;
+    left: 0;
+    position: absolute;
+    display: inline-block;
+    background: url("/src/imgs/jagged-edge.png"); }
   .receipt h1 {
+    margin: 40px 0;
     font-size: 40px;
     font-family: "Light";
     text-align: center; }
-  .receipt .printout h2 {
-    font-size: 34px;
-    font-family: "Bold";
-    text-align: center; }
+  .receipt #button {
+    width: 100%;
+    text-align: center;
+    margin: 30px 0; }
+    .receipt #button .btn-default {
+      width: 150px;
+      height: 50px;
+      background: #51aa50;
+      border: 0;
+      color: white;
+      font-size: 25px;
+      font-family: "Light"; }
+  .receipt .printout {
+    vertical-align: bottom; }
+    .receipt .printout h2 {
+      font-size: 34px;
+      font-family: "Bold";
+      text-align: center;
+      margin-bottom: 15px;
+      border-bottom: 2px solid black; }
+    .receipt .printout ul {
+      list-style: none;
+      height: 290px;
+      overflow: scroll;
+      margin: 0 30px 20px;
+      padding: 0; }
+      .receipt .printout ul li {
+        width: auto;
+        height: auto;
+        min-height: 70px;
+        border-bottom: 1px solid gray; }
+        .receipt .printout ul li div {
+          height: 100%;
+          min-height: 70px;
+          padding: 10px;
+          float: left;
+          border-right: 1px solid gray; }
+          .receipt .printout ul li div:last-child {
+            border: none; }
+          .receipt .printout ul li div p {
+            margin: 0; }
+        .receipt .printout ul li .item {
+          width: 212px;
+          font-family: "Medium"; }
+          .receipt .printout ul li .item p {
+            font-size: 18px; }
+            .receipt .printout ul li .item p:nth-child(2) {
+              font-size: 15px; }
+        .receipt .printout ul li .amount {
+          width: 130px; }
+          .receipt .printout ul li .amount p {
+            font-size: 18px; }
+            .receipt .printout ul li .amount p:nth-child(2) {
+              font-size: 14px;
+              font-style: italic; }
+        .receipt .printout ul li .price {
+          width: 30%;
+          text-align: right;
+          position: relative; }
+          .receipt .printout ul li .price h4 {
+            font-size: 20px;
+            position: absolute;
+            top: 20px;
+            right: 0; }
+  .receipt .total {
+    text-align: right;
+    float: right;
+    width: auto;
+    margin-right: 30px; }
+    .receipt .total h1, .receipt .total h2 {
+      font-family: "Bold";
+      margin: 0;
+      padding: 0;
+      width: auto;
+      float: left; }
+    .receipt .total h1 {
+      font-size: 30px;
+      margin-left: 10px; }
+    .receipt .total h2 {
+      font-size: 20px;
+      line-height: 38px;
+      text-transform: uppercase; }
 
 .navbar {
   background: #1b78cc;
@@ -107,7 +198,7 @@ body {
     border: 0; }
     .navbar .navbar-collapse .nav-cat {
       width: auto;
-      margin-left: 160px;
+      margin-left: 120px;
       margin-bottom: 20px;
       text-align: center; }
       .navbar .navbar-collapse .nav-cat a {
@@ -115,7 +206,7 @@ body {
         font-size: 16px;
         margin: 0; }
       .navbar .navbar-collapse .nav-cat li {
-        margin-right: 40px;
+        margin-right: 20px;
         width: auto;
         height: 55px; }
         .navbar .navbar-collapse .nav-cat li img {
@@ -179,7 +270,7 @@ body {
       height: 715px;
       overflow: scroll;
       padding-bottom: 150px;
-      margin-left: 20px; }
+      margin-left: 8px; }
       #products.products-list .grid-system .panel {
         padding: 0;
         height: 210px;
@@ -289,7 +380,7 @@ body {
 
 #cart {
   float: right;
-  width: 315px;
+  width: 325px;
   height: 768px;
   background: #1b78cc;
   margin: 0;
@@ -320,13 +411,12 @@ body {
       #cart .cart-total .items.total .amount::after {
         content: ":-"; }
   #cart .gc-product-grid {
-    margin-top: 20px;
-    width: 95%;
+    margin: 20px auto 10px auto;
+    width: 300px;
     height: 405px;
     overflow: scroll;
     padding: 0;
     list-style: none;
-    float: right;
     background-color: white; }
     #cart .gc-product-grid ul {
       margin: 0;
