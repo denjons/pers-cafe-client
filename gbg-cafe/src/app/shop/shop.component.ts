@@ -53,11 +53,14 @@ export class ShopComponent implements OnInit{
     // handle increaseing products in cart
     increaseItem(product: Product){
 
-        this.cart.map(item => {if(item.product.id == product.id){
+
+
+        this.cart.map(item => {if(item.product.id == product.id && product.quantity > 0){
             item.increase();
+            this.updateCartInfo(product.price, 1);
         }});
 
-        this.updateCartInfo(product.price, 1);
+        
 
         console.log("todo: update product-item if quantity <= 0");
 
@@ -67,11 +70,12 @@ export class ShopComponent implements OnInit{
     // handle cecreasing products in cart
     decreaseItem(product: Product){
 
-        this.cart.map(item => {if(item.product.id == product.id){
+        this.cart.map(item => {if(item.product.id == product.id && item.quantity > 0){
             item.decrease();
+            this.updateCartInfo(-product.price, -1);
         }});
 
-        this.updateCartInfo(-product.price, -1);
+        
         console.log("cart item was decreased, active is "+product.active);
 
         this.cart = this.cart.filter(prod => prod.quantity > 0);

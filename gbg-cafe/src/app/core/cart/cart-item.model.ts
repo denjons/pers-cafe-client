@@ -14,13 +14,13 @@ export class CartItem{
         if(this.product.quantity <= 0){
             return false;
         }
-        this.addproduct(this.product);
+        this.increaseQuantity();
         return true;
     }
 
     public decrease(){
-        this.product.quantity = this.product.quantity  - 1;
-        this.quantity = this.quantity - 1;
+        this.product.quantity ++;
+        this.quantity --;
 
     }
 
@@ -35,6 +35,10 @@ export class CartItem{
             this.productId = product.id;
             console.log(" ------------ added product id: "+this.productId  );
         }
+        this.increaseQuantity();
+    }
+
+    private increaseQuantity(){
         this.product.quantity --;
         this.quantity ++;
     }
