@@ -74,6 +74,24 @@ body {
   background: white;
   width: 100%; }
 
+.receipt {
+  position: absolute;
+  z-index: 999999999;
+  background: white;
+  width: 574px;
+  height: 650px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-287px, -325px); }
+  .receipt h1 {
+    font-size: 40px;
+    font-family: "Light";
+    text-align: center; }
+  .receipt .printout h2 {
+    font-size: 34px;
+    font-family: "Bold";
+    text-align: center; }
+
 .navbar {
   background: #1b78cc;
   font-family: 'Light';
@@ -176,6 +194,21 @@ body {
           width: 100%;
           height: 100%;
           padding: 9px; }
+          #products.products-list .grid-system .panel .panel-body .out-of-stock {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(185, 52, 67, 0.8);
+            color: white;
+            z-index: 99999; }
+            #products.products-list .grid-system .panel .panel-body .out-of-stock.true {
+              display: inline; }
+              #products.products-list .grid-system .panel .panel-body .out-of-stock.true h1 {
+                text-align: center;
+                line-height: 5em; }
           #products.products-list .grid-system .panel .panel-body ul {
             margin: 0;
             padding: 0; }
