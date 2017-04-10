@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { ShopRouteActivatorService } from './shop-route-activator.service';
+import { LoginRouteActivatorService } from './login-route-activator.service';
 import { FilterTextModule } from './filter/filter-text.module'
 
 
@@ -16,6 +17,7 @@ import { FilterTextModule } from './filter/filter-text.module'
   imports: [CommonModule, FilterTextModule, FormsModule],
   exports: [CommonModule, FilterTextModule, FormsModule],
   declarations: [],
+  providers: [ShopRouteActivatorService, LoginRouteActivatorService]
 })
 export class SharedModule { }
 

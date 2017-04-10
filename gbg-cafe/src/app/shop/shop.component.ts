@@ -8,6 +8,7 @@ import { ProductService } from '../core/product/product.service';
 import { CartItem } from '../core/cart/cart-item.model';
 import { FilterTextComponent } from '../shared/filter/filter-text.component';
 import {  FilterTextService} from '../shared/filter/filter-text.service';
+import { ImgService } from '../shared/img/img.service';
 
 @Component({
     selector:"shop",
@@ -21,7 +22,6 @@ export class ShopComponent implements OnInit{
     categories: Category[];
     shop: Shop;
     selectedCategory : Category;
-    imgCache : any;
     user: User;
     cart: CartItem[];
     totalPrice : number;
@@ -29,15 +29,17 @@ export class ShopComponent implements OnInit{
 
     reciept : boolean;
 
+
     @ViewChild(FilterTextComponent) filterComponent: FilterTextComponent;
 
     constructor(
         private productService: ProductService, 
         private router: Router,
-        private filterTextService: FilterTextService){
+        private filterTextService: FilterTextService,
+        private imgService: ImgService){
             this.totalPrice = 0;
             this.totalProducts = 0;
-
+            this.reciept = false;
     }
 
     ngOnInit(){
@@ -137,9 +139,18 @@ export class ShopComponent implements OnInit{
         console.log("todo: show reciept?: ");
         console.log(result);
         this.showReciept();
-        this.clearCart();
     }
 
+    showReciept(){
+        console.log("showing reciept");
+        this.reciept = true;
+    }
+
+    hideReciept(evt:any){
+        console.log("hiding reciept");
+        this.clearCart();
+        this.reciept = false;
+    }
 
     public clearCart(){
         console.log("clearing cart");
@@ -150,21 +161,10 @@ export class ShopComponent implements OnInit{
 
     }
 
-
-    showReciept(){
-        console.log("showing reciept");
-        this.reciept = true;
-    }
-
-    hideReciept(){
-        console.log("hiding reciept");
-        this.reciept = false;
-    }
-
     navigate(id:any){
+        this.filterComponent.clear();
         for(let category of this.categories){
             if(category.id == id){
-                this.selectedCategory = category;
                 this.getProductsForCategory(category);
             }
         }
@@ -172,7 +172,7 @@ export class ShopComponent implements OnInit{
     }
 
     getProductsForCategory(category: Category){
-
+        this.selectedCategory = category;
         var prodTemp = new Array();
         if(category.name === "all"){
             console.log("adding all");
@@ -197,6 +197,7 @@ export class ShopComponent implements OnInit{
         this.user = user;
         this.shop = this.user.shops[0];
         this.products = new Array();
+
         for(let category of this.shop.categories){
             for(let prod of category.products){
                 this.products.push(prod);
@@ -204,8 +205,16 @@ export class ShopComponent implements OnInit{
         }
         this.visibleProducts = this.filterVisibleProducts(this.shop.categories[0].products);
         this.categories = this.shop.categories;
+        for(let category of this.categories){
+            category.imgSrc = this.imgService.getImg(category.img);
+        }
+
+
         this.selectedCategory = this.categories[0];
         this.cart = new Array();
+
+        // set default image for all products
+        this.categories.forEach(cat => cat.products.forEach(prod => prod.img = cat.img));
     }
 
     private initShops(){
@@ -224,24 +233,9 @@ export class ShopComponent implements OnInit{
         );
     }
 
-    getImages(){
-        console.log("onload");
-        this.imgCache = new Array();
-        var names = ["soda", "snacks", "food", "other", "all"];
-
-        for(var i = 0; i < names.length; i++){
-            var elm = document.getElementById(names[i]);
-             this.imgCache[names[i]] = elm;
-             this.imgCache[names[i]].parentElement.removeChild(elm);
-        }
+    logout(){
+        localStorage.setItem("id_token", null);
+        this.router.navigate(['login']);
     }
-
-    loadCategoryImage(category: Category){
-        console.log("loading image");
-
-        category.imgElm = this.imgCache[category.image].src;
-        console.log(category.imgElm);
-    }
-
 
 }

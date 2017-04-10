@@ -4,7 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ShopComponent } from './shop.component';
 import { ShopRoutingComponent } from './shop-routing.component';
-import { ShopRouteActivatorService } from './shop-route-activator.service';
+import { SharedModule } from '../shared/shared.module';
+import { ShopRouteActivatorService } from '../shared/shop-route-activator.service';
 
 
 
@@ -23,8 +24,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forChild(routes),
+  SharedModule],
+  exports: [RouterModule, SharedModule]
 })
 export class ShopRoutingModule { }
 

@@ -6,9 +6,11 @@ import { ProductModule } from '../core/product/product.module';
 
 import { ShopRoutingModule, routableComponents } from './shop-routing.module';
 
-import { ShopRouteActivatorService } from './shop-route-activator.service';
-
 import { FilterTextModule } from '../shared/filter/filter-text.module';
+
+import { ImgModule } from '../shared/img/img.module';
+
+import { RecieptModule } from '../reciept/reciept.module';
 
 
 
@@ -22,9 +24,10 @@ import { FilterTextModule } from '../shared/filter/filter-text.module';
     ShopRoutingModule,
     ProductModule,
     CartModule,
-    FilterTextModule
+    FilterTextModule,
+    ImgModule,
+    RecieptModule
   ],
-  exports:[ routableComponents],
-  providers: [ShopRouteActivatorService]
+  exports:[ routableComponents]
 })
 export class ShopModule { }
