@@ -1,5 +1,10 @@
 <div class="container store">
+
     <reciept [items]=cart  *ngIf="reciept" (onClose)="hideReciept($event)"></reciept>
+
+    <div class="spinner">
+        
+    </div>
     <nav class="navbar navbar-default tm-navbar">
         <button class="btn btn-success navbar-toggle"
             data-toggle="collapse"

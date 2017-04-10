@@ -33,6 +33,16 @@ $green:             #51aa50;
 $ocean:             #88ccd0;
 
 .clearfix{ clear: both; }
+.spinner {
+  width: 150px;
+  height: 150px;
+  background: url('/src/icons/spinner_sprite_long.png') left center;
+  animation: play 2.12s steps(72) infinite;
+}
+
+@keyframes play {
+    100% { background-position: -10800px; }
+}
 
 body{
     color: $black;
