@@ -1,8 +1,7 @@
 <div class="container store">
     <div class="spinner">
-        
     </div>
-    <div class="receipt" *ngIf="receipt">
+    <div class="receipt popup" *ngIf="receipt">
         <h1>Tack för ditt köp!</h1>
         <div class="printout">
             <h2>Kvitto</h2>
@@ -104,6 +103,51 @@
             <button type="submit" class="btn-default">Klar</button>
         </div>
     </div>
+    <div class="edit-item popup inactive">
+        <h1>Redigera Vara</h1>
+        <form name="edit">
+            <li>
+                <p>Namn:</p>
+                <input type="text" placeholder="Coca Cola">
+            </li>
+
+            <li>
+                <p>Pris:</p>
+                <input type="number" placeholder="20">
+            </li>
+            <li>
+                <p>Kategori:</p>
+                <select>
+                    <option>Läsk</option>
+                    <option>Snacks</option>
+                    <option>Mat</option>
+                    <option>Övrigt</option>
+                    <option>++ Lägg till kategori</option>
+                </select>
+            </li>
+            <li>
+                <textarea placeholder="Zero, 50cl"></textarea>
+            </li>
+            <li>
+                <img class="thumbnail">
+            </li>
+            <button type="submit" class="btn btn-default submit" (click)="purchase()">Klar</button>
+            <button type="cancel" class="btn btn-default regret">Ångra</button>
+            <div class="clearfix"></div>
+        </form>
+    </div>
+    <div class="alert popup inactive">
+        <div id="top">
+            Bekräfta korrigering
+        </div>
+        <div id="bottom">
+            <p>Är du säker på att du vill korrigera köpet?</p>
+            <form name="correct">
+                <button class="btn btn-default submit">Ja</button>
+                <button class="btn btn-default regret">Ångra</button>
+            </form>
+        </div>
+    </div>
     <nav class="navbar navbar-default tm-navbar">
         
         <button class="btn btn-success navbar-toggle"
@@ -170,11 +214,18 @@
 
              <div class="clearfix"></div>
              <div class="col-lg-8 swish">
-                 <div class="admin swish-overlay" [ngClass]="{'active': user?.user_type === 'ADMIN', 'inactive': user?.user_type != 'ADMIN'}">
-                     <h1>ADMINLÄGE</h1>
+                 <div class="admin swish-overlay active" [ngClass]="{'active': user?.user_type === 'ADMIN', 'inactive': user?.user_type != 'ADMIN'}">
+                     <h1>Korrigeringsläge</h1>
+                     <div class="buttons">
+                        <form name="swish-submit" class="form-inline swish-form">
+                            <button type="submit" class="btn btn-default submit" (click)="purchase()">Korrigera Köp</button>
+                            <button type="cancel" class="btn btn-default regret">Ångra</button>
+                            <div class="clearfix"></div>
+                        </form>
+                     </div>
                  </div>
                  <div id="swish-number">Swisha summan til: <span id="number">0704 - 33 33 33</span></div>
-                 <div id="buttons">
+                 <div class="buttons">
                      <form name="swish-submit" class="form-inline swish-form">
                          <button type="submit" class="btn btn-default submit" (click)="purchase()">Jag har Swishat</button>
                          <button type="cancel" class="btn btn-default regret">Ångra</button>
@@ -189,3 +240,5 @@
     </div>
 
 </div>
+
+

@@ -19,14 +19,23 @@ Göteborgs Stads Typsnit Gotham
   clear: both; }
 
 .spinner {
-  width: 150px;
-  height: 150px;
-  background: url("/src/icons/spinner_sprite_long.png") left center;
-  animation: play 2.12s steps(72) infinite; }
+  display: none;
+  width: 165px;
+  height: 165px;
+  background: url("/src/icons/spinner_blue.png") left center;
+  animation: play 1.06s steps(36) infinite;
+  position: absolute;
+  z-index: 999999;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); }
+  .spinner.active {
+    display: inline-block; }
 
 @keyframes play {
   100% {
-    background-position: -10800px; } }
+    background-position: -5940px; } }
 body {
   color: #1F1E1D;
   height: 100vh;
@@ -37,6 +46,46 @@ body {
     font-size: 35px;
     color: white;
     font-family: "Light"; }
+  body :focus {
+    outline: none !important; }
+  body form {
+    font-family: "Medium";
+    color: black; }
+    body form p {
+      margin: 0 10px; }
+    body form li {
+      list-style: none; }
+    body form input, body form textarea, body form button, body form select {
+      border: 0;
+      background: rgba(136, 205, 208, 0.5); }
+    body form textarea {
+      padding: 10px 10px; }
+    body form input {
+      min-height: 46px;
+      padding-left: 10px; }
+    body form select {
+      background-image: url(/src/imgs/elements/arrow-down.png);
+      background-position: 90% center;
+      background-repeat: no-repeat;
+      border-radius: 0;
+      padding: 15px 50px 15px 10px;
+      text-align: left; }
+    body form .btn-default {
+      width: auto;
+      height: auto;
+      border: 0;
+      border-radius: 0;
+      margin: 0;
+      padding: 0;
+      color: white;
+      font-size: 16px;
+      font-family: "Light";
+      text-align: center;
+      white-space: normal; }
+      body form .btn-default.regret {
+        background-color: #b93342; }
+      body form .btn-default.submit {
+        background-color: #51aa50; }
 
 .container {
   height: inherit;
@@ -83,114 +132,177 @@ body {
   background: white;
   width: 100%; }
 
-.receipt {
+.popup {
   position: absolute;
-  z-index: 999999999;
+  z-index: 99999999;
   background: white;
-  width: 574px;
+  width: auto;
   height: auto;
   left: 50%;
   top: 50%;
-  transform: translate(-287px, -325px);
+  transform: translate(-50%, -50%);
   box-shadow: 0px 0px 32px 3px rgba(0, 0, 0, 0.38); }
-  .receipt.inactive {
+  .popup.inactive {
     display: none; }
-  .receipt:after {
-    content: "";
-    width: 100%;
-    height: 18px;
-    top: 99%;
-    left: 0;
+  .popup.receipt {
     position: absolute;
-    display: inline-block;
-    background: url("/src/imgs/jagged-edge.png"); }
-  .receipt h1 {
-    margin: 40px 0;
-    font-size: 40px;
-    font-family: "Light";
-    text-align: center; }
-  .receipt #button {
-    width: 100%;
-    text-align: center;
-    margin: 30px 0; }
-    .receipt #button .btn-default {
-      width: 150px;
-      height: 50px;
-      background: #51aa50;
-      border: 0;
-      color: white;
-      font-size: 25px;
-      font-family: "Light"; }
-  .receipt .printout {
-    vertical-align: bottom; }
-    .receipt .printout h2 {
-      font-size: 34px;
-      font-family: "Bold";
+    z-index: 999999999;
+    background: white;
+    width: 574px;
+    height: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-287px, -325px);
+    box-shadow: 0px 0px 32px 3px rgba(0, 0, 0, 0.38); }
+    .popup.receipt:after {
+      content: "";
+      width: 100%;
+      height: 18px;
+      top: 99%;
+      left: 0;
+      position: absolute;
+      display: inline-block;
+      background: url("/src/imgs/jagged-edge.png"); }
+    .popup.receipt h1 {
+      margin: 40px 0;
+      font-size: 40px;
+      font-family: "Light";
+      text-align: center; }
+    .popup.receipt #button {
+      width: 100%;
       text-align: center;
-      margin-bottom: 15px;
-      border-bottom: 2px solid black; }
-    .receipt .printout ul {
-      list-style: none;
-      height: 290px;
-      overflow: scroll;
-      margin: 0 30px 20px;
-      padding: 0; }
-      .receipt .printout ul li {
-        width: auto;
-        height: auto;
-        min-height: 70px;
-        border-bottom: 1px solid gray; }
-        .receipt .printout ul li div {
-          height: 100%;
+      margin: 30px 0; }
+    .popup.receipt .printout {
+      vertical-align: bottom; }
+      .popup.receipt .printout h2 {
+        font-size: 34px;
+        font-family: "Bold";
+        text-align: center;
+        margin-bottom: 15px;
+        border-bottom: 2px solid black; }
+      .popup.receipt .printout ul {
+        list-style: none;
+        height: 290px;
+        overflow: scroll;
+        margin: 0 30px 20px;
+        padding: 0; }
+        .popup.receipt .printout ul li {
+          width: auto;
+          height: auto;
           min-height: 70px;
-          padding: 10px;
-          float: left;
-          border-right: 1px solid gray; }
-          .receipt .printout ul li div:last-child {
-            border: none; }
-          .receipt .printout ul li div p {
-            margin: 0; }
-        .receipt .printout ul li .item {
-          width: 212px;
-          font-family: "Medium"; }
-          .receipt .printout ul li .item p {
-            font-size: 18px; }
-            .receipt .printout ul li .item p:nth-child(2) {
-              font-size: 15px; }
-        .receipt .printout ul li .amount {
-          width: 130px; }
-          .receipt .printout ul li .amount p {
-            font-size: 18px; }
-            .receipt .printout ul li .amount p:nth-child(2) {
-              font-size: 14px;
-              font-style: italic; }
-        .receipt .printout ul li .price {
-          width: 30%;
-          text-align: right;
-          position: relative; }
-          .receipt .printout ul li .price h4 {
-            font-size: 20px;
-            position: absolute;
-            top: 20px;
-            right: 0; }
-  .receipt .total {
-    text-align: right;
-    float: right;
-    width: auto;
-    margin-right: 30px; }
-    .receipt .total h1, .receipt .total h2 {
-      font-family: "Bold";
-      margin: 0;
-      padding: 0;
+          border-bottom: 1px solid gray; }
+          .popup.receipt .printout ul li div {
+            height: 100%;
+            min-height: 70px;
+            padding: 10px;
+            float: left;
+            border-right: 1px solid gray; }
+            .popup.receipt .printout ul li div:last-child {
+              border: none; }
+            .popup.receipt .printout ul li div p {
+              margin: 0; }
+          .popup.receipt .printout ul li .item {
+            width: 212px;
+            font-family: "Medium"; }
+            .popup.receipt .printout ul li .item p {
+              font-size: 18px; }
+              .popup.receipt .printout ul li .item p:nth-child(2) {
+                font-size: 15px; }
+          .popup.receipt .printout ul li .amount {
+            width: 130px; }
+            .popup.receipt .printout ul li .amount p {
+              font-size: 18px; }
+              .popup.receipt .printout ul li .amount p:nth-child(2) {
+                font-size: 14px;
+                font-style: italic; }
+          .popup.receipt .printout ul li .price {
+            width: 30%;
+            text-align: right;
+            position: relative; }
+            .popup.receipt .printout ul li .price h4 {
+              font-size: 20px;
+              position: absolute;
+              top: 20px;
+              right: 0; }
+    .popup.receipt .total {
+      text-align: right;
+      float: right;
       width: auto;
-      float: left; }
-    .receipt .total h1 {
+      margin-right: 30px; }
+      .popup.receipt .total h1, .popup.receipt .total h2 {
+        font-family: "Bold";
+        margin: 0;
+        padding: 0;
+        width: auto;
+        float: left; }
+      .popup.receipt .total h1 {
+        font-size: 30px;
+        margin-left: 10px; }
+      .popup.receipt .total h2 {
+        font-size: 20px;
+        line-height: 38px;
+        text-transform: uppercase; }
+  .popup.edit-item {
+    width: 540px;
+    height: auto;
+    padding: 30px; }
+    .popup.edit-item h1 {
+      font-family: "Light";
       font-size: 30px;
-      margin-left: 10px; }
-    .receipt .total h2 {
-      font-size: 20px;
-      line-height: 38px;
-      text-transform: uppercase; }
+      margin: 0 !important; }
+    .popup.edit-item form {
+      width: 100%; }
+      .popup.edit-item form li {
+        float: left;
+        margin: 10px 25px 10px 0; }
+        .popup.edit-item form li select, .popup.edit-item form li input {
+          width: 165px; }
+        .popup.edit-item form li:first-child {
+          float: none; }
+          .popup.edit-item form li:first-child input {
+            width: 355px; }
+        .popup.edit-item form li textarea {
+          max-width: 280px;
+          max-height: 211px;
+          width: 280px;
+          height: 211px; }
+      .popup.edit-item form .thumbnail {
+        width: 150px;
+        height: 150px;
+        margin: 0 0 10px 0; }
+      .popup.edit-item form .btn-default {
+        float: left;
+        height: 20px;
+        padding: 20px;
+        line-height: 0; }
+        .popup.edit-item form .btn-default.submit {
+          margin-right: 14px; }
+  .popup.alert {
+    width: 535px;
+    height: auto;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    border-radius: 0; }
+    .popup.alert #top {
+      font-family: "Bold";
+      font-size: 27px;
+      margin-bottom: 30px;
+      padding: 20px 0;
+      background-color: #cecfd0; }
+    .popup.alert #bottom {
+      font-family: 'Book';
+      font-size: 17px;
+      margin-bottom: 30px; }
+      .popup.alert #bottom p {
+        margin-bottom: 35px; }
+      .popup.alert #bottom .btn-default {
+        height: 50px; }
+        .popup.alert #bottom .btn-default.submit {
+          width: 150px;
+          margin-right: 30px; }
+        .popup.alert #bottom .btn-default.regret {
+          width: 150px; }
 
 .navbar {
   background: #1b78cc;
@@ -256,7 +368,7 @@ body {
       height: 50px; }
     #products .search-col .search input {
       background: #e6e6e6;
-      width: 460px;
+      width: 95%;
       text-transform: uppercase; }
     #products .search-col .search button {
       background: #f18700;
@@ -375,9 +487,10 @@ body {
       font-family: "Light";
       font-size: 13px; }
   .admin.active.swish-overlay {
-    width: 100%;
+    width: 300px;
     height: 250px;
     position: absolute;
+    top: -20px;
     z-index: 999;
     background: #1b78cc;
     color: white; }
@@ -510,26 +623,17 @@ body {
       text-align: center;
       font-size: 16px;
       color: white; }
-    #cart .swish #buttons {
+    #cart .swish .buttons {
       width: 100%;
       text-align: center;
       margin: 15px 0; }
-      #cart .swish #buttons .btn-default {
-        border-radius: 0;
-        border: 0;
+      #cart .swish .buttons .btn-default {
         height: 50px;
-        margin: 0;
-        padding: 0;
-        font-size: 17px;
-        font-family: "Light";
-        white-space: normal;
-        color: white; }
-        #cart .swish #buttons .btn-default.submit {
+        font-size: 17px; }
+        #cart .swish .buttons .btn-default.submit {
           width: 150px;
-          margin-right: 10px;
-          background: #51aa50; }
-        #cart .swish #buttons .btn-default.regret {
-          background: #b93342;
+          margin-right: 10px; }
+        #cart .swish .buttons .btn-default.regret {
           width: 90px;
           float: right; }
   #cart .gbg-logo {
