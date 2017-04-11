@@ -1,107 +1,8 @@
 <div class="container store">
+    <reciept [items]=cart  *ngIf="reciept" (onClose)="hideReciept($event)"></reciept>
+
     <div class="spinner">
-    </div>
-    <div class="receipt popup" *ngIf="receipt">
-        <h1>Tack för ditt köp!</h1>
-        <div class="printout">
-            <h2>Kvitto</h2>
-            <ul>
-                <li>
-                    <div class="item">
-                        <p>Coca Cola, 33cl</p>
-                        <p>Zero</p>
-                    </div>
-
-                    <div class="amount">
-                        <p>20 st</p>
-                        <p>á 10kr</p>
-                    </div>
-
-                    <div class="price">
-                        <h4>200kr</h4>
-                    </div>
-                </li>
-                <div class="clearfix"></div>
-                <li>
-                    <div class="item">
-                        <p>Coca Cola, 33cl</p>
-                        <p>Zero</p>
-                    </div>
-                    <div class="amount">
-                        <p>20 st</p>
-                        <p>á 10kr</p>
-                    </div>
-                    <div class="price">
-                        <h4>200kr</h4>
-                    </div>
-                </li>
-                <div class="clearfix"></div>
-                <li>
-                    <div class="item">
-                        <p>Coca Cola, 33cl</p>
-                        <p>Zero</p>
-                    </div>
-                    <div class="amount">
-                        <p>20 st</p>
-                        <p>á 10kr</p>
-                    </div>
-                    <div class="price">
-                        <h4>200kr</h4>
-                    </div>
-                </li>
-                <div class="clearfix"></div>
-                <li>
-                    <div class="item">
-                        <p>Coca Cola, 33cl</p>
-                        <p>Zero</p>
-                    </div>
-                    <div class="amount">
-                        <p>20 st</p>
-                        <p>á 10kr</p>
-                    </div>
-                    <div class="price">
-                        <h4>200kr</h4>
-                    </div>
-                </li>
-                <div class="clearfix"></div>
-                <li>
-                    <div class="item">
-                        <p>Coca Cola, 33cl</p>
-                        <p>Zero</p>
-                    </div>
-                    <div class="amount">
-                        <p>20 st</p>
-                        <p>á 10kr</p>
-                    </div>
-                    <div class="price">
-                        <h4>200kr</h4>
-                    </div>
-                </li>
-                <div class="clearfix"></div>
-                <li>
-                    <div class="item">
-                        <p>Coca Cola, 33cl</p>
-                        <p>Zero</p>
-                    </div>
-                    <div class="amount">
-                        <p>20 st</p>
-                        <p>á 10kr</p>
-                    </div>
-                    <div class="price">
-                        <h4>200kr</h4>
-                    </div>
-                </li>
-                <div class="clearfix"></div>
-            </ul>
-        </div>
-        <div class="total">
-            <h2>Total:</h2>
-            <h1>{{200 * 5}} kr</h1>
-        </div>
-        <div class="clearfix"></div>
-        <div id="button">
-            <button type="submit" class="btn-default">Klar</button>
-        </div>
+        
     </div>
     <div class="edit-item popup inactive">
         <h1>Redigera Vara</h1>
@@ -149,7 +50,6 @@
         </div>
     </div>
     <nav class="navbar navbar-default tm-navbar">
-        
         <button class="btn btn-success navbar-toggle"
             data-toggle="collapse"
             data-target=".navbar-collapse"><span class="glyphicon glyphicon-chevron-down"></span></button>
@@ -157,17 +57,12 @@
         <div class="tm-loggo navbar-header">
             <h1>{{title}}</h1>
         </div>
-         <img id="soda" src="/src/icons/smaller/soda.png" />
-         <img id="snacks" src="/src/icons/smaller/snack.png" />
-         <img id="food" src="/src/icons/smaller/burger.png" />
-         <img id="other" src="/src/icons/smaller/misc.png" />
-         <img id="all" src="/src/icons/smaller/allt.png" (load)="getImages()"/>
 
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav tm-navbar-nav nav-cat">
-                <li *ngFor="let category of categories" class="nav" (load)="loadCategoryImage(category)">
+                <li *ngFor="let category of categories" class="nav" >
                     <a (click)="navigate(category.id)" href="" >
-                        <img src="{{category.imgElm}}" />
+                        <img src="{{category.imgSrc}}" />
                         <p class="cat-name">{{category.name}}</p>
                     </a>
                 </li>
@@ -177,7 +72,9 @@
                         <p>Lägg till kategori</p>
                     </a>
                 </li>
+                <li><button (click)="logout()" class="btn">logout</button></li>
             </ul>
+
             
             <p id="text-for-kassa">KASSA</p>
         </div>
@@ -191,7 +88,7 @@
             <div class="grid-system">
                 <ul class="gc-product-grid">
                     <li *ngFor="let product of visibleProducts">
-                        <product-item [product]=product (onAddToCart)="addToCart($event)"></product-item>
+                        <product-item [product]=product [user]=user (onAddToCart)="addToCart($event)"></product-item>
                     </li>
                 </ul>
                 <div class="clearfix"></div>

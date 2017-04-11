@@ -6,5 +6,6 @@ export class Category{
     image: string;
     description : string;
     products: Product[];
-    imgElm: string;
+    img: string;
+    imgSrc : string;
 }

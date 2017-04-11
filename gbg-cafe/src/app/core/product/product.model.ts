@@ -10,7 +10,7 @@ export class Product{
     quantity: number;
     active: boolean;
     date: Date;
-    image : any;
+    img : string;
 
     constructor(){
 

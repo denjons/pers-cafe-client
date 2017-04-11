@@ -1,5 +1,7 @@
 import { Component, OnInit, Input ,Output, EventEmitter } from '@angular/core';
 import { Product } from '../product.model';
+import { User } from '../../shop/user.model';
+import { ImgService } from '../../../shared/img/img.service';
 
 
 @Component({
@@ -10,14 +12,21 @@ import { Product } from '../product.model';
 export class ProductItemComponent implements OnInit{
 
     @Input() product: Product;
+    @Input() user: User;
+    imgSrc : String;
 
-     @Output() onAddToCart = new EventEmitter;
+    @Output() onAddToCart = new EventEmitter;
 
     price: string;
     price2: string;
 
+    constructor(private imgService : ImgService){
+        
+    }
+
 
     ngOnInit(){
+        this.imgSrc = this.imgService.getImg(this.product.img);
         var priceArr = this.product.price.toFixed(2).toString().split(".");
         this.price = priceArr[0];
         if(priceArr.length > 1){

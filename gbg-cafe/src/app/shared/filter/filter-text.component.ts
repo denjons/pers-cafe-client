@@ -9,6 +9,7 @@ export class FilterTextComponent {
   @Output() onFilterChanged: EventEmitter<string>;
 
   filter: string;
+  elm: any;
 
   constructor() {
     this.onFilterChanged = new EventEmitter<string>();
@@ -17,10 +18,13 @@ export class FilterTextComponent {
 
   clear() {
     this.filter = '';
+    if(this.elm != null){
+      this.elm.value = "";
+    }
   }
 
   filterChanged(event: any) {
-
+    this.elm = event.target;
     this.filter = event.target.value;
     event.preventDefault();
     console.log(`Filter Changed: ${this.filter}`);

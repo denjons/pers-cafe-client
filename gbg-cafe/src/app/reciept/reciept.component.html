@@ -1,0 +1,31 @@
+  <div class="receipt">
+        <h1>Tack för ditt köp!</h1>
+        <div class="printout">
+            <h2>Kvitto</h2>
+            <ul>
+                <li *ngFor="let cartItem of items" class="row">
+                    <div class="item">
+                        <p>{{cartItem.product.name}}, {{cartItem.product.size}}</p>
+                        <p>{{cartItem.product.description}}</p>
+                    </div>
+                    <div class="amount">
+                        <p>{{cartItem.quantity}}st</p>
+                        <p>á {{cartItem.product.price}}kr</p>
+                    </div>
+                    <div class="price">
+                        <h4>{{cartItem.product.price*cartItem.quantity}}kr</h4>
+                    </div>
+                    <div class="clearfix"></div>
+                </li>
+                
+            </ul>
+        </div>
+        <div class="total">
+            <h2>Total:</h2>
+            <h1>{{total}}kr</h1>
+        </div>
+        <div class="clearfix"></div>
+        <div id="button">
+            <button type="submit" class="btn-default" (click)="close()">Klar</button>
+        </div>
+    </div>
