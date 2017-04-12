@@ -3,7 +3,7 @@
     <reciept [items]=cart class="popup receipt"  *ngIf="reciept" (onClose)="hideReciept($event)"></reciept>
 
     <div class="spinner inactive"></div>
-    <div  class="spinner" *ngIf="laoding" ></div>
+    <div  class="spinner" *ngIf="loading" ></div>
 
     <div class="alert popup inactive">
         <div id="top">
@@ -29,7 +29,7 @@
         </div>
 
         <div class="navbar-collapse collapse">
-            <button (click)="logout()" class="btn-default logout">logout</button>
+            <button (click)="logout()" class="btn-default logout">Logga ut</button>
             <nav>
                 <ul class="nav navbar-nav tm-navbar-nav nav-cat">
                     <li *ngFor="let category of categories" class="nav" >
@@ -41,7 +41,7 @@
                         </a>
                     </li>
                     <li class="nav admin add-category" [ngClass]="{'active': user?.user_type === 'ADMIN', 'inactive': user?.user_type != 'ADMIN'}">
-                        <a href="/">
+                        <a>
                             <h1>+</h1>
                             <p>Lägg till</p>
                         </a>
