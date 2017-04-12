@@ -28,6 +28,7 @@ export class ShopComponent implements OnInit{
     totalProducts : number;
 
     reciept : boolean;
+    loading : boolean;
 
 
     @ViewChild(FilterTextComponent) filterComponent: FilterTextComponent;
@@ -40,10 +41,12 @@ export class ShopComponent implements OnInit{
             this.totalPrice = 0;
             this.totalProducts = 0;
             this.reciept = false;
+            
     }
 
     ngOnInit(){
         console.log("initializing");
+        
         this.initShops();
     }
 
@@ -115,27 +118,36 @@ export class ShopComponent implements OnInit{
     }
 
 
-
-
     purchase(){
+        this.startLoading();
         console.log("todo: show spinner");
         this.productService.purchase(this.cart, this.shop).subscribe(
             response => {
+                 this.stopLoading();
                 if(response.status == 204){
                     this.purchaseSucess(response.json());
                 }else if(response.status == 401){
-                    console.log("todo: show error message: ");
+                    console.log("Unauthorized: logging out.");
                     console.log(response.json());
+                    this.logout();
                 }else{
                     console.log("todo: show error message: ");
                     console.log(response.json());
                 }
             },
-            error => this.errorMessage = <any>error
+            error => {
+                if(error.status==401){
+                    this.logout();
+                }else{
+                    console.log("todo: show error message: ");
+                    console.log(error.json());
+                }
+            }
         );
     }
 
     private purchaseSucess(result: any){
+       
         console.log("todo: show reciept?: ");
         console.log(result);
         this.showReciept();
@@ -165,7 +177,10 @@ export class ShopComponent implements OnInit{
         this.filterComponent.clear();
         for(let category of this.categories){
             if(category.id == id){
+                category.isActive = true;
                 this.getProductsForCategory(category);
+            }else{
+                category.isActive = false;
             }
         }
         return false;
@@ -203,6 +218,7 @@ export class ShopComponent implements OnInit{
                 this.products.push(prod);
             }
         }
+
         this.visibleProducts = this.filterVisibleProducts(this.shop.categories[0].products);
         this.categories = this.shop.categories;
         for(let category of this.categories){
@@ -211,15 +227,18 @@ export class ShopComponent implements OnInit{
 
 
         this.selectedCategory = this.categories[0];
+        this.selectedCategory.isActive = true;
         this.cart = new Array();
 
         // set default image for all products
         this.categories.forEach(cat => cat.products.forEach(prod => prod.img = cat.img));
+        this.stopLoading();
     }
 
     private initShops(){
         // start by always taking the first shop
         // maybe add functionality for more shops later
+        this.startLoading();
         this.productService.getShops().subscribe(
             user => {
                 if(user != null && user.shops.length > 0){ 
@@ -236,6 +255,14 @@ export class ShopComponent implements OnInit{
     logout(){
         localStorage.setItem("id_token", null);
         this.router.navigate(['login']);
+    }
+
+    startLoading(){
+        this.loading = true;
+    }
+
+    stopLoading(){
+        this.loading = false;
     }
 
 }

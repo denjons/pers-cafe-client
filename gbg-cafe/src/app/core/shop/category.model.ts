@@ -8,4 +8,6 @@ export class Category{
     products: Product[];
     img: string;
     imgSrc : string;
+    isActive: boolean;
+
 }

@@ -3,6 +3,11 @@
 /*
 Göteborgs Stads Typsnit Gotham
 */
+
+.active{
+    background:red;
+}
+
 @font-face {
   font-family: "Book";
   src: url("fonts/Gotham-Book.otf") format("opentype"); }

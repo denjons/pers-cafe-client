@@ -11,8 +11,12 @@ import { Urls } from '../core/urls';
 })
 export class LoginComponent implements OnInit{
 
-    constructor(private router: Router, private http: Http){
+    loading: boolean;
+    loginFailed: boolean;
+    errorMessage: string;
 
+    constructor(private router: Router, private http: Http){
+        this.loginFailed = false;
     }
 
     ngOnInit(){
@@ -20,9 +24,10 @@ export class LoginComponent implements OnInit{
     }
 
     login(event, name, password){
-       // event.preventDefault();
 
-        console.log("logging in: show spinner or something");
+        // show spinner
+        this.loading = true;
+
         let body = JSON.stringify({ name, password });
 
         this.http.post(Urls.login, body, { headers: GCHeader.headers })
@@ -38,16 +43,21 @@ export class LoginComponent implements OnInit{
                     localStorage.setItem("id_token", token);
                     this.router.navigate(['shop']);
                 }else{
-                    console.log("token was null: show error message");
+                    this.loginFailed = true;
+                    this.errorMessage = "wrong username or password";
                 }
-
-                
                 
             },
             error => {
-             console.log("error while logging in: show error message");   
-            alert(error.text());
-            console.log(error.text());
+                if(error.status==401){
+                    this.loginFailed = true;
+                    this.errorMessage = "wrong username or password";
+                }else{
+                    this.loading = false;
+                    this.loginFailed = true;
+                    this.errorMessage = "An error occured. "+error.text(); 
+                }
+              
         }
       );
       return false;
