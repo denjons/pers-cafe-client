@@ -32,17 +32,25 @@ $black:             #1F1E1D;
 $light-blue:        #729fbd;
 $green:             #51aa50;
 $ocean:             #88ccd0;
+    $oceanLight:        rgba(136,205,208,.5);
 
 .clearfix{ clear: both; }
 .spinner {
-  width: 150px;
-  height: 150px;
-  background: url('/src/icons/spinner_sprite_long.png') left center;
-  animation: play 2.12s steps(72) infinite;
-}
+    &.inactive{ display: none; }
+    @keyframes play { 100% { background-position: -5940px; } }
+    
+    display: none;
 
-@keyframes play {
-    100% { background-position: -10800px; }
+    width: 165px;
+    height: 165px;
+    background: url('/src/icons/spinner_blue.png') left center; 
+    animation: play 1.06s steps(36) infinite;
+    position: absolute;
+    z-index: 999;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 body{
@@ -50,18 +58,85 @@ body{
     height: 100vh;
     width: 100vw;
     overflow: hidden;
+    background: $primary-color;
 
-    background-color: $primary-color;
+    :focus{
+        outline: none !important;
+    }
 
-    #text-for-kassa{
-        font-size: 35px;
+    form{
+        font-family: "Medium";
+        color: black;
+
+        p{
+            margin: 0 10px;
+        }
+
+        li{
+            list-style: none;
+        }
+
+        input, textarea, button, select{
+            border: 0;
+            background: $oceanLight;
+        }
+
+        textarea{
+            padding: 10px 10px;
+        }
+
+        input{
+            min-height: 46px;
+            padding-left: 10px;
+        }
+
+        select{
+            background-image: url(/src/imgs/elements/arrow-down.png);
+            background-position: 90% center;
+            background-repeat: no-repeat;
+            border-radius: 0;
+            padding: 15px 50px 15px 10px;
+            text-align: left;
+        }
+    }
+
+    .btn-default{
+        width: auto;
+        height: auto;
+        border: 0;
+        border-radius: 0;
+
+        margin: 0;
+        padding: 0;
+
         color: white;
+        font-size: 16px;
         font-family: "Light";
+        text-align: center;
+        white-space: normal;
+
+        &.regret{
+            background-color: $red;
+        }
+
+        &.submit{
+            background-color: $green;
+        }
+
+        &.logout{
+            font-size: 14px;
+            width: auto;
+            height: auto;
+            background: $primary-color;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
     }
 }
 
 .container{
-    height:inherit;
+    height: inherit;
     margin: 0;
     padding: 0;
 }
@@ -118,157 +193,273 @@ body{
     width: 100%;
 }
 
-//Kvitto
-.receipt{
+//Popups
+.popup{
     &.inactive{display: none;}
+
     position: absolute;
-    z-index: 999999999;
+    z-index: 999;
     background: white;
-    width: 574px;
+    width: auto;
     height: auto;
+    
     left: 50%;
     top: 50%;
-    transform: translate(-287px, -325px);
-    box-shadow: 0px 0px 32px 3px rgba(0,0,0,0.38);
+    transform: translate(-50%, -50%);
+    
+    box-shadow: 0px 0px 32px 3px rgba(0,0,0,.38);
 
-    &:after{
-        content: "";
-        width: 100%;
-        height: 18px;
-        top: 99%;
-        left: 0;
+    &.receipt{
         position: absolute;
-        display: inline-block;
-        background: url('/src/imgs/jagged-edge.png');
-    }
+        z-index: 999;
+        background: white;
+        width: 574px;
+        left: 50%;
+        top: 50%;
 
-    h1{
-        margin: 40px 0;
-        font-size: 40px;
-        font-family: "Light";
-        text-align: center;
-    }
+        &:after{
+            content: "";
+            width: 100%;
+            height: 18px;
+            top: 99%;
+            left: 0;
+            position: absolute;
+            display: inline-block;
+            background: url('/src/imgs/jagged-edge.png');
+        }
 
-    #button{
-        width: 100%;
-        text-align: center;
-        margin: 30px 0;
-
-        .btn-default{
-            width: 150px;
-            height: 50px;
-            background: $green;
-            border: 0;
-
-            color: white;
-            font-size: 25px;
+        h1{
+            margin: 40px 0;
+            font-size: 40px;
             font-family: "Light";
-        }
-    }
-
-    .printout{
-        vertical-align: bottom;
-
-        h2{
-            font-size: 34px;
-            font-family: "Bold";
             text-align: center;
-            margin-bottom: 15px;
-            border-bottom: 2px solid black;
         }
 
-        ul{
-            list-style: none;
-            height: 290px;
-            overflow: scroll;
-            
-            margin: 0 30px 20px;
-            padding: 0;
+        #button{
+            width: 100%;
+            text-align: center;
+            margin: 30px 0;
 
-            li{
-                width: auto;
-                height: auto;
-                min-height: 70px;
-                border-bottom: 1px solid gray;
+            .submit{
+                width: 150px;
+                height: 50px;
+                font-size: 25px;
 
-                div{
-                    height: 100%;
-                    min-height: 70px;
-                    padding: 10px;
-                    float: left;
-                    border-right: 1px solid gray;
-
-                    &:last-child{
-                        border: none;
-                    }
-                    
-                    p{
-                        margin: 0;
-                    }
-                }
-                .item{
-                    width: 212px;
-                    font-family: "Medium";
-
-                    p{
-                        font-size: 18px;
-
-                        &:nth-child(2){
-                            font-size: 15px;
-                        }
-                    }
-                }
-                .amount{
-                    width: 130px;
-
-                    p{
-                        font-size: 18px;
-
-                        &:nth-child(2){
-                            font-size: 14px;
-                            font-style: italic;
-                        }
-                    }
-                }
-                .price{
-                    width: 30%;
-                    text-align: right;
-                    position: relative;
-                    h4{
-                        font-size: 20px;
-                        position: absolute;
-                        top: 20px;
-                        right: 0;
-                    }
-                }
             }
         }
 
+        .printout{
+            vertical-align: bottom;
 
-    }
-    .total{
-        text-align: right;
-        float: right;
-        width: auto;
-        margin-right: 30px;
+            h2{
+                font-size: 34px;
+                font-family: "Bold";
+                text-align: center;
+                margin-bottom: 15px;
+                border-bottom: 2px solid black;
+            }
 
-        h1, h2{
-            font-family: "Bold";
-            margin: 0;
-            padding: 0;
+            ul{
+                list-style: none;
+                height: auto;
+                max-height: 290px;
+                overflow: scroll;
+                
+                margin: 0 30px 20px;
+                padding: 0;
+
+                li{
+                    width: auto;
+                    height: auto;
+                    min-height: 70px;
+                    border-bottom: 1px solid gray;
+
+                    div{
+                        height: 100%;
+                        min-height: 70px;
+                        padding: 10px;
+                        float: left;
+                        border-right: 1px solid gray;
+
+                        &:last-child{
+                            border: none;
+                        }
+                        
+                        p{
+                            margin: 0;
+                        }
+                    }
+                    .item{
+                        width: 212px;
+                        font-family: "Medium";
+
+                        p{
+                            font-size: 18px;
+
+                            &:nth-child(2){
+                                font-size: 15px;
+                            }
+                        }
+                    }
+                    .amount{
+                        width: 130px;
+
+                        p{
+                            font-size: 18px;
+
+                            &:nth-child(2){
+                                font-size: 14px;
+                                font-style: italic;
+                            }
+                        }
+                    }
+                    .price{
+                        width: 30%;
+                        text-align: right;
+                        position: relative;
+                        h4{
+                            font-size: 20px;
+                            position: absolute;
+                            top: 20px;
+                            right: 0;
+                        }
+                    }
+                }
+            }
+
+
+        }
+        .total{
+            text-align: right;
+            float: right;
             width: auto;
-            float: left;
+            margin-right: 30px;
+
+            h1, h2{
+                font-family: "Bold";
+                margin: 0;
+                padding: 0;
+                width: auto;
+                float: left;
+            }
+            h1{
+                font-size: 30px;
+                margin-left: 10px;
+            }
+
+            h2{
+                font-size: 20px;
+                line-height: 38px;
+                text-transform: uppercase;
+            }
         }
+    }
+
+    &.edit-item{
+        width: 540px;
+        height: auto;
+
+        padding: 30px;
+
         h1{
+            font-family: "Light";
             font-size: 30px;
-            margin-left: 10px;
+            margin: 0 !important;
         }
 
-        h2{
-            font-size: 20px;
-            line-height: 38px;
-            text-transform: uppercase;
+        form{
+            width: 100%;
+
+            li{
+                float: left;
+                margin: 10px 25px 10px 0;
+
+                select, input{
+                    width: 165px;
+                }
+                
+                &:first-child{
+                    float: none;
+                    input{
+                        width: 355px;
+                    }
+                }
+
+                textarea{
+                    max-width: 280px;
+                    max-height: 211px;
+                    width: 280px;
+                    height: 211px;
+                }
+            }
+
+            .thumbnail{
+                width: 150px;
+                height: 150px;
+                margin: 0 0 10px 0;
+            }
+
+            .btn-default{
+                float: left;
+                height: 20px;
+                padding: 20px;
+                line-height: 0;
+
+                &.submit{
+                    margin-right: 14px;
+                }
+            }
         }
+    }
+
+    &.alert{
+        width: 535px;
+        text-align: center;
+
+        padding: 0;
+        margin: 0;
+        border-radius: 0;
+
+        #top{
+            font-family: "Bold";
+            font-size: 27px;
+
+            margin-bottom: 30px;
+            padding: 20px 0;
+
+            background-color: $gray;
+        }
+
+        #bottom{
+            font-family: 'Book';
+            font-size: 17px;
+
+            margin-bottom: 30px;
+
+            p{
+                margin-bottom: 35px;
+            }
+
+            .btn-default{
+                height: 50px;
+
+                &.submit{
+                    width: 150px;
+                    margin-right: 30px;
+                }
+
+                &.regret{
+                    width: 150px;
+                }
+            }
+        }
+    }
+
+    &.overlay{
+        z-index: 100;
+        width: 100%;
+        height: 100%;
+        background-color: $oceanLight;
     }
 }
 
@@ -287,43 +478,55 @@ body{
     .navbar-collapse{
         width: 100%;
         text-align: center;
-        padding: 19px 0 5px 0;
+        padding: 0;
         border: 0;
 
-        .nav-cat{
-            width: auto;
-            margin-left: 120px;
-            margin-bottom: 20px;
-            text-align: center;
-
-            a{
-                color: white;
-                font-size: 16px;
-                margin: 0;
-            }
-
-            li{
-                margin-right: 20px;
+        nav{
+            width: 700px;
+            float: left;
+            .nav-cat{
                 width: auto;
-                height: 55px;
+                transform: translateX(-50%);
+                margin-left: 50%; 
+                padding: 10px 0;
 
-                img{
-                    width: 32px;
-                    height: 32px;
+                a{
+                    color: white;
+                    font-size: 16px;
+                    padding: 0;
+                    margin: 0;
+
+                    p{
+                        margin: 10px 0 0 0;
+                        text-transform: capitalize;
+                    }
                 }
 
-                .cat-name{
+                li{
+                    margin-right: 25px;
                     width: auto;
-                }
+                    height: auto;
 
-                &:last-child{
-                    margin-right: 0;
+                    img{
+                        width: 32px;
+                        height: 32px;
+                    }
+
+                    .cat-name{
+                        width: auto;
+                    }
+
+                    
                 }
             }
         }
 
         #text-for-kassa{
             display: none;
+            
+            font-family: 'Light';
+            font-size: 35px;
+            color: white;
         }
         @media (min-width: 980px){
             #text-for-kassa{
@@ -362,8 +565,11 @@ body{
         }
 
         input{
-            background: #e6e6e6;
-            width: 460px;
+            background-image: url(/src/imgs/elements/search-icon.png);
+            background-color: #e6e6e6;
+            background-position: 97% center;            
+            background-repeat: no-repeat;
+            width: 95%;
             text-transform: uppercase;
         }
 
@@ -427,7 +633,7 @@ body{
                     height: 100%;
                     background: rgba(185,52,67,.8);
                     color: white;
-                    z-index: 99999;
+                    z-index: 50;
 
                     &.true{
                         display: inline;
@@ -504,23 +710,23 @@ body{
 }
 
 .admin{
-    z-index: 9999;
+    z-index: 50;
     &.inactive{
         display: none;
     }
 
     &.active{
         &.add-category{
-            width: auto !important;
-            height: auto !important;
+            width: 120px !important;
             color: white;
+            position: absolute; 
+            left: 100%;
+            top: 11px;
             
             a{
                 background: none;
                 font-size: inherit;
                 line-height: 0;
-                padding: 0 0 0 0;
-                margin: 0;
             }
             h1{
                 margin: 0;
@@ -540,17 +746,18 @@ body{
             }
             p{
                 margin-top: 0;
-
-                font-family: "Light";
+                font-family: "Bold";
                 font-size: 13px;
+                color: black;
             }
         }
 
         &.swish-overlay{
-            width: 100%;
+            width: 300px;
             height: 250px;
             position: absolute;
-            z-index: 999;
+            top: -20px;
+            z-index: 50;
             background: $primary-color;
             color: white;
 
@@ -760,31 +967,21 @@ body{
             color: white;
         }
 
-        #buttons{
+        .buttons{
             width: 100%;
             text-align: center;
             margin: 15px 0;
             
             .btn-default{
-                border-radius: 0;
-                border: 0;
                 height: 50px;
-                margin: 0;
-                padding: 0;
-                
-                font-size: 17px; 
-                font-family: "Light";
-                white-space: normal;
-                color: white;
+                font-size: 17px;
+
                 &.submit{
                     width: 150px;
                     margin-right: 10px;
-
-                    background: #51aa50;
                 }
 
                 &.regret{
-                    background: $red;
                     width: 90px;
                     float: right;
                 }
