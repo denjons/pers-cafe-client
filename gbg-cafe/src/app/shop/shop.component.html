@@ -1,40 +1,10 @@
 <div class="container store">
+
     <reciept [items]=cart class="popup receipt"  *ngIf="reciept" (onClose)="hideReciept($event)"></reciept>
 
     <div class="spinner inactive"></div>
-    <div class="edit-item popup inactive">
-        <h1>Redigera Vara</h1>
-        <form name="edit">
-            <li>
-                <p>Namn:</p>
-                <input type="text" placeholder="Coca Cola">
-            </li>
+    <div  class="spinner" *ngIf="laoding" ></div>
 
-            <li>
-                <p>Pris:</p>
-                <input type="number" placeholder="20">
-            </li>
-            <li>
-                <p>Kategori:</p>
-                <select>
-                    <option>Läsk</option>
-                    <option>Snacks</option>
-                    <option>Mat</option>
-                    <option>Övrigt</option>
-                    <option>++ Lägg till kategori</option>
-                </select>
-            </li>
-            <li>
-                <textarea placeholder="Zero, 50cl"></textarea>
-            </li>
-            <li>
-                <img class="thumbnail">
-            </li>
-            <button type="submit" class="btn btn-default submit" (click)="purchase()">Klar</button>
-            <button type="cancel" class="btn btn-default regret">Ångra</button>
-            <div class="clearfix"></div>
-        </form>
-    </div>
     <div class="alert popup inactive">
         <div id="top">
             Bekräfta korrigering
@@ -59,23 +29,25 @@
         </div>
 
         <div class="navbar-collapse collapse">
-            <button (click)="logout()" class="btn-default logout">Logga Ut</button>
+            <button (click)="logout()" class="btn-default logout">logout</button>
             <nav>
                 <ul class="nav navbar-nav tm-navbar-nav nav-cat">
                     <li *ngFor="let category of categories" class="nav" >
-                        <a (click)="navigate(category.id)" href="" >
+                        
+                        <a (click)="navigate(category.id)" 
+                        [ngClass]="{'active': category.isActive}"  href="" >
                             <img src="{{category.imgSrc}}" />
                             <p class="cat-name">{{category.name}}</p>
                         </a>
                     </li>
-                    <li class="admin add-category" [ngClass]="{'active': user?.user_type === 'ADMIN', 'inactive': user?.user_type != 'ADMIN'}">
+                    <li class="nav admin add-category" [ngClass]="{'active': user?.user_type === 'ADMIN', 'inactive': user?.user_type != 'ADMIN'}">
                         <a href="/">
                             <h1>+</h1>
                             <p>Lägg till</p>
                         </a>
                     </li>
-                </ul>
                 
+                </ul>
             </nav>
             <p id="text-for-kassa">KASSA</p>
         </div>
@@ -84,7 +56,7 @@
     </nav>
     <div class="row">
 
-        <div id="products" class="col-md-8 col-sm-8 products-list">
+        <div id="products" class="col-sm-8 col-md-7 col-lg-7 products-list">
             <filter-text (onFilterChanged)="filterChaged($event)"></filter-text>
             <div class="grid-system">
                 <ul class="gc-product-grid">
@@ -96,7 +68,8 @@
 
             </div>
         </div>
-        <div id="cart" class="col-sm-4 col-sm-4">
+        
+        <div id="cart" class="col-sm-4 col-md-5 col-lg-5">
             <span id="text-for-kassa">KASSA</span>
              <ul class="gc-product-grid">
                  <li class="cart-item" *ngFor="let cartIitem of cart">
@@ -106,7 +79,7 @@
              </ul>
 
              <div class="col-lg-8 pull-right cart-total">
-                 <p class="items in-cart">Antal varor: <span class="amount">{{totalProducts}}</span></p>
+                 <p class="items in-cart">Antal varor: <span class="<amoun></amoun>t">{{totalProducts}}</span></p>
                  <p class="items total">Total: <span class="amount">{{totalPrice}}</span></p>
              </div>
 

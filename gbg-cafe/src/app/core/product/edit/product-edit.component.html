@@ -1,0 +1,34 @@
+
+    <div class="edit-item popup inactive">
+        <h1>Redigera Vara</h1>
+        <form name="edit">
+            <li>
+                <p>Namn:</p>
+                <input type="text" placeholder="Coca Cola">
+            </li>
+
+            <li>
+                <p>Pris:</p>
+                <input type="number" placeholder="20">
+            </li>
+            <li>
+                <p>Kategori:</p>
+                <select>
+                    <option>Läsk</option>
+                    <option>Snacks</option>
+                    <option>Mat</option>
+                    <option>Övrigt</option>
+                    <option>++ Lägg till kategori</option>
+                </select>
+            </li>
+            <li>
+                <textarea placeholder="Zero, 50cl"></textarea>
+            </li>
+            <li>
+                <img class="thumbnail">
+            </li>
+            <button type="submit" class="btn btn-default submit" (click)="purchase()">Klar</button>
+            <button type="cancel" class="btn btn-default regret">Ångra</button>
+            <div class="clearfix"></div>
+        </form>
+    </div>

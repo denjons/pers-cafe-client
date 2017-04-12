@@ -13,6 +13,7 @@ export class ProductItemComponent implements OnInit{
 
     @Input() product: Product;
     @Input() user: User;
+    @Input() defaultImg: string;
     imgSrc : String;
 
     @Output() onAddToCart = new EventEmitter;
@@ -26,7 +27,6 @@ export class ProductItemComponent implements OnInit{
 
 
     ngOnInit(){
-        this.imgSrc = this.imgService.getImg(this.product.img);
         var priceArr = this.product.price.toFixed(2).toString().split(".");
         this.price = priceArr[0];
         if(priceArr.length > 1){
