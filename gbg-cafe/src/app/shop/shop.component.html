@@ -1,9 +1,7 @@
 <div class="container store">
-    <reciept [items]=cart  *ngIf="reciept" (onClose)="hideReciept($event)"></reciept>
+    <reciept [items]=cart class="popup receipt"  *ngIf="reciept" (onClose)="hideReciept($event)"></reciept>
 
-    <div class="spinner">
-        
-    </div>
+    <div class="spinner inactive"></div>
     <div class="edit-item popup inactive">
         <h1>Redigera Vara</h1>
         <form name="edit">
@@ -49,6 +47,8 @@
             </form>
         </div>
     </div>
+    <div class="overlay">
+    </div>
     <nav class="navbar navbar-default tm-navbar">
         <button class="btn btn-success navbar-toggle"
             data-toggle="collapse"
@@ -59,23 +59,24 @@
         </div>
 
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav tm-navbar-nav nav-cat">
-                <li *ngFor="let category of categories" class="nav" >
-                    <a (click)="navigate(category.id)" href="" >
-                        <img src="{{category.imgSrc}}" />
-                        <p class="cat-name">{{category.name}}</p>
-                    </a>
-                </li>
-                <li class="admin add-category" [ngClass]="{'active': user?.user_type === 'ADMIN', 'inactive': user?.user_type != 'ADMIN'}">
-                    <a href="/">
-                        <h1>+</h1>
-                        <p>Lägg till kategori</p>
-                    </a>
-                </li>
-                <li><button (click)="logout()" class="btn">logout</button></li>
-            </ul>
-
-            
+            <button (click)="logout()" class="btn-default logout">Logga Ut</button>
+            <nav>
+                <ul class="nav navbar-nav tm-navbar-nav nav-cat">
+                    <li *ngFor="let category of categories" class="nav" >
+                        <a (click)="navigate(category.id)" href="" >
+                            <img src="{{category.imgSrc}}" />
+                            <p class="cat-name">{{category.name}}</p>
+                        </a>
+                    </li>
+                    <li class="admin add-category" [ngClass]="{'active': user?.user_type === 'ADMIN', 'inactive': user?.user_type != 'ADMIN'}">
+                        <a href="/">
+                            <h1>+</h1>
+                            <p>Lägg till</p>
+                        </a>
+                    </li>
+                </ul>
+                
+            </nav>
             <p id="text-for-kassa">KASSA</p>
         </div>
         <!--<div class="new-msg-box"><a [routerLink]="['/msg']" href="">new msg</a></div>
@@ -115,7 +116,7 @@
                      <h1>Korrigeringsläge</h1>
                      <div class="buttons">
                         <form name="swish-submit" class="form-inline swish-form">
-                            <button type="submit" class="btn btn-default submit" (click)="purchase()">Korrigera Köp</button>
+                            <button type="submit" class="btn btn-default submit">Korrigera Köp</button>
                             <button type="cancel" class="btn btn-default regret">Ångra</button>
                             <div class="clearfix"></div>
                         </form>
