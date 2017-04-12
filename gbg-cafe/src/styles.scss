@@ -52,6 +52,14 @@ $ocean:             #88ccd0;
     transform: translate(-50%, -50%);
 }
 
+/*
+Wide spread body changes. 
+Incl:
+    :focus
+    Forms
+    Buttons
+
+*/
 body{
     color: $black;
     height: 100vh;
@@ -552,8 +560,7 @@ body{
     background: white;
 
     .search-col .search{
-        width: 548px;
-        margin: 0 90px;
+        width: 100%;
         margin-top: 20px;
         font-family: "Book";
         font-size: 24px;
@@ -564,11 +571,13 @@ body{
         }
 
         input{
+            width: 70%;
+            transform: translateX(50%);
+            margin-left: -20%;
             background-image: url(/src/imgs/elements/search-icon.png);
             background-color: #e6e6e6;
             background-position: 97% center;            
             background-repeat: no-repeat;
-            width: 95%;
             text-transform: uppercase;
         }
 
