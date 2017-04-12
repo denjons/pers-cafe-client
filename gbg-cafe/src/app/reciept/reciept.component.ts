@@ -15,8 +15,6 @@ export class RecieptItemComponent implements OnInit{
     total: number;
 
     ngOnInit(){
-        console.log("init reciept");
-        console.log(this.items.length);
         var total = 0;
         this.items.forEach(i=> {total = total + i.quantity * i.product.price; console.log(total)});
         this.total = total;

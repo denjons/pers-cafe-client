@@ -1,6 +1,6 @@
 <div class="container store">
 
-    <reciept [items]=cart class="popup receipt"  *ngIf="reciept" (onClose)="hideReciept($event)"></reciept>
+    <reciept class="popup receipt" [items]=cart *ngIf="reciept" (onClose)="hideReciept($event)"></reciept>
 
     <div class="spinner inactive"></div>
     <div  class="spinner" *ngIf="loading" ></div>
@@ -68,46 +68,8 @@
 
             </div>
         </div>
-        
-        <div id="cart" class="col-sm-4 col-md-5 col-lg-5">
-            <span id="text-for-kassa">KASSA</span>
-             <ul class="gc-product-grid">
-                 <li class="cart-item" *ngFor="let cartIitem of cart">
-                     <cart-item [cartItem]=cartIitem (onIncrease)="increaseItem($event)" (onDecrease)="decreaseItem($event)"
-                     (onRemove)="removeItem($event)"></cart-item>
-                </li>
-             </ul>
 
-             <div class="col-lg-8 pull-right cart-total">
-                 <p class="items in-cart">Antal varor: <span class="<amoun></amoun>t">{{totalProducts}}</span></p>
-                 <p class="items total">Total: <span class="amount">{{totalPrice}}</span></p>
-             </div>
-
-             <div class="clearfix"></div>
-             <div class="col-lg-8 swish">
-                 <div class="admin swish-overlay active" [ngClass]="{'active': user?.user_type === 'ADMIN', 'inactive': user?.user_type != 'ADMIN'}">
-                     <h1>Korrigeringsläge</h1>
-                     <div class="buttons">
-                        <form name="swish-submit" class="form-inline swish-form">
-                            <button type="submit" class="btn btn-default submit">Korrigera Köp</button>
-                            <button type="cancel" class="btn btn-default regret">Ångra</button>
-                            <div class="clearfix"></div>
-                        </form>
-                     </div>
-                 </div>
-                 <div id="swish-number">Swisha summan til: <span id="number">0704 - 33 33 33</span></div>
-                 <div class="buttons">
-                     <form name="swish-submit" class="form-inline swish-form">
-                         <button type="submit" class="btn btn-default submit" (click)="purchase()">Jag har Swishat</button>
-                         <button type="cancel" class="btn btn-default regret">Ångra</button>
-                         <div class="clearfix"></div>
-                     </form>
-                 </div>
-             </div>
-
-             <img class="gbg-logo" src="/src/imgs/gbg-stad-ikon.png">
-        </div>
-
+        <cart [user]=user (onPurchase)="purchase($event)"></cart>
     </div>
 
 </div>

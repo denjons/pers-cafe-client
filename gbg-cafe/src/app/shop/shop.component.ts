@@ -9,6 +9,8 @@ import { CartItem } from '../core/cart/cart-item.model';
 import { FilterTextComponent } from '../shared/filter/filter-text.component';
 import {  FilterTextService} from '../shared/filter/filter-text.service';
 import { ImgService } from '../shared/img/img.service';
+import { CartComponent } from "../core/cart/cart.component";
+import { RecieptItemComponent } from "../reciept/reciept.component";
 
 @Component({
     selector:"shop",
@@ -24,22 +26,21 @@ export class ShopComponent implements OnInit{
     selectedCategory : Category;
     user: User;
     cart: CartItem[];
-    totalPrice : number;
-    totalProducts : number;
-
+ 
     reciept : boolean;
     loading : boolean;
 
 
     @ViewChild(FilterTextComponent) filterComponent: FilterTextComponent;
+    @ViewChild(CartComponent) cartComponent: CartComponent;
+    @ViewChild(RecieptItemComponent) recieptComponent: RecieptItemComponent;
 
     constructor(
         private productService: ProductService, 
         private router: Router,
         private filterTextService: FilterTextService,
         private imgService: ImgService){
-            this.totalPrice = 0;
-            this.totalProducts = 0;
+            this.loading = false;
             this.reciept = false;
             
     }
@@ -60,68 +61,14 @@ export class ShopComponent implements OnInit{
     }
 
     addToCart(product:Product){
-        this.updateCart(product);
+        this.cartComponent.addToCart(product);
     }
 
-    updateCart(product : Product){
-        // update existing cart item
-        for(let item of this.cart){
-            if(item.product.id == product.id){
-               this.increaseItem(product);
-               return;
-            }
-        }
-        // new cart item
-        var cartItem = new CartItem()
-        cartItem.addproduct(product);
-        this.cart.push(cartItem);
-        this.updateCartInfo(product.price, 1);
-    }
-
-    // handle increaseing products in cart
-    increaseItem(product: Product){
-
-        this.cart.map(item => {if(item.product.id == product.id && product.quantity > 0){
-            item.increase();
-            this.updateCartInfo(product.price, 1);
-        }});
-        console.log("todo: update product-item if quantity <= 0");
-    }
-
-    // handle cecreasing products in cart
-    decreaseItem(product: Product){
-
-        this.cart.map(item => {if(item.product.id == product.id && item.quantity > 0){
-            item.decrease();
-            this.updateCartInfo(-product.price, -1);
-        }});
-
-        this.cart = this.cart.filter(prod => prod.quantity > 0);
-    }
-
-    removeItem(cartItem: CartItem){
-        console.log("-------- removing cart item ------");
-        console.log(cartItem);
-
-        console.log(cartItem.quantity);
-        console.log(cartItem.product.price);
-        this.updateCartInfo(- cartItem.quantity * cartItem.product.price, - cartItem.quantity);
-
-        console.log("removed product "+cartItem.product.name);
-        cartItem.reset();
-        this.cart = this.cart.filter(item => item.product.id != cartItem.product.id);
-    }
-
-    private updateCartInfo(price :number, quantity: number){
-        this.totalPrice = this.totalPrice + price;
-        this.totalProducts = this.totalProducts + quantity;
-    }
-
-
-    purchase(){
+    purchase(cart:CartItem[]){
         this.startLoading();
+
         console.log("todo: show spinner");
-        this.productService.purchase(this.cart, this.shop).subscribe(
+        this.productService.purchase(cart, this.shop).subscribe(
             response => {
                  this.stopLoading();
                 if(response.status == 204){
@@ -154,23 +101,15 @@ export class ShopComponent implements OnInit{
     }
 
     showReciept(){
+        this.cart = this.cartComponent.getCart();
         console.log("showing reciept");
         this.reciept = true;
     }
 
     hideReciept(evt:any){
         console.log("hiding reciept");
-        this.clearCart();
+        this.cartComponent.clearCart();
         this.reciept = false;
-    }
-
-    public clearCart(){
-        console.log("clearing cart");
-        for(let item of this.cart){
-            this.updateCartInfo(- item.quantity * item.product.price, - item.quantity);
-        }
-        this.cart = new Array();
-
     }
 
     navigate(id:any){
@@ -225,10 +164,8 @@ export class ShopComponent implements OnInit{
             category.imgSrc = this.imgService.getImg(category.img);
         }
 
-
         this.selectedCategory = this.categories[0];
         this.selectedCategory.isActive = true;
-        this.cart = new Array();
 
         // set default image for all products
         this.categories.forEach(cat => cat.products.forEach(prod => prod.img = cat.img));
