@@ -22,10 +22,12 @@ export class ShopComponent implements OnInit{
     products: Product[];
     visibleProducts: Product[];
     categories: Category[];
+    navigation: Category[];
     shop: Shop;
     selectedCategory : Category;
     user: User;
     cart: CartItem[];
+    trashCan: Category;
  
     reciept : boolean;
     loading : boolean;
@@ -151,25 +153,34 @@ export class ShopComponent implements OnInit{
         this.user = user;
         this.shop = this.user.shops[0];
         this.products = new Array();
+        this.categories = this.shop.categories;
+        
 
-        for(let category of this.shop.categories){
+        for(let category of this.categories){
+            this.initCategory(category);
+        }
+        
+        this.navigation = this.categories.filter(cat => cat.name !== "trash");
+        this.selectedCategory = this.navigation[0];
+        this.selectedCategory.isActive = true;
+
+         for(let category of this.navigation){
             for(let prod of category.products){
                 this.products.push(prod);
             }
         }
 
-        this.visibleProducts = this.filterVisibleProducts(this.shop.categories[0].products);
-        this.categories = this.shop.categories;
-        for(let category of this.categories){
-            category.imgSrc = this.imgService.getImg(category.img);
-        }
+        this.visibleProducts = this.filterVisibleProducts(this.navigation[0].products);
 
-        this.selectedCategory = this.categories[0];
-        this.selectedCategory.isActive = true;
-
-        // set default image for all products
-        this.categories.forEach(cat => cat.products.forEach(prod => prod.img = cat.img));
         this.stopLoading();
+    }
+
+    private initCategory(category: Category){
+        category.imgSrc = this.imgService.getImg(category.img);
+        category.products.forEach(prod => prod.img = category.img);
+        if(category.name === "trash"){
+            this.trashCan = category; 
+        }
     }
 
     private initShops(){
@@ -185,7 +196,12 @@ export class ShopComponent implements OnInit{
                     console.log("no shops: show message to user");
                 }
             },
-            error => this.errorMessage = <any>error
+            error => {
+                this.errorMessage = <any>error;
+                if(error.status == 401){
+                    this.logout();
+                }
+        }
         );
     }
 
