@@ -1,30 +1,52 @@
 
-    <div class="edit-item popup inactive">
-        <h1>Redigera Vara</h1>
+    <div class="edit-item">
         <form name="edit">
-            <li>
-                <p>Namn:</p>
-                <input type="text" value="{{product.name}}" placeholder="product name" [(ngModel)]="product.name">
-            </li>
-
-            <li>
-                <p>Pris:</p>
-                <input type="number" value="{{product.price}}" placeholder="20" [(ngModel)]="product.price">
-            </li>
-            <li>
-                <p>Kategori:</p>
-                <select>
-                    <option *ngFor="let categoty of categories">{{category.name}}</option>
-                </select>
-            </li>
-            <li>
-                <textarea placeholder="Zero, 50cl"></textarea>
-            </li>
-            <li>
+            <div id="top">
+                <h1>Redigera Vara</h1>
+                <button class="btn btn-default regret">Radera Vara</button>
                 <img class="thumbnail">
-            </li>
-            <button type="submit" class="btn btn-default submit" (click)="purchase()">Klar</button>
-            <button type="cancel" class="btn btn-default regret">Ångra</button>
+                <div class="clearfix"></div>
+            </div>
+            <div id="name">
+                <li class="name">
+                    <p>Namn:</p>
+                    <input type="text" value="{{product.name}}" placeholder="Coca Cola" [(ngModel)]="product.name">
+                </li>
+            </div>
+            
+            <div id="price-cat">
+                <li class="price">
+                    <p>Pris:</p>
+                    <input type="number" value="{{product.price}}" placeholder="20" [(ngModel)]="product.price">
+                </li>
+                <li class="cat">
+                    <p>Kategori:</p>
+                    <select>
+                        <option *ngFor="let categoty of categories">{{category.name}}</option>
+                    </select>
+                </li>
+                <div class="clearfix"></div>
+            </div>
+
+            <div id="desc-size-amount">
+                <li class="desc">
+                    <p>Beskrivning:</p>
+                    <textarea placeholder="En vattentålig läsk för alla smaker"></textarea>
+                </li>
+                <li class="size">
+                    <p>Storlek:</p>
+                    <input type="number" value="" placeholder="25cl">
+                </li>
+                <li class="amount">
+                    <p>Antal:</p>
+                    <input type="number" value="" placeholder="25">
+                </li>
+                <div class="buttons">
+                    <button type="submit" class="btn btn-default submit" (click)="purchase()">Klar</button>
+                    <button type="cancel" class="btn btn-default regret">Ångra</button>
+                </div>
+
+            </div>
             <div class="clearfix"></div>
         </form>
     </div>

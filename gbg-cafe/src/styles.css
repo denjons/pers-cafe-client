@@ -82,15 +82,28 @@ body .btn-default.logout { font-size: 14px; width: auto; height: auto; backgroun
 .popup.receipt .total h1, .popup.receipt .total h2 { font-family: "Bold"; margin: 0; padding: 0; width: auto; float: left; }
 .popup.receipt .total h1 { font-size: 30px; margin-left: 10px; }
 .popup.receipt .total h2 { font-size: 20px; line-height: 38px; text-transform: uppercase; }
-.popup.edit-item { width: 540px; height: auto; padding: 30px; }
-.popup.edit-item h1 { font-family: "Light"; font-size: 30px; margin: 0 !important; }
+.popup.edit-item { width: 400px; height: auto; padding: 20px; }
 .popup.edit-item form { width: 100%; }
-.popup.edit-item form li { float: left; margin: 10px 25px 10px 0; }
-.popup.edit-item form li select, .popup.edit-item form li input { width: 165px; }
-.popup.edit-item form li:first-child { float: none; }
-.popup.edit-item form li:first-child input { width: 355px; }
-.popup.edit-item form li textarea { max-width: 280px; max-height: 211px; width: 280px; height: 211px; }
-.popup.edit-item form .thumbnail { width: 150px; height: 150px; margin: 0 0 10px 0; }
+.popup.edit-item form div { margin: 10px 0; }
+.popup.edit-item form #top h1 { font-family: "Light"; font-size: 30px; margin: 0 !important; }
+.popup.edit-item form #top .btn { float: left; padding: 0; margin: 15px 0; width: 126px; height: 25px; font-size: 16px; }
+.popup.edit-item form #top .thumbnail { width: 90px; height: 90px; float: right; margin-top: -45px; }
+.popup.edit-item form #name { margin-top: 10px; }
+.popup.edit-item form #name li.name { width: 100%; }
+.popup.edit-item form #name li.name input { width: 100%; }
+.popup.edit-item form #price-cat li { float: left; width: 165px; }
+.popup.edit-item form #price-cat li:nth-child(2) { float: right; }
+.popup.edit-item form #price-cat li select, .popup.edit-item form #price-cat li input { width: 100%; }
+.popup.edit-item form #desc-size-amount { width: 100%; height: 230px; }
+.popup.edit-item form #desc-size-amount .desc { float: left; width: 165px; height: 100%; }
+.popup.edit-item form #desc-size-amount .desc textarea { height: 100%; max-height: 100%; width: 100%; max-width: 100%; }
+.popup.edit-item form #desc-size-amount .size, .popup.edit-item form #desc-size-amount .amount { float: right; width: 160px; }
+.popup.edit-item form #desc-size-amount .size input, .popup.edit-item form #desc-size-amount .amount input { width: 100%; }
+.popup.edit-item form #desc-size-amount .size { margin: 0 0 20px 0 !important; }
+.popup.edit-item form #desc-size-amount .buttons { width: auto; float: right; margin: 60px 0 0 0; }
+.popup.edit-item form #desc-size-amount .buttons .btn { width: auto; height: 41px; }
+.popup.edit-item form #desc-size-amount .buttons .btn .submit { width: 82px; margin-left: 20px; }
+.popup.edit-item form #desc-size-amount .buttons .btn .regret { width: 73px; }
 .popup.edit-item form .btn-default { float: left; height: 20px; padding: 20px; line-height: 0; }
 .popup.edit-item form .btn-default.submit { margin-right: 14px; }
 .popup.alert { width: 535px; text-align: center; padding: 0; margin: 0; border-radius: 0; }
@@ -113,8 +126,6 @@ body .btn-default.logout { font-size: 14px; width: auto; height: auto; backgroun
 .navbar .navbar-collapse nav .nav-cat li img { width: 32px; height: 32px; }
 .navbar .navbar-collapse nav .nav-cat li .cat-name { width: auto; }
 .navbar .navbar-collapse nav .nav-cat li .cat-name.trash { color: #b93342; }
-.navbar .navbar-collapse #text-for-kassa { display: none; font-family: 'Light'; font-size: 35px; color: white; }
-@media (min-width: 980px) { .navbar .navbar-collapse #text-for-kassa { display: inline-block; float: right; margin: 10px 8% 0 0; } }
 
 .row { width: 70%; height: 680px; float: left; overflow: hidden; margin: 0; }
 .row #products { width: 100%; padding: 0; margin: 0; height: auto; background: white; }
@@ -169,7 +180,7 @@ body .btn-default.logout { font-size: 14px; width: auto; height: auto; backgroun
 #cart .gc-product-grid li .panel-body { padding: 10px; }
 #cart .gc-product-grid li .panel-body .items { width: 150px; }
 #cart .gc-product-grid li .panel-body .items .cart-product-name { font-family: "Bold"; font-size: 1.3em; text-transform: uppercase; width: 100%; word-wrap: normal; }
-#cart .gc-product-grid li .panel-body .items .cart-product-size { font-family: "Light"; font-size: 12px; }
+#cart .gc-product-grid li .panel-body .items .cart-product-size { font-family: "Light"; font-size: 13px; }
 #cart .gc-product-grid li .panel-body .items .item-price { color: #f18700; font-family: "Light"; font-size: 12px; float: left; }
 #cart .gc-product-grid li .panel-body .items .controls { width: auto; margin-top: 15px; }
 #cart .gc-product-grid li .panel-body .items .controls .control-panel { width: auto; height: 25px; line-height: 35px; }
@@ -179,9 +190,9 @@ body .btn-default.logout { font-size: 14px; width: auto; height: auto; backgroun
 #cart .gc-product-grid li .panel-body .items .controls .control-panel .ctrl-button.subtract { margin: 0; background: #b93342; margin-right: 5px; }
 #cart .gc-product-grid li .panel-body .items .controls .control-panel .ctrl-button.add { margin: 0; background: #51aa50; }
 #cart .gc-product-grid li .panel-body .items .controls .control-panel .garbage { width: 30px; height: auto; float: right; margin-top: 0px; }
-#cart .gc-product-grid li .panel-body .prices { font-family: "Bold"; font-size: 30px; }
-#cart .gc-product-grid li .panel-body .prices .pennies { font-size: 18px; opacity: .8; vertical-align: top; line-height: 1.8; }
-#cart .gc-product-grid li .panel-body .prices::after { content: ":-"; margin-left: -5px; font-size: 22px; }
+#cart .gc-product-grid li .panel-body .prices { font-family: "Bold"; font-size: 28px; }
+#cart .gc-product-grid li .panel-body .prices .pennies { font-size: 16px; opacity: .8; vertical-align: top; }
+#cart .gc-product-grid li .panel-body .prices::after { content: ":-"; margin-left: -5px; font-size: 15px; }
 #cart .cart-total { width: 100%; padding: 0 30px 0 35px; color: white; }
 #cart .cart-total p { margin: 0; }
 #cart .cart-total .items .amount { float: right; }
