@@ -32,7 +32,7 @@
             <button (click)="logout()" class="btn-default logout">Logga ut</button>
             <nav>
                 <ul class="nav navbar-nav tm-navbar-nav nav-cat">
-                    <li *ngFor="let category of categories" class="nav" >
+                    <li *ngFor="let category of navigation" class="nav" >
                         
                         <a (click)="navigate(category.id)" 
                         [ngClass]="{'active': category.isActive}"  href="" >
@@ -41,7 +41,7 @@
                         </a>
                     </li>
                     <li>
-                        <a>
+                        <a (click)="navigate(trashCan.id)" >
                             <img src="/src/icons/soptunna_large.png">
                             <p class="cat-name trash">Trash</p>
                         </a>
