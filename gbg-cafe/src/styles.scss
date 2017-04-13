@@ -298,7 +298,7 @@ body{
                 padding: 0;
 
                 li{
-                    width: auto;
+                    width: 100%;
                     height: auto;
                     min-height: 70px;
                     border-bottom: 1px solid gray;
@@ -531,7 +531,7 @@ body{
                 }
 
                 li{
-                    margin-right: 25px;
+                    margin-right: 40px;
                     width: auto;
                     height: auto;
 
@@ -640,75 +640,75 @@ body{
 
                       .panel-body{
                           padding: 10px;
-                          height: 100%;
+                          height: 100%; 
 
                           ul{
                               margin: 0;
                               padding: 0;
                               width: 100%;
+
+                              li{
+                                  float: none;
+                                  text-align: right;
+                              }
                           }
 
                         .product-description{
                             width: 100%;
-                            
+
                             li{
-                                float: none;
-                                    &.product-name{
-                                        text-decoration: underline;
-                                        font-size: 20px;
-                                        font-family: "Bold";
-                                        font-style: italic;
-                                        text-transform: capitalize;
-                                    }
-
-                                    &.product-desc{
-                                        margin-top: 5px;
-                                        font-size: 14px;
-                                        font-family: "Light";
-                                        font-style: normal;
-                                    }
-                                }
+                                text-align: left;
                             }
-                            .product-images{
-                                width: 50%;
-                                height: auto;
-
-                                li{
-                                        
-                                }
-
-                                .thumbnail{
-                                    height: 82px;
-                                    width: 82px;
-                                }
+                            .product-name{
+                                text-decoration: underline;
+                                font-size: 20px;
+                                font-family: "Bold";
+                                font-style: italic;
+                                text-transform: capitalize;
                             }
 
-                            .product-information{
-                                width: 50%;
-                                float: right;
-                                li{
-                                    float: none;
+                            .product-desc{
+                                margin-top: 5px;
+                                font-size: 14px;
+                                font-family: "Light";
+                                font-style: normal;
+                            }
+                        }
+                        
+                        .product-images{
+                            width: 50%;
+                            height: auto;
+
+                            .thumbnail{
+                                height: 82px;
+                                width: 82px;
+                            }
+                        }
+
+                        .product-information{
+                            width: 50%;
+                            float: right;
+                            li{
+                                font-family: "Medium";
+
+                                &.product-price{
                                     text-align: right;
-                                    font-family: "Medium";
+                                    font-size: 30px;
+                                    margin-top: 5px;
 
-                                    &.product-price{
-                                        text-align: right;
-                                        font-size: 30px;
-                                        margin-top: 5px;
-
-                                        .pennies{
-                                            font-size: 20px;
-                                            vertical-align: top;
-                                            opacity: .8;
-                                        }
+                                    .pennies{
+                                        font-size: 20px;
+                                        vertical-align: top;
+                                        opacity: .8;
                                     }
+                                }
 
-                                    &.product-size{
-                                        font-size: 15px;
-                                    }
+                                &.product-size{
+                                    font-size: 15px;
                                 }
                             }
                         }
+                    }
 
                         .out-of-stock{
                             display: none;
@@ -851,55 +851,6 @@ body{
     background: $primary-color;
     margin: 0;
     padding: 0;
-    
-    #text-for-kassa{
-        display: none;
-        margin-left: 50%;
-        transform: translateX(-60px);
-        /* Mobile display. Set Later
-        display: inline-block;
-        */
-    }
-
-     .cart-total{
-        width: 100%;
-        padding: 0 30px 0 35px;
-        color: white;
-
-        p{
-            margin: 0;
-        }
-
-        .items{
-
-            .amount{
-                float: right;
-            }
-
-            &.in-cart{
-                font-size: 20px;
-                font-family: "Light";
-
-                .amount{
-                        &::after{
-                            content: "st";
-                    }
-                }
-            }
-
-            &.total{
-                font-size: 30px;
-                font-family: "Bold";
-
-                .amount{
-
-                    &::after{
-                        content: ":-";
-                    }
-                }
-            }
-        }
-    }
 
     .gc-product-grid{
         margin: 0px auto 10px auto;
@@ -923,9 +874,10 @@ body{
 
             &.cart-item{
                 border-bottom: 1px solid $darkgray;
-            }
-            &.cart-item:nth-child(even){
-                background: $gray;
+                
+                &:nth-child(even){
+                    background: $gray;
+                }
             }
 
             .panel-body{
@@ -936,14 +888,16 @@ body{
 
                     .cart-product-name{
                         font-family: "Bold";
-                        font-size: 16px;
+                        font-size: 1.3em;
                         text-transform: uppercase;
+
+                        width: 100%;
+                        word-wrap: normal;
                     }
 
-                    .cart-product-flav{
+                    .cart-product-size{
                         font-family: "Light";
-                        font-style: italic;
-                        font-size: 14px;
+                        font-size: 12px;
                     }
                     
                     .item-price{
@@ -1023,10 +977,51 @@ body{
         }
     }
 
+     .cart-total{
+        width: 100%;
+        padding: 0 30px 0 35px;
+        color: white;
+
+        p{
+            margin: 0;
+        }
+
+        .items{
+
+            .amount{
+                float: right;
+            }
+
+            &.in-cart{
+                font-size: 20px;
+                font-family: "Light";
+
+                .amount{
+                        &::after{
+                            content: "st";
+                    }
+                }
+            }
+
+            &.total{
+                font-size: 30px;
+                font-family: "Bold";
+
+                .amount{
+
+                    &::after{
+                        content: ":-";
+                    }
+                }
+            }
+        }
+    }
+
     //Swish
     .swish{
         margin: 25px 0 15px 0;
         width: auto;
+        font-family: 'Light';
 
         #swish-number{
             width: auto;
@@ -1036,6 +1031,7 @@ body{
 
             text-align: center;
             font-size: 16px;
+            letter-spacing: -.5px;
             color: white;
         }
 

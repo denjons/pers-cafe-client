@@ -40,12 +40,6 @@
                             <p class="cat-name">{{category.name}}</p>
                         </a>
                     </li>
-                    <li>
-                        <a>
-                            <img src="/src/icons/soptunna_large.png">
-                            <p class="cat-name trash">Trash</p>
-                        </a>
-                    </li>
                     <li class="nav admin add-category" [ngClass]="{'active': user?.user_type === 'ADMIN', 'inactive': user?.user_type != 'ADMIN'}">
                         <a href="#">
                             <h1>+</h1>

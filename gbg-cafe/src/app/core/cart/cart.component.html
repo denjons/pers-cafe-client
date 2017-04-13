@@ -1,5 +1,4 @@
         <div id="cart" class="col-sm-4 col-md-5 col-lg-5">
-            <span id="text-for-kassa">KASSA</span>
              <ul class="gc-product-grid">
                  <li class="cart-item" *ngFor="let cartIitem of cart">
                      <cart-item [cartItem]=cartIitem (onIncrease)="increaseItem($event)" (onDecrease)="decreaseItem($event)"

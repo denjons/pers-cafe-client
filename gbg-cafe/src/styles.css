@@ -66,7 +66,7 @@ body .btn-default.logout { font-size: 14px; width: auto; height: auto; backgroun
 .popup.receipt .printout { vertical-align: bottom; }
 .popup.receipt .printout h2 { font-size: 34px; font-family: "Bold"; text-align: center; margin-bottom: 15px; border-bottom: 2px solid black; }
 .popup.receipt .printout ul { list-style: none; height: auto; max-height: 290px; overflow: scroll; margin: 0 30px 20px; padding: 0; }
-.popup.receipt .printout ul li { width: auto; height: auto; min-height: 70px; border-bottom: 1px solid gray; }
+.popup.receipt .printout ul li { width: 100%; height: auto; min-height: 70px; border-bottom: 1px solid gray; }
 .popup.receipt .printout ul li div { height: 100%; min-height: 70px; padding: 10px; float: left; border-right: 1px solid gray; }
 .popup.receipt .printout ul li div:last-child { border: none; }
 .popup.receipt .printout ul li div p { margin: 0; }
@@ -109,7 +109,7 @@ body .btn-default.logout { font-size: 14px; width: auto; height: auto; backgroun
 .navbar .navbar-collapse nav .nav-cat { width: 100%; display: flex; justify-content: center; padding: 10px 0; }
 .navbar .navbar-collapse nav .nav-cat a { font-size: 16px; padding: 0; margin: 0; }
 .navbar .navbar-collapse nav .nav-cat a p { margin: 10px 0 0 0; text-transform: capitalize; }
-.navbar .navbar-collapse nav .nav-cat li { margin-right: 25px; width: auto; height: auto; }
+.navbar .navbar-collapse nav .nav-cat li { margin-right: 40px; width: auto; height: auto; }
 .navbar .navbar-collapse nav .nav-cat li img { width: 32px; height: 32px; }
 .navbar .navbar-collapse nav .nav-cat li .cat-name { width: auto; }
 .navbar .navbar-collapse nav .nav-cat li .cat-name.trash { color: #b93342; }
@@ -127,14 +127,15 @@ body .btn-default.logout { font-size: 14px; width: auto; height: auto; backgroun
 .row #products .grid-system ul li .panel { background-color: #cecfd0; width: 32.5%; height: 220px; margin: 0 1% 2% 0; padding: 0; }
 .row #products .grid-system ul li .panel .panel-body { padding: 10px; height: 100%; }
 .row #products .grid-system ul li .panel .panel-body ul { margin: 0; padding: 0; width: 100%; }
+.row #products .grid-system ul li .panel .panel-body ul li { float: none; text-align: right; }
 .row #products .grid-system ul li .panel .panel-body .product-description { width: 100%; }
-.row #products .grid-system ul li .panel .panel-body .product-description li { float: none; }
-.row #products .grid-system ul li .panel .panel-body .product-description li.product-name { text-decoration: underline; font-size: 20px; font-family: "Bold"; font-style: italic; text-transform: capitalize; }
-.row #products .grid-system ul li .panel .panel-body .product-description li.product-desc { margin-top: 5px; font-size: 14px; font-family: "Light"; font-style: normal; }
+.row #products .grid-system ul li .panel .panel-body .product-description li { text-align: left; }
+.row #products .grid-system ul li .panel .panel-body .product-description .product-name { text-decoration: underline; font-size: 20px; font-family: "Bold"; font-style: italic; text-transform: capitalize; }
+.row #products .grid-system ul li .panel .panel-body .product-description .product-desc { margin-top: 5px; font-size: 14px; font-family: "Light"; font-style: normal; }
 .row #products .grid-system ul li .panel .panel-body .product-images { width: 50%; height: auto; }
 .row #products .grid-system ul li .panel .panel-body .product-images .thumbnail { height: 82px; width: 82px; }
 .row #products .grid-system ul li .panel .panel-body .product-information { width: 50%; float: right; }
-.row #products .grid-system ul li .panel .panel-body .product-information li { float: none; text-align: right; font-family: "Medium"; }
+.row #products .grid-system ul li .panel .panel-body .product-information li { font-family: "Medium"; }
 .row #products .grid-system ul li .panel .panel-body .product-information li.product-price { text-align: right; font-size: 30px; margin-top: 5px; }
 .row #products .grid-system ul li .panel .panel-body .product-information li.product-price .pennies { font-size: 20px; vertical-align: top; opacity: .8; }
 .row #products .grid-system ul li .panel .panel-body .product-information li.product-size { font-size: 15px; }
@@ -160,16 +161,6 @@ body .btn-default.logout { font-size: 14px; width: auto; height: auto; backgroun
 .admin.active.swish-overlay h1 { font-family: "Light"; font-size: 24px; text-align: center; margin-right: 15px; }
 
 #cart { float: right; width: 30%; height: 680px; background: #1b78cc; margin: 0; padding: 0; }
-#cart #text-for-kassa { display: none; margin-left: 50%; transform: translateX(-60px); /* Mobile display. Set Later
-display: inline-block;
-*/ }
-#cart .cart-total { width: 100%; padding: 0 30px 0 35px; color: white; }
-#cart .cart-total p { margin: 0; }
-#cart .cart-total .items .amount { float: right; }
-#cart .cart-total .items.in-cart { font-size: 20px; font-family: "Light"; }
-#cart .cart-total .items.in-cart .amount::after { content: "st"; }
-#cart .cart-total .items.total { font-size: 30px; font-family: "Bold"; }
-#cart .cart-total .items.total .amount::after { content: ":-"; }
 #cart .gc-product-grid { margin: 0px auto 10px auto; width: 300px; height: 405px; overflow: scroll; padding: 0; list-style: none; background-color: white; }
 #cart .gc-product-grid ul { margin: 0; padding: 0; }
 #cart .gc-product-grid li { list-style: none; padding: 0; margin: 0; }
@@ -177,8 +168,8 @@ display: inline-block;
 #cart .gc-product-grid li.cart-item:nth-child(even) { background: #cecfd0; }
 #cart .gc-product-grid li .panel-body { padding: 10px; }
 #cart .gc-product-grid li .panel-body .items { width: 150px; }
-#cart .gc-product-grid li .panel-body .items .cart-product-name { font-family: "Bold"; font-size: 16px; text-transform: uppercase; }
-#cart .gc-product-grid li .panel-body .items .cart-product-flav { font-family: "Light"; font-style: italic; font-size: 14px; }
+#cart .gc-product-grid li .panel-body .items .cart-product-name { font-family: "Bold"; font-size: 1.3em; text-transform: uppercase; width: 100%; word-wrap: normal; }
+#cart .gc-product-grid li .panel-body .items .cart-product-size { font-family: "Light"; font-size: 12px; }
 #cart .gc-product-grid li .panel-body .items .item-price { color: #f18700; font-family: "Light"; font-size: 12px; float: left; }
 #cart .gc-product-grid li .panel-body .items .controls { width: auto; margin-top: 15px; }
 #cart .gc-product-grid li .panel-body .items .controls .control-panel { width: auto; height: 25px; line-height: 35px; }
@@ -191,8 +182,15 @@ display: inline-block;
 #cart .gc-product-grid li .panel-body .prices { font-family: "Bold"; font-size: 30px; }
 #cart .gc-product-grid li .panel-body .prices .pennies { font-size: 18px; opacity: .8; vertical-align: top; line-height: 1.8; }
 #cart .gc-product-grid li .panel-body .prices::after { content: ":-"; margin-left: -5px; font-size: 22px; }
-#cart .swish { margin: 25px 0 15px 0; width: auto; }
-#cart .swish #swish-number { width: auto; float: right; margin: 0 5px 10px 0; text-align: center; font-size: 16px; color: white; }
+#cart .cart-total { width: 100%; padding: 0 30px 0 35px; color: white; }
+#cart .cart-total p { margin: 0; }
+#cart .cart-total .items .amount { float: right; }
+#cart .cart-total .items.in-cart { font-size: 20px; font-family: "Light"; }
+#cart .cart-total .items.in-cart .amount::after { content: "st"; }
+#cart .cart-total .items.total { font-size: 30px; font-family: "Bold"; }
+#cart .cart-total .items.total .amount::after { content: ":-"; }
+#cart .swish { margin: 25px 0 15px 0; width: auto; font-family: 'Light'; }
+#cart .swish #swish-number { width: auto; float: right; margin: 0 5px 10px 0; text-align: center; font-size: 16px; letter-spacing: -.5px; color: white; }
 #cart .swish .buttons { width: 100%; text-align: center; margin: 15px 0; }
 #cart .swish .buttons .btn-default { height: 50px; font-size: 17px; }
 #cart .swish .buttons .btn-default.submit { width: 150px; margin-right: 10px; }
