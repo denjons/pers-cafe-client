@@ -4,14 +4,13 @@
         <h1 class="store-front"> Storefront Login </h1>
         <div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3">
             <form class="form-group" (submit)="login($event, username.value, password.value)" >
-                <p class="msg">Är du säker på att uppgifterna är korrekta?</p>
                 <input #username type="text" placeholder="Användarnamn" class="form-control"> 
                 <input #password type="password" placeholder="••••••••" class="form-control"> 
                 <button type="submit" class="btn form-control">Logga In</button>
             </form>
         </div>
     </div>
-    <div>
+    <div class="error">
         <div *ngIf="loginFailed">
             <h3 class="warning">Login Failed:</h3>
             <p>{{errorMessage}}</p>
