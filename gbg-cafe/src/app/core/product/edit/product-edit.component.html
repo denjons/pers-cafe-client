@@ -4,21 +4,17 @@
         <form name="edit">
             <li>
                 <p>Namn:</p>
-                <input type="text" placeholder="Coca Cola">
+                <input type="text" value="{{product.name}}" placeholder="product name" [(ngModel)]="product.name">
             </li>
 
             <li>
                 <p>Pris:</p>
-                <input type="number" placeholder="20">
+                <input type="number" value="{{product.price}}" placeholder="20" [(ngModel)]="product.price">
             </li>
             <li>
                 <p>Kategori:</p>
                 <select>
-                    <option>Läsk</option>
-                    <option>Snacks</option>
-                    <option>Mat</option>
-                    <option>Övrigt</option>
-                    <option>++ Lägg till kategori</option>
+                    <option *ngFor="let categoty of categories">{{category.name}}</option>
                 </select>
             </li>
             <li>
