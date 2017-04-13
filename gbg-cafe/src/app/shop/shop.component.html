@@ -1,5 +1,9 @@
 <div class="container store">
+
     <reciept class="popup receipt" [items]=cart *ngIf="reciept" (onClose)="hideReciept($event)"></reciept>
+
+    <product-edit class="popup active" [product]=selectedProduct *ngIf="editProduct" (onEditSave)="updateProduct($event)">
+    </product-edit>
 
     <div class="spinner inactive"></div>
     <div  class="spinner" *ngIf="loading" ></div>
@@ -73,7 +77,8 @@
                         </div>
                     </li>-->
                     <li *ngFor="let product of visibleProducts">
-                        <product-item [product]=product [user]=user (onAddToCart)="addToCart($event)"></product-item>
+                        <product-item [product]=product [user]=user (onAddToCart)="addToCart($event)"
+                        (onEdit)="showEditProduct($event)"></product-item>
                     </li>
                 </ul>
                 <div class="clearfix"></div>

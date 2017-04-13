@@ -28,9 +28,11 @@ export class ShopComponent implements OnInit{
     user: User;
     cart: CartItem[];
     trashCan: Category;
+    selectedProduct: Product;
  
     reciept : boolean;
     loading : boolean;
+    editProduct: boolean;
 
 
     @ViewChild(FilterTextComponent) filterComponent: FilterTextComponent;
@@ -44,6 +46,7 @@ export class ShopComponent implements OnInit{
         private imgService: ImgService){
             this.loading = false;
             this.reciept = false;
+            this.editProduct = false;
             
     }
 
@@ -93,6 +96,17 @@ export class ShopComponent implements OnInit{
                 }
             }
         );
+    }
+
+    updateProduct(product: Product){
+        console.log("updating product: "+ product.name);
+    }
+
+    showEditProduct(product: Product){
+        console.log("show edit dialog with product: ");
+        console.log(product);
+        this.selectedProduct = product;
+        this.editProduct = true;
     }
 
     private purchaseSucess(result: any){

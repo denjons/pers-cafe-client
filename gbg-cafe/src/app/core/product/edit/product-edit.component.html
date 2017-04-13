@@ -1,6 +1,6 @@
 
     <div class="edit-item">
-        <form name="edit">
+        <div name="edit">
             <div id="top">
                 <h1>Redigera Vara</h1>
                 <button class="btn btn-default regret">Radera Vara</button>
@@ -10,14 +10,14 @@
             <div id="name">
                 <li class="name">
                     <p>Namn:</p>
-                    <input type="text" value="{{product.name}}" placeholder="Coca Cola" [(ngModel)]="product.name">
+                    <input type="text" placeholder="Coca Cola" [(ngModel)]="product.name">
                 </li>
             </div>
             
             <div id="price-cat">
                 <li class="price">
                     <p>Pris:</p>
-                    <input type="number" value="{{product.price}}" placeholder="20" [(ngModel)]="product.price">
+                    <input type="number" placeholder="20" [(ngModel)]="product.price">
                 </li>
                 <li class="cat">
                     <p>Kategori:</p>
@@ -48,5 +48,5 @@
 
             </div>
             <div class="clearfix"></div>
-        </form>
+        </div>
     </div>

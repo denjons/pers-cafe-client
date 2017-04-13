@@ -5,23 +5,27 @@ import { Category } from "../../shop/category.model";
 
 
 @Component({
-    selector: "",
-    templateUrl: "",
+    selector: "product-edit",
+    templateUrl: "product-edit.component.html",
     styles: [] 
 
 })
-export class ProductEditComponent{
-    
+export class ProductEditComponent implements OnInit{
+
     @Input() product: Product;
     @Input() categories: Category[];
-    @Output() onEditSave: EventEmitter<any>;
+    @Output() onEditSave = new EventEmitter;
 
     constructor(private productService: ProductService){
 
     }
+    ngOnInit(){
+        console.log("init product edit item.");
+    }
 
     editSave(){
-
+        this.onEditSave.emit(this.product);
     }
+
 
 }
