@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { ProductService } from './product.service';
 import { ProductItemComponent } from './item/Product-item.component';
+import { ProductEditComponent } from "./edit/product-edit.component";
 
 @NgModule({
     imports: [
@@ -12,9 +13,9 @@ import { ProductItemComponent } from './item/Product-item.component';
         HttpModule
     ],
     exports:[
-        ProductItemComponent
+        ProductItemComponent, ProductEditComponent
     ],
-    declarations: [ProductItemComponent],
+    declarations: [ProductItemComponent, ProductEditComponent],
     providers: [ProductService]
 })
 export class ProductModule{

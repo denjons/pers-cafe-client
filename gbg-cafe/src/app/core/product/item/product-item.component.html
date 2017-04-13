@@ -24,7 +24,7 @@
     <div class="clearfix"></div>
     </div>
     <div class="admin edit pull-right" [ngClass]="{'active': user?.user_type === 'ADMIN', 'inactive': user?.user_type != 'ADMIN'}">
-        <a href="">
+        <a href="" (click)="edit()">
             <img src="src/icons/edit-icon.png" />
             <p>Redigera</p>  
         </a>

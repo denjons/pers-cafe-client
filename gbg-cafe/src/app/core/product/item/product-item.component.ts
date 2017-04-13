@@ -17,6 +17,7 @@ export class ProductItemComponent implements OnInit{
     imgSrc : String;
 
     @Output() onAddToCart = new EventEmitter;
+    @Output() onEdit = new EventEmitter;
 
     price: string;
     price2: string;
@@ -36,11 +37,16 @@ export class ProductItemComponent implements OnInit{
         }
     }
 
+    edit(){
+        this.onEdit.emit(this.product);
+        return false;
+    }
+
     addToCart(){
         if(this.product.quantity > 0){
             this.onAddToCart.emit(this.product);
         }else{
-            console.log("Todo: product quantity is 0, notify user" + this.product.quantity);
+            console.log("Todo: product quantity is "+ this.product.quantity+", notify user");
         }
         
     }
