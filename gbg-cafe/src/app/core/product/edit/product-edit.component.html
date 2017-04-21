@@ -1,6 +1,5 @@
 
-    <div class="edit-item">
-        <div name="edit">
+        <div class="edit" name="edit">
             <div id="top">
                 <h1>Redigera Vara</h1>
                 <button class="btn btn-default regret">Radera Vara</button>
@@ -19,12 +18,13 @@
                     <p>Pris:</p>
                     <input type="number" placeholder="20" [(ngModel)]="product.price">
                 </li>
-                <li class="cat">
+                <!--Commented Category select.
+                    <li class="cat">
                     <p>Kategori:</p>
                     <select>
                         <option *ngFor="let categoty of categories">{{category.name}}</option>
                     </select>
-                </li>
+                </li>-->
                 <div class="clearfix"></div>
             </div>
 
@@ -35,18 +35,17 @@
                 </li>
                 <li class="size">
                     <p>Storlek:</p>
-                    <input type="number" value="" placeholder="25cl">
+                    <input type="number" placeholder="25cl">
                 </li>
                 <li class="amount">
                     <p>Antal:</p>
-                    <input type="number" value="" placeholder="25">
+                    <input type="number" placeholder="40">
                 </li>
                 <div class="buttons">
-                    <button type="submit" class="btn btn-default submit" (click)="purchase()">Klar</button>
+                    <button type="submit" class="btn btn-default submit">Klar</button>
                     <button type="cancel" class="btn btn-default regret">Ångra</button>
                 </div>
 
             </div>
             <div class="clearfix"></div>
         </div>
-    </div>
