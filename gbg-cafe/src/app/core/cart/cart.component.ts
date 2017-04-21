@@ -28,6 +28,7 @@ export class CartComponent implements OnInit{
         return this.cart;
     }
 
+
     purchase(){
         this.onPurchase.emit(this.cart);
     }
@@ -64,12 +65,19 @@ export class CartComponent implements OnInit{
     // handle cecreasing products in cart
     decreaseItem(product: Product){
 
-        this.cart.map(item => {if(item.product.id == product.id && item.quantity > 0){
-            item.decrease();
-            this.updateCartInfo(-product.price, -1);
-        }});
+        if(this.user.user_type === "ADMIN"){
+            this.cart.map(item => {if(item.product.id == product.id){
+                item.decrease();
+                this.updateCartInfo(-product.price, -1);
+            }});
+        }else{
+            this.cart.map(item => {if(item.product.id == product.id && item.quantity > 0){
+                item.decrease();
+                this.updateCartInfo(-product.price, -1);
+            }});
 
-        this.cart = this.cart.filter(prod => prod.quantity > 0);
+            this.cart = this.cart.filter(prod => prod.quantity > 0);
+        }
     }
 
     removeItem(cartItem: CartItem){
@@ -96,6 +104,13 @@ export class CartComponent implements OnInit{
             this.updateCartInfo(- item.quantity * item.product.price, - item.quantity);
         }
         this.cart = new Array();
-
     }
+
+    public emptyCart(){
+        for(let item of this.cart){
+            item.reset();
+            this.updateCartInfo(- item.quantity * item.product.price, - item.quantity);
+        }
+        this.cart = new Array();
+    };
 }

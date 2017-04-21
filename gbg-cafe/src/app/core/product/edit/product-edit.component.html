@@ -3,21 +3,21 @@
         <div name="edit">
             <div id="top">
                 <h1>Redigera Vara</h1>
-                <button class="btn btn-default regret">Radera Vara</button>
+                <button class="btn btn-default regret" (click)="moveToTrash()">Radera Vara</button>
                 <img class="thumbnail">
                 <div class="clearfix"></div>
             </div>
             <div id="name">
                 <li class="name">
                     <p>Namn:</p>
-                    <input type="text" placeholder="Coca Cola" [(ngModel)]="product.name">
+                    <input type="text" placeholder="Coca Cola" [(ngModel)]="editedProduct.name">
                 </li>
             </div>
             
             <div id="price-cat">
                 <li class="price">
                     <p>Pris:</p>
-                    <input type="number" placeholder="20" [(ngModel)]="product.price">
+                    <input type="number" placeholder="20" [(ngModel)]="editedProduct.price">
                 </li>
                 <li class="cat">
                     <p>Kategori:</p>
@@ -31,19 +31,19 @@
             <div id="desc-size-amount">
                 <li class="desc">
                     <p>Beskrivning:</p>
-                    <textarea placeholder="En vattentålig läsk för alla smaker"></textarea>
+                    <textarea placeholder="En vattentålig läsk för alla smaker" [(ngModel)]="editedProduct.description" ></textarea>
                 </li>
                 <li class="size">
                     <p>Storlek:</p>
-                    <input type="number" value="" placeholder="25cl">
+                    <input type="number" placeholder="25cl" [(ngModel)]="editedProduct.size">
                 </li>
                 <li class="amount">
                     <p>Antal:</p>
-                    <input type="number" value="" placeholder="25">
+                    <input type="number" placeholder="25" [(ngModel)]="editedProduct.quantity">
                 </li>
                 <div class="buttons">
-                    <button type="submit" class="btn btn-default submit" (click)="purchase()">Klar</button>
-                    <button type="cancel" class="btn btn-default regret">Ångra</button>
+                    <button type="submit" class="btn btn-default submit" (click)="editSave()">Klar</button>
+                    <button type="cancel" class="btn btn-default regret" (click)="close()">Ångra</button>
                 </div>
 
             </div>

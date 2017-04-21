@@ -11,6 +11,8 @@ import {  FilterTextService} from '../shared/filter/filter-text.service';
 import { ImgService } from '../shared/img/img.service';
 import { CartComponent } from "../core/cart/cart.component";
 import { RecieptItemComponent } from "../reciept/reciept.component";
+import { ProductEditComponent } from "../core/product/edit/product-edit.component";
+
 
 @Component({
     selector:"shop",
@@ -38,6 +40,7 @@ export class ShopComponent implements OnInit{
     @ViewChild(FilterTextComponent) filterComponent: FilterTextComponent;
     @ViewChild(CartComponent) cartComponent: CartComponent;
     @ViewChild(RecieptItemComponent) recieptComponent: RecieptItemComponent;
+    @ViewChild(ProductEditComponent) productEditComponent: ProductEditComponent;
 
     constructor(
         private productService: ProductService, 
@@ -65,6 +68,76 @@ export class ShopComponent implements OnInit{
         }
     }
 
+    handleError(error: any){
+        if(error.status == 401){
+            this.logout();
+        }else{
+            console.log("todo: show error message: ");
+            console.log(error.json());
+        }
+    }
+
+    closeEdit(){
+        this.productEditComponent.clear();
+        this.editProduct = false;
+    }
+
+    moveToTrash(product:Product){
+        console.log("moving product to trash: "+product);
+        this.startLoading();
+        product.category_id = product.category.id;
+        this.productService.removeProducts(product).subscribe(
+            response => {
+                this.stopLoading();
+                if(response.status == 204){
+                    console.log("product moved to trash");
+                    this.productEditComponent.clear();
+                    this.editProduct = false;
+                    // update ategory and visible products
+                    product.category.products = product.category.products.filter(prod => prod.id != product.id);
+                    this.visibleProducts = this.visibleProducts.filter(prod => prod.id != product.id);
+                    product.category = this.trashCan;
+                    this.trashCan.products.push(product);
+                    this.closeEdit();
+                }
+                else{
+                    this.handleError(response);
+                }
+            },
+            error => {
+                this.stopLoading();
+                this.handleError(error);
+            }
+        );
+    }
+
+    updateProduct(products: any){
+        console.log("updating product: "+ products.edited);
+        this.startLoading();
+        products.edited.category = null;
+        this.productService.updateProduct(products.edited).subscribe(
+            response => {
+                this.stopLoading();
+                if(response.status == 204){
+                    // server was updated, reflect changes in gui
+                    this.productService.copy(products.edited, products.original);
+                    // update visible products
+                    this.visibleProducts = this.visibleProducts.filter(prod => true);
+                    this.closeEdit();
+                }
+                else{
+                    console.log(response.json());
+                    this.handleError(response);
+                }
+            },
+            error => {
+                this.stopLoading();
+                this.handleError(error);
+            }
+        );
+        
+    }
+
     addToCart(product:Product){
         this.cartComponent.addToCart(product);
     }
@@ -78,28 +151,15 @@ export class ShopComponent implements OnInit{
                  this.stopLoading();
                 if(response.status == 204){
                     this.purchaseSucess(response.json());
-                }else if(response.status == 401){
-                    console.log("Unauthorized: logging out.");
-                    console.log(response.json());
-                    this.logout();
                 }else{
-                    console.log("todo: show error message: ");
                     console.log(response.json());
+                    this.handleError(response);
                 }
             },
             error => {
-                if(error.status==401){
-                    this.logout();
-                }else{
-                    console.log("todo: show error message: ");
-                    console.log(error.json());
-                }
+                this.handleError(error);
             }
         );
-    }
-
-    updateProduct(product: Product){
-        console.log("updating product: "+ product.name);
     }
 
     showEditProduct(product: Product){
@@ -110,7 +170,6 @@ export class ShopComponent implements OnInit{
     }
 
     private purchaseSucess(result: any){
-       
         console.log("todo: show reciept?: ");
         console.log(result);
         this.showReciept();
@@ -191,7 +250,10 @@ export class ShopComponent implements OnInit{
 
     private initCategory(category: Category){
         category.imgSrc = this.imgService.getImg(category.img);
-        category.products.forEach(prod => prod.img = category.img);
+        category.products.forEach(prod => {
+            prod.img = category.img; 
+            prod.category = category;
+        });
         if(category.name === "trash"){
             this.trashCan = category; 
         }
@@ -211,11 +273,8 @@ export class ShopComponent implements OnInit{
                 }
             },
             error => {
-                this.errorMessage = <any>error;
-                if(error.status == 401){
-                    this.logout();
-                }
-        }
+                this.handleError(error);
+            }
         );
     }
 

@@ -1,3 +1,4 @@
+import { Category } from "../shop/category.model";
 
 export class Product{
 
@@ -11,10 +12,12 @@ export class Product{
     active: boolean;
     date: Date;
     img : string;
+    category: Category;
+
+    category_id: number;
 
     constructor(){
 
     }
-
    
 }
