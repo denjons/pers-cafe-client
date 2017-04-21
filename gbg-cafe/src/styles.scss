@@ -76,7 +76,7 @@ body{
         color: white !important;
     }
 
-    form{
+    form, div{
         font-family: "Medium";
         color: black;
 
@@ -390,8 +390,12 @@ body{
 
         padding: 20px;
 
-        form{
+        .edit{
             width: 100%;
+
+            li{
+                list-style: none;
+            }
 
             div{
                 margin: 10px 0;
@@ -1081,8 +1085,11 @@ body{
     //Swish
     .swish{
         margin: 25px 0 15px 0;
-        width: auto;
+        width: 100%;
         font-family: 'Light';
+
+        display: grid;
+        justify-content: center;
 
         #swish-number{
             width: auto;
@@ -1120,9 +1127,10 @@ body{
     }
 
     .gbg-logo{
+        position: relative;
+        z-index: 100;
         width: 100px;
         margin-left: 50%;
-        margin-top: 50px;
         transform: translateX(-50px);
     }
 }

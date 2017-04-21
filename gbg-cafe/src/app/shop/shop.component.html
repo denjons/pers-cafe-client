@@ -2,7 +2,7 @@
 
     <reciept class="popup receipt" [items]=cart *ngIf="reciept" (onClose)="hideReciept($event)"></reciept>
 
-    <product-edit class="popup active" [product]=selectedProduct *ngIf="editProduct" (onEditSave)="updateProduct($event)"
+    <product-edit class="edit-item popup active" [product]=selectedProduct *ngIf="editProduct" (onEditSave)="updateProduct($event)"
     (onMoveToTrash)="moveToTrash($event)"
     (onClose)="closeEdit()">
     </product-edit>

@@ -20,13 +20,13 @@ Incl: :focus Forms Buttons a
 body { color: #1F1E1D; height: 100vh; width: 100vw; background: #1b78cc; line-height: 1; }
 body :focus { outline: none !important; }
 body a { color: white !important; }
-body form { font-family: "Medium"; color: black; }
-body form p { margin: 0 10px; }
-body form li { list-style: none; }
-body form input, body form textarea, body form button, body form select { border: 0; background: rgba(136, 205, 208, 0.5); }
-body form textarea { padding: 10px 10px; }
-body form input { min-height: 46px; padding-left: 10px; }
-body form select { background-image: url(/src/imgs/elements/arrow-down.png); background-position: 90% center; background-repeat: no-repeat; border-radius: 0; padding: 15px 50px 15px 10px; text-align: left; }
+body form, body div { font-family: "Medium"; color: black; }
+body form p, body div p { margin: 0 10px; }
+body form li, body div li { list-style: none; }
+body form input, body form textarea, body form button, body form select, body div input, body div textarea, body div button, body div select { border: 0; background: rgba(136, 205, 208, 0.5); }
+body form textarea, body div textarea { padding: 10px 10px; }
+body form input, body div input { min-height: 46px; padding-left: 10px; }
+body form select, body div select { background-image: url(/src/imgs/elements/arrow-down.png); background-position: 90% center; background-repeat: no-repeat; border-radius: 0; padding: 15px 50px 15px 10px; text-align: left; }
 body .btn-default { width: auto; height: auto; border: 0; border-radius: 0; margin: 0; padding: 0; color: white; font-size: 16px; font-family: "Light"; text-align: center; white-space: normal; }
 body .btn-default.regret { background-color: #b93342; }
 body .btn-default.submit { background-color: #51aa50; }
@@ -83,29 +83,30 @@ body .btn-default.logout { font-size: 14px; width: auto; height: auto; backgroun
 .popup.receipt .total h1 { font-size: 30px; margin-left: 10px; }
 .popup.receipt .total h2 { font-size: 20px; line-height: 38px; text-transform: uppercase; }
 .popup.edit-item { width: 400px; height: auto; padding: 20px; }
-.popup.edit-item form { width: 100%; }
-.popup.edit-item form div { margin: 10px 0; }
-.popup.edit-item form #top h1 { font-family: "Light"; font-size: 30px; margin: 0 !important; }
-.popup.edit-item form #top .btn { float: left; padding: 0; margin: 15px 0; width: 126px; height: 25px; font-size: 16px; }
-.popup.edit-item form #top .thumbnail { width: 90px; height: 90px; float: right; margin-top: -45px; }
-.popup.edit-item form #name { margin-top: 10px; }
-.popup.edit-item form #name li.name { width: 100%; }
-.popup.edit-item form #name li.name input { width: 100%; }
-.popup.edit-item form #price-cat li { float: left; width: 165px; }
-.popup.edit-item form #price-cat li:nth-child(2) { float: right; }
-.popup.edit-item form #price-cat li select, .popup.edit-item form #price-cat li input { width: 100%; }
-.popup.edit-item form #desc-size-amount { width: 100%; height: 230px; }
-.popup.edit-item form #desc-size-amount .desc { float: left; width: 165px; height: 100%; }
-.popup.edit-item form #desc-size-amount .desc textarea { height: 100%; max-height: 100%; width: 100%; max-width: 100%; }
-.popup.edit-item form #desc-size-amount .size, .popup.edit-item form #desc-size-amount .amount { float: right; width: 160px; }
-.popup.edit-item form #desc-size-amount .size input, .popup.edit-item form #desc-size-amount .amount input { width: 100%; }
-.popup.edit-item form #desc-size-amount .size { margin: 0 0 20px 0 !important; }
-.popup.edit-item form #desc-size-amount .buttons { width: auto; float: right; margin: 60px 0 0 0; }
-.popup.edit-item form #desc-size-amount .buttons .btn { width: auto; height: 41px; }
-.popup.edit-item form #desc-size-amount .buttons .btn .submit { width: 82px; margin-left: 20px; }
-.popup.edit-item form #desc-size-amount .buttons .btn .regret { width: 73px; }
-.popup.edit-item form .btn-default { float: left; height: 20px; padding: 20px; line-height: 0; }
-.popup.edit-item form .btn-default.submit { margin-right: 14px; }
+.popup.edit-item .edit { width: 100%; }
+.popup.edit-item .edit li { list-style: none; }
+.popup.edit-item .edit div { margin: 10px 0; }
+.popup.edit-item .edit #top h1 { font-family: "Light"; font-size: 30px; margin: 0 !important; }
+.popup.edit-item .edit #top .btn { float: left; padding: 0; margin: 15px 0; width: 126px; height: 25px; font-size: 16px; }
+.popup.edit-item .edit #top .thumbnail { width: 90px; height: 90px; float: right; margin-top: -45px; }
+.popup.edit-item .edit #name { margin-top: 10px; }
+.popup.edit-item .edit #name li.name { width: 100%; }
+.popup.edit-item .edit #name li.name input { width: 100%; }
+.popup.edit-item .edit #price-cat li { float: left; width: 165px; }
+.popup.edit-item .edit #price-cat li:nth-child(2) { float: right; }
+.popup.edit-item .edit #price-cat li select, .popup.edit-item .edit #price-cat li input { width: 100%; }
+.popup.edit-item .edit #desc-size-amount { width: 100%; height: 230px; }
+.popup.edit-item .edit #desc-size-amount .desc { float: left; width: 165px; height: 100%; }
+.popup.edit-item .edit #desc-size-amount .desc textarea { height: 100%; max-height: 100%; width: 100%; max-width: 100%; }
+.popup.edit-item .edit #desc-size-amount .size, .popup.edit-item .edit #desc-size-amount .amount { float: right; width: 160px; }
+.popup.edit-item .edit #desc-size-amount .size input, .popup.edit-item .edit #desc-size-amount .amount input { width: 100%; }
+.popup.edit-item .edit #desc-size-amount .size { margin: 0 0 20px 0 !important; }
+.popup.edit-item .edit #desc-size-amount .buttons { width: auto; float: right; margin: 60px 0 0 0; }
+.popup.edit-item .edit #desc-size-amount .buttons .btn { width: auto; height: 41px; }
+.popup.edit-item .edit #desc-size-amount .buttons .btn .submit { width: 82px; margin-left: 20px; }
+.popup.edit-item .edit #desc-size-amount .buttons .btn .regret { width: 73px; }
+.popup.edit-item .edit .btn-default { float: left; height: 20px; padding: 20px; line-height: 0; }
+.popup.edit-item .edit .btn-default.submit { margin-right: 14px; }
 .popup.alert { width: 535px; text-align: center; padding: 0; margin: 0; border-radius: 0; }
 .popup.alert #top { font-family: "Bold"; font-size: 27px; margin-bottom: 30px; padding: 20px 0; background-color: #cecfd0; }
 .popup.alert #bottom { font-family: 'Book'; font-size: 17px; margin-bottom: 30px; }
@@ -200,12 +201,12 @@ body .btn-default.logout { font-size: 14px; width: auto; height: auto; backgroun
 #cart .cart-total .items.in-cart .amount::after { content: "st"; }
 #cart .cart-total .items.total { font-size: 30px; font-family: "Bold"; }
 #cart .cart-total .items.total .amount::after { content: ":-"; }
-#cart .swish { margin: 25px 0 15px 0; width: auto; font-family: 'Light'; }
+#cart .swish { margin: 25px 0 15px 0; width: 100%; font-family: 'Light'; display: grid; justify-content: center; }
 #cart .swish #swish-number { width: auto; float: right; margin: 0 5px 10px 0; text-align: center; font-size: 16px; letter-spacing: -.5px; color: white; }
 #cart .swish .buttons { width: 100%; text-align: center; margin: 15px 0; }
 #cart .swish .buttons .btn-default { height: 50px; font-size: 17px; }
 #cart .swish .buttons .btn-default.submit { width: 150px; margin-right: 10px; }
 #cart .swish .buttons .btn-default.regret { width: 90px; float: right; }
-#cart .gbg-logo { width: 100px; margin-left: 50%; margin-top: 50px; transform: translateX(-50px); }
+#cart .gbg-logo { position: relative; z-index: 100; width: 100px; margin-left: 50%; transform: translateX(-50px); }
 
 /*# sourceMappingURL=styles.css.map */
