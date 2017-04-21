@@ -162,9 +162,9 @@ body .btn-default.logout { font-size: 14px; width: auto; height: auto; backgroun
 .admin.active.add-category a:hover { background: none; color: white; }
 .admin.active.add-category h1 { margin: 0; padding: 0; font-family: "Bold"; float: left; }
 .admin.active.add-category p { margin: 0 -40px !important; }
-.admin.active.add-product { text-align: center; position: relative; font-family: 'Bold'; color: white; }
-.admin.active.add-product .panel { background-color: #51aa50 !important; }
-.admin.active.add-product .panel .text { position: absolute; width: 200px; height: 200px; top: 50%; left: 50%; transform: translate(-100px, -100px); }
+.admin.active.add-product { text-align: center; font-family: 'Bold'; }
+.admin.active.add-product .panel { background-color: #51aa50 !important; position: relative; }
+.admin.active.add-product .panel .text { position: absolute; width: 200px; height: 200px; top: 50%; left: 50%; transform: translate(-100px, -80px); color: white; }
 .admin.active.add-product .panel .text h1 { font-size: 100px; margin: 0; padding: 0; }
 .admin.active.add-product .panel .text p { font-size: 20px; }
 .admin.active.edit { width: auto; text-align: center; top: 75%; left: 65%; position: absolute; }

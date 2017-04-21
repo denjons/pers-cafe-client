@@ -843,19 +843,21 @@ body{
 
         &.add-product{
             text-align: center;
-            position: relative;
             font-family: 'Bold';
-            color: white;
 
             .panel{
                 background-color: $green !important;
+                position: relative;
+
                 .text{
                     position: absolute;
                     width: 200px;
                     height: 200px;
                     top: 50%;
                     left: 50%;
-                    transform: translate(-100px, -100px);
+                    transform: translate(-100px, -80px);
+
+                    color: white;
 
                     h1{
                         font-size: 100px;
