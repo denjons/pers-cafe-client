@@ -100,17 +100,17 @@ export class CartComponent implements OnInit{
 
     public clearCart(){
         console.log("clearing cart");
-        for(let item of this.cart){
-            this.updateCartInfo(- item.quantity * item.product.price, - item.quantity);
-        }
+        this.totalPrice = 0;
+        this.totalProducts = 0;
         this.cart = new Array();
     }
 
     public emptyCart(){
         for(let item of this.cart){
             item.reset();
-            this.updateCartInfo(- item.quantity * item.product.price, - item.quantity);
         }
+        this.totalPrice = 0;
+        this.totalProducts = 0;
         this.cart = new Array();
     };
 }
