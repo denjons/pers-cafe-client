@@ -70,14 +70,14 @@
             <filter-text (onFilterChanged)="filterChaged($event)"></filter-text>
             <div class="grid-system">
                 <ul class="gc-product-grid">
-                    <!--<li class="admin active add-product">
-                        <div class="panel">
+                    <li class="admin active add-product">
+                        <div class="panel col-md-4">
                             <div class="text">
                                 <h1>+</h1>
                                 <p>Lägg till produkt</p>
                             </div>
                         </div>
-                    </li>-->
+                    </li>
                     <li *ngFor="let product of visibleProducts">
                         <product-item [product]=product [user]=user (onAddToCart)="addToCart($event)"
                         (onEdit)="showEditProduct($event)"></product-item>
