@@ -70,9 +70,9 @@ body .btn-default.logout { font-size: 14px; width: auto; height: auto; backgroun
 .popup.receipt .printout ul li div { height: 100%; min-height: 70px; padding: 10px; float: left; border-right: 1px solid gray; }
 .popup.receipt .printout ul li div:last-child { border: none; }
 .popup.receipt .printout ul li div p { margin: 0; }
-.popup.receipt .printout ul li .item { width: 212px; font-family: "Medium"; }
-.popup.receipt .printout ul li .item p { font-size: 18px; }
-.popup.receipt .printout ul li .item p:nth-child(2) { font-size: 15px; }
+.popup.receipt .printout ul li .item { width: 212px; font-family: "Medium"; text-transform: capitalize; }
+.popup.receipt .printout ul li .item p { font-size: 25px; }
+.popup.receipt .printout ul li .item p:nth-child(2) { font-size: 15px; margin-top: 10px; }
 .popup.receipt .printout ul li .amount { width: 130px; }
 .popup.receipt .printout ul li .amount p { font-size: 18px; }
 .popup.receipt .printout ul li .amount p:nth-child(2) { font-size: 14px; font-style: italic; }

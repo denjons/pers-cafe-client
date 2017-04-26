@@ -18,12 +18,6 @@ export class CartItem{
         return true;
     }
 
-    public decrease(){
-        this.product.quantity ++;
-        this.quantity --;
-
-    }
-
     public reset(){
         this.product.quantity = this.product.quantity + this.quantity;
         this.quantity = 0;
@@ -40,6 +34,11 @@ export class CartItem{
     private increaseQuantity(){
         this.product.quantity --;
         this.quantity ++;
+    }
+
+    public decrease(){
+        this.product.quantity ++;
+        this.quantity --;
     }
 
 }

@@ -5,5 +5,7 @@ export class Urls {
     static login = Urls.base + "/user/login";
     static getShop = Urls.base + "/shop/get";
     static purchase = Urls.base + "/shop/purchase";
+    static updateProduct = Urls.base + "/product/update";
+    static removeProduct = Urls.base + "/product/remove";
     
 }

@@ -2,7 +2,9 @@
 
     <reciept class="popup receipt" [items]=cart *ngIf="reciept" (onClose)="hideReciept($event)"></reciept>
 
-    <product-edit class="edit-item popup active" [product]=selectedProduct *ngIf="editProduct" (onEditSave)="updateProduct($event)">
+    <product-edit class="edit-item popup active" [product]=selectedProduct *ngIf="editProduct" (onEditSave)="updateProduct($event)"
+    (onMoveToTrash)="moveToTrash($event)"
+    (onClose)="closeEdit()">
     </product-edit>
 
     <div class="spinner inactive"></div>
@@ -43,8 +45,8 @@
                             <p class="cat-name">{{category.name}}</p>
                         </a>
                     </li>
-                    <li>
-                        <a (click)="navigate(trashCan.id)" >
+                    <li class="nav admin" [ngClass]="{'active': user?.user_type === 'ADMIN', 'inactive': user?.user_type != 'ADMIN'}" >
+                        <a  (click)="navigate(trashCan.id)" >
                             <img src="/src/icons/soptunna_large.png">
                             <p class="cat-name trash">Trash</p>
                         </a>

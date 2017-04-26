@@ -15,17 +15,35 @@ export class ProductEditComponent implements OnInit{
     @Input() product: Product;
     @Input() categories: Category[];
     @Output() onEditSave = new EventEmitter;
+    @Output() onMoveToTrash = new EventEmitter;
+    @Output() onClose = new EventEmitter;
+
+    editedProduct: Product;
 
     constructor(private productService: ProductService){
 
     }
+
     ngOnInit(){
+        this.editedProduct = new Product();
+        this.productService.copy(this.product, this.editedProduct);
         console.log("init product edit item.");
     }
 
-    editSave(){
-        this.onEditSave.emit(this.product);
+    moveToTrash(){
+        this.onMoveToTrash.emit(this.product);
     }
 
+    editSave(){
+        this.onEditSave.emit({"edited":this.editedProduct,"original":this.product});
+    }
 
+    clear(){
+        this.product = null;
+        this.editedProduct = new Product();
+    }
+
+    close(){
+        this.onClose.emit();
+    }
 }
