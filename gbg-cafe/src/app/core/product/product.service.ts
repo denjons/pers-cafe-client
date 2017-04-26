@@ -18,6 +18,19 @@ export class ProductService{
 
     private user: User;
 
+    addProduct(product: Product){
+        var token = localStorage.getItem("id_token");
+
+        GCHeader.headers.set(GCHeader.AUTHORIZATION, token);
+        let body = this.productToJSON(product);
+
+        return this.http
+         .post(Urls.addProduct,body,{ headers: GCHeader.headers })
+         .map((response: Response) => response)
+         .do(response => {console.log(response)})
+         .catch(this.handleError);
+    }
+
 
     updateProduct(product:Product){
         var token = localStorage.getItem("id_token");

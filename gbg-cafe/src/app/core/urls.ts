@@ -8,5 +8,6 @@ export class Urls {
     static purchase = Urls.base + "/shop/purchase";
     static updateProduct = Urls.base + "/product/update";
     static removeProduct = Urls.base + "/product/remove";
+    static addProduct = Urls.base + "/product/add";
     
 }

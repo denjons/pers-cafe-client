@@ -82,6 +82,10 @@ export class ShopComponent implements OnInit{
         this.editProduct = false;
     }
 
+    addProduct(){
+        
+    }
+
     moveToTrash(product:Product){
         console.log("moving product to trash: "+product);
         this.startLoading();
