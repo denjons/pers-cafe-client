@@ -1,22 +1,21 @@
 
         <div class="edit" name="edit">
             <div id="top">
-                <h1>Redigera Vara</h1>
-                <button class="btn btn-default regret" (click)="moveToTrash()">Radera Vara</button>
+                <h1>Skapa Vara</h1>
                 <img class="thumbnail">
                 <div class="clearfix"></div>
             </div>
             <div id="name">
                 <li class="name">
                     <p>Namn:</p>
-                    <input type="text" placeholder="Coca Cola" [(ngModel)]="editedProduct.name">
+                    <input type="text" placeholder="Coca Cola" [(ngModel)]="product.name">
                 </li>
             </div>
             
             <div id="price-cat">
                 <li class="price">
                     <p>Pris:</p>
-                    <input type="number" placeholder="20" [(ngModel)]="editedProduct.price">
+                    <input type="number" placeholder="20" [(ngModel)]="product.price">
                 </li>
                 <!--Commented Category select.
                     <li class="cat">
@@ -31,19 +30,19 @@
             <div id="desc-size-amount">
                 <li class="desc">
                     <p>Beskrivning:</p>
-                    <textarea placeholder="En vattentålig läsk för alla smaker" [(ngModel)]="editedProduct.description" ></textarea>
+                    <textarea placeholder="En vattentålig läsk för alla smaker" [(ngModel)]="product.description" ></textarea>
                 </li>
                 <li class="size">
                     <p>Storlek:</p>
-                    <input type="text" placeholder="25cl" [(ngModel)]="editedProduct.size">
+                    <input type="text" placeholder="25cl" [(ngModel)]="product.size">
                 </li>
                 <li class="amount">
                     <p>Antal:</p>
-                    <input type="number" placeholder="25" [(ngModel)]="editedProduct.quantity">
+                    <input type="number" placeholder="25" [(ngModel)]="product.quantity">
                 </li>
                 <div class="buttons">
 
-                    <button type="submit" class="btn btn-default submit" (click)="editSave()">Klar</button>
+                    <button type="submit" class="btn btn-default submit" (click)="createSave()">Klar</button>
                     <button type="cancel" class="btn btn-default regret" (click)="close()">Ångra</button>
 
                 </div>

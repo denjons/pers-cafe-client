@@ -35,6 +35,7 @@ export class ShopComponent implements OnInit{
     reciept : boolean;
     loading : boolean;
     editProduct: boolean;
+    createProduct: boolean;
 
 
     @ViewChild(FilterTextComponent) filterComponent: FilterTextComponent;
@@ -77,13 +78,46 @@ export class ShopComponent implements OnInit{
         }
     }
 
-    closeEdit(){
-        this.productEditComponent.clear();
-        this.editProduct = false;
+
+    addCategory(category: Category){
+
     }
 
-    addProduct(){
-        
+    removeCategory(category: Category){
+
+    }   
+
+    updateCategory(category: Category){
+
+    }
+
+    addProduct(product: Product){
+        this.startLoading();
+        this.productService.addProduct(product).subscribe(
+            response => {
+                this.stopLoading();
+                if(response.status == 204 || response.status == 200){
+                    var addedProduct = <Product>response.json();
+                    if(addedProduct == null || addedProduct.id <= 0){
+                        alert("could not add product.");
+                    }
+                    product.id = addedProduct.id;
+                    console.log("adding product");
+                    console.log(product);
+                    // inside
+                    product.category.products.push(product);
+                    this.visibleProducts = this.selectedCategory.products;
+                    this.closeCreateProduct();
+                }
+                else{
+                    this.handleError(response);
+                }
+            },
+            error => {
+                this.stopLoading();
+                this.handleError(error);
+            }
+        );
     }
 
     moveToTrash(product:Product){
@@ -166,11 +200,27 @@ export class ShopComponent implements OnInit{
         );
     }
 
+    showCreateProduct(){
+        this.selectedProduct = new Product();
+        this.selectedProduct.category = this.selectedCategory;
+        this.createProduct = true;
+    }
+
+    closeCreateProduct(){
+        this.createProduct = false;
+        this.selectedProduct = null;
+    }
+
     showEditProduct(product: Product){
         console.log("show edit dialog with product: ");
         console.log(product);
         this.selectedProduct = product;
         this.editProduct = true;
+    }
+
+    closeEdit(){
+        this.productEditComponent.clear();
+        this.editProduct = false;
     }
 
     private purchaseSucess(result: any){

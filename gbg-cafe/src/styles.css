@@ -127,6 +127,7 @@ body .btn-default.logout { font-size: 14px; width: auto; height: auto; backgroun
 .navbar .navbar-collapse nav .nav-cat li img { width: 32px; height: 32px; }
 .navbar .navbar-collapse nav .nav-cat li .cat-name { width: auto; }
 .navbar .navbar-collapse nav .nav-cat li .cat-name.trash { color: #b93342; }
+li.nav.admin.active a{background-color: transparent !important;} 
 
 .row { width: 70%; height: 680px; float: left; overflow: hidden; margin: 0; }
 .row #products { width: 100%; padding: 0; margin: 0; height: auto; background: white; }

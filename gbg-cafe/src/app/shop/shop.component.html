@@ -7,6 +7,9 @@
     (onClose)="closeEdit()">
     </product-edit>
 
+    <product-create class="edit-item popup active" [category]=selectedCategory 
+    *ngIf="createProduct" (onCreateSave)="addProduct($event)" (onClose)="closeCreateProduct()"></product-create>
+
     <div class="spinner inactive"></div>
     <div  class="spinner" *ngIf="loading" ></div>
 
@@ -70,8 +73,10 @@
             <filter-text (onFilterChanged)="filterChaged($event)"></filter-text>
             <div class="grid-system">
                 <ul class="gc-product-grid">
-                    <li class="admin active add-product">
-                        <div class="panel col-md-4">
+                    <li class="admin add-product" 
+                    *ngIf="selectedCategory != undefined && (selectedCategory.name != 'all' && selectedCategory.name != 'trash')"
+                    [ngClass]="{'active': user?.user_type === 'ADMIN', 'inactive': user?.user_type != 'ADMIN'}">
+                        <div class="panel col-md-4" (click)="showCreateProduct()">
                             <div class="text">
                                 <h1>+</h1>
                                 <p>Lägg till produkt</p>

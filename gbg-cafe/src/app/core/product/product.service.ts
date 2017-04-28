@@ -99,7 +99,7 @@ export class ProductService{
         var purchase = new Purchase();
         purchase.cartItems = cartItems;
         for(let item of cartItems){
-            item.product.category = null;
+            item.product.category = undefined;
         }
         purchase.shop_id = shop.id;
 

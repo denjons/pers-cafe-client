@@ -11,6 +11,7 @@ import { FilterTextModule } from '../shared/filter/filter-text.module';
 import { ImgModule } from '../shared/img/img.module';
 
 import { RecieptModule } from '../reciept/reciept.module';
+import { CategoryModule } from "../core/category/category.module";
 
 
 
@@ -26,7 +27,8 @@ import { RecieptModule } from '../reciept/reciept.module';
     CartModule,
     FilterTextModule,
     ImgModule,
-    RecieptModule
+    RecieptModule,
+    CategoryModule
   ],
   exports:[ routableComponents]
 })

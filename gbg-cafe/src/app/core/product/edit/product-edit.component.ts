@@ -13,7 +13,6 @@ import { Category } from "../../shop/category.model";
 export class ProductEditComponent implements OnInit{
 
     @Input() product: Product;
-    @Input() categories: Category[];
     @Output() onEditSave = new EventEmitter;
     @Output() onMoveToTrash = new EventEmitter;
     @Output() onClose = new EventEmitter;

@@ -11,10 +11,10 @@ export class ShopRouteActivatorService implements CanActivate{
 
     canActivate(route: ActivatedRouteSnapshot){
 
-        console.log(route.pathFromRoot);
+        //console.log(route.pathFromRoot);
         var token = localStorage.getItem("id_token");
         console.log("id_token: "+token);
-        if(token.length < 20){
+        if((token != null && token != undefined) && token.length < 20){
             console.log("navigate to login");
             this.router.navigate(['login']);
             return false;
