@@ -1,4 +1,5 @@
 import { Category } from "../shop/category.model";
+import { SalesTax } from "../shop/sales-tax.model";
 
 export class Product{
 
@@ -12,8 +13,9 @@ export class Product{
     active: boolean;
     date: Date;
     img : string;
-    category: Category;
+    salesTax: SalesTax;
 
+    category: Category;
     category_id: number;
 
     constructor(){
